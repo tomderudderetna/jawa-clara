@@ -14,6 +14,14 @@ function blind() {
             var text = event.originalEvent.clipboardData.getData("text/plain");
             document.execCommand("insertHTML", false, text.replace(/\n/g, "</br>"));
         })
+        .off('drop')
+        .on('drop', function (event) {
+            event.preventDefault();
+            var text = event.originalEvent.dataTransfer.getData("text/plain");
+            $(this).html(text);
+            // debugger;
+            // document.execCommand("insertHTML", false, text.replace(/\n/g, "</br>"));
+        })
         .off('DOMSubtreeModified')
         .on('DOMSubtreeModified', function () {
             //evenement - DOMSubtreeModified:    modifier une div editable

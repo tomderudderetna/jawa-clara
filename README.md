@@ -32,7 +32,7 @@ ainsi que la liste des **blocs** que l'utilisateur peux drag&drop.
 ##Validation
 Il suffit de cliquer sur le bouton _"Crée"_  pour générer le sujet de cours.
 ##Lien Utile:
-https://openclassrooms.com/courses/creez-un-editeur-de-texte-wysiwyg
+- voir fichier `source.md`
 ##Evolutions:
 - crée un systéme de (poids) sur les **blocks de saisie** afin de gerer le emplacement.
 - gérer leur emplacement en drag&drop.
