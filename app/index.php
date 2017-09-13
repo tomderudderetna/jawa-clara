@@ -3,11 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Clara</title>
-    <link rel="icon" href="asset/favicon.ico"/>
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="../asset/css/style.css">
 </head>
 <body>
@@ -24,8 +21,7 @@
                 <a data-cmd="italic" class="btn btn-default btn-css"><i class="fa fa-italic"></i></a>
                 <a data-cmd="underline" class="btn btn-default btn-css"><i class="fa fa-underline"></i></a>
                 <a data-cmd="justifyleft" class="btn btn-default btn-css"><span class="glyphicon glyphicon-align-left"></a>
-                <a data-cmd="justifycenter" class="btn btn-default btn-css"><span
-                            class="glyphicon glyphicon-align-center"></a>
+                <a data-cmd="justifycenter" class="btn btn-default btn-css"><span class="glyphicon glyphicon-align-center"></a>
                 <a data-cmd="justifyright" class="btn btn-default btn-css"><span class="glyphicon glyphicon-align-right"></a>
                 <a data-cmd="justifyfull" class="btn btn-default btn-css"><span class="glyphicon glyphicon-align-justify"></a>
             </div>
@@ -72,36 +68,31 @@
     <form class="form" action="creator.php" method="post">
         <div class="panel panel-default">
             <div class="panel-body">
+
                 <!--champs cachés quis seront remplis transmis avec le formulaire-->
-                <input type="hidden" id="module_code" name="module_code">
-                <input type="hidden" id="project_code" name="project_code">
-                <input type="hidden" id="project_name" name="project_name">
                 <input type="hidden" id="param_project" name="param_project">
+
                 <!--div editable qui remplira le champs caché 'module_code'-->
                 <div class="form-group">
-                    <label><i class="fa fa-cogs"></i> | module code <sup>*</sup></label>
-                    <div id="edit_module_code" class="form-control input"
-                         contentEditable></div>
+                    <label><i class="fa fa-cogs"></i> | code UV<sup>*</sup></label>
+                    <input type="text" class="form-control input" id="module_code" name="module_code">
                 </div>
                 <!--div editable qui remplira le champs caché 'project_code'-->
                 <div class="form-group">
                     <label><i class="fa fa-cogs"></i> | projet code <sup>*</sup></label>
-                    <div id="edit_project_code" class="form-control input"
-                         contentEditable></div>
+                    <input type="text" class="form-control input" id="project_code" name="project_code">
                 </div>
                 <!--div editable qui remplira le champs caché 'project_name'-->
                 <div class="form-group">
                     <label><i class="fa fa-cogs"></i> | nom projet <sup>*</sup></label>
-                    <div id="edit_project_name" class="form-control input"
-                         contentEditable></div>
+                    <input type="text" class="form-control input" id="project_name" name="project_name">
                 </div>
                 <!--div editable qui remplira le champs caché 'param_project'-->
                 <div class="form-group">
-                    <label><i class="fa fa-cogs"></i> | paramètres du
-                        projet</label>
-                    <div id="edit_param_project"
-                         class="form-control input multi" contentEditable></div>
+                    <label><i class="fa fa-cogs"></i> | paramètres du projet</label>
+                    <div id="edit_param_project" class="form-control input multi" contentEditable></div>
                 </div>
+
             </div>
         </div>
         <!--partie dynamique du formulaire, contenant les blocs d'un sujet (bloc d'interdiction, bloc d'etape, etc...)-->
@@ -153,8 +144,7 @@
 </div>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.5/ace.js"
-        type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.5/ace.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
 <script src="../asset/js/pannel_project_steps.js"></script>
 <script src="../asset/js/pannel_project_descriptions.js"></script>

@@ -93,9 +93,6 @@ $(document).ready(function () {
          * Actif:       lorsqu'on clique sur le bouton cree.
          * Description: on rempli les champs cachées du formulaire par le contenu des div editable.
          */
-        $('#module_code').val($('#edit_module_code')[0].innerHTML);
-        $('#project_code').val($('#edit_project_code')[0].innerHTML);
-        $('#project_name').val($('#edit_project_name')[0].innerHTML);
         $('#param_project').val($('#edit_param_project')[0].innerHTML);
         for (i = 1; i <= nb_steps; i++) {
             $('#step_' + i + '_id').val($('#edit_step_' + i + '_id')[0].innerHTML);

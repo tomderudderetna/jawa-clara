@@ -11,6 +11,6 @@ function get_include_contents($filename) {
 }
 
 $data = get_include_contents('incluator.php');
-echo file_put_contents("sujet.html", $data);
+file_put_contents("sujet.html", $data);
 ?>
 <a href="sujet.html" download>download file</a>

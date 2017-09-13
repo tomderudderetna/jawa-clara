@@ -6,7 +6,7 @@ function blind() {
     /*
      * evenements liés aux divs editables
      */
-    $('.input')
+    $('div.input')
         .off('paste')
         .on('paste', function (event) {
             //evenement - past:    coller un text dans la div editable
@@ -18,9 +18,10 @@ function blind() {
         .on('drop', function (event) {
             event.preventDefault();
             var text = event.originalEvent.dataTransfer.getData("text/plain");
+            text = text.replace(/•/g, "");
+            text = "<p>" + text + "</p>";
+            text = text.replace(/\n/g, "</p><p>");
             $(this).html(text);
-            // debugger;
-            // document.execCommand("insertHTML", false, text.replace(/\n/g, "</br>"));
         })
         .off('DOMSubtreeModified')
         .on('DOMSubtreeModified', function () {
