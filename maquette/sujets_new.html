@@ -15,20 +15,41 @@
 
         .top-bar-right {
             margin-left: 20px;
-            line-height: 25px;
+            line-height: 30px;
         }
 
         .title {
             background-color: transparent;
             border: none;
-            color: #ecdfff;
-            /*margin-left: 8px;*/
+            color: #bcc8ff;
+            font-size: 1em;
+            margin-left: 7px;
         }
 
         .title::placeholder {
-            color: #daa9ff;
+            color: #89779c;
             font-style: italic;
         }
+
+        .title:focus {
+            outline: none;
+        }
+
+        #main-menu {
+            color: #ecdfff;
+        }
+
+        #main-menu > a {
+            margin-bottom: 0;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            padding: 3px 7px 6px 7px;
+        }
+
+        #main-menu > a:hover {
+            background-color: #3f2a60;
+        }
+
     </style>
 </head>
 <body>
@@ -46,51 +67,28 @@
         </div>
     </div>
 </header>
-<!--<section class="new-sujet">-->
-    <!--<h2>Créer un nouveau sujet de cours</h2>-->
-    <!--<div class="box_row">-->
-        <!--<div class="box">-->
-            <!--<a href="sujets_new.html">-->
-                <!--<i class="fa fa-plus"></i>-->
-            <!--</a>-->
-        <!--</div>-->
-        <!--<div class="box"></div>-->
-        <!--<div class="box"></div>-->
-        <!--<div class="box"></div>-->
-        <!--<div class="box"></div>-->
-    <!--</div>-->
-<!--</section>-->
-<!--<header>-->
-<!--<div class="row">-->
-<!--<div class="col-1">-->
-<!--<img id="logo" src="img/claude_logo-light.png" title="← Retour vers claude">-->
-<!--</div>-->
-<!--<div class="col-11">-->
-<!--<div id="main-menu">-->
-<!--<a href="sujets_new.html">Nouveau</a>-->
-<!--<a href="all.html">Sujets</a>-->
-<!--<a href="sujets_recents.html">Recent</a>-->
-<!--<a href="sujet.html" target="_blank">Preview</a>-->
-<!--<a href="make.html" target="_blank">Générer</a>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</header>-->
 <nav>
-    <div class="container">
-        <div class="tool-menu">
+    <div class="tool-menu">
+        <div class="group">
             <a title="gras"><i class="fa fa-bold"></i></a>
             <a title="italique"><i class="fa fa-italic"></i></a>
             <a title="souligner"><i class="fa fa-underline"></i></a>
+        </div>
+        <div class="group">
             <a title="justifier"><i class="fa fa-align-justify"></i></a>
             <a title="aligner à gauche"><i class="fa fa-align-left"></i></a>
             <a title="aligner à droite"><i class="fa fa-align-right"></i></a>
             <a title="centrer"><i class="fa fa-align-center"></i></a>
+        </div>
+        <div class="group">
             <a title="lien"><i class="fa fa-chain"></i></a>
+        </div>
+        <div class="group">
             <a title="copier"><i class="fa fa-copy"></i></a>
             <a title="coller"><i class="fa fa-cut"></i></a>
             <a title="coller"><i class="fa fa-clipboard"></i></a>
         </div>
+        <div class="group"></div>
     </div>
 </nav>
 <section class="container">

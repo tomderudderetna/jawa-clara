@@ -16,9 +16,9 @@ a {
 
 .top-bar {
     background-color: #553982;
-    height: 50px;
-    line-height: 50px;
-    border: 1px solid #3f2a60;
+    height: 60px;
+    line-height: 60px;
+    border-bottom: 1px solid #3f2a60;
 }
 
 .top-bar h1 {
@@ -50,7 +50,8 @@ a {
     background-color: #424249;
     padding: 0 100px 0 100px;
     height: 200px;
-    border: 1px solid #333338;
+    /*border: 1px solid #333338;*/
+    border-bottom: 2px solid #333338;
 }
 
 .new-sujet > h2 {
@@ -68,8 +69,68 @@ a {
     text-align: center;
     margin: 5px;
     border: 1px solid #333;
+    border-radius: 1px;
+}
+
+.box-s {
+    box-shadow: 2px 2px 2px #aaa;
 }
 
 .box_row {
     display: flex;
+}
+
+.tool-menu {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    color: #ccc;
+    background-color: #424249;
+    font-size: large;
+    /*border: 1px solid #333338;*/
+    text-align: center;
+    border-bottom: 1px solid #333;
+}
+
+.group {
+    margin: 0 10px 0 0;
+    padding: 0 0 0 15px;
+    display: inline;
+    border-left: 1px #eee inset;
+}
+
+.tool-menu > .group > a {
+    padding: 5px;
+    margin: 3px;
+    border: 1px transparent solid;
+    border-radius: 3px;
+}
+
+.tool-menu > .group > a:hover {
+    /*color: #60d;*/
+    padding: 8px;
+    margin: 0;
+    color: #fff;
+    background-color: #4e4e4e;
+    border: 1px #ccc outset;
+}
+
+.tool-menu > .group > a:active {
+    position: relative;
+    top: 2px;
+    /*color: #80f;*/
+}
+
+#page {
+    background-color: white;
+    width: 750px;
+    min-height: 900px;
+    margin: auto;
+    margin-top: 15px;
+    margin-bottom: 30px;
+    border: 1px #ccc solid;
+    box-shadow: 1px 1px 8px #aaa;
+}
+
+#page:focus {
+    outline: none;
 }
