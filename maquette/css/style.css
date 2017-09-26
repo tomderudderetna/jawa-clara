@@ -1,0 +1,70 @@
+header {
+    background-color: #553982;
+    margin: 0;
+    padding: 0;
+}
+
+header input.title {
+    background-color: transparent;
+    border: none;
+    color: #ecdfff;
+    margin-left: 8px;
+}
+
+header input.title::placeholder {
+    color: #daa9ff;
+    font-style: italic;
+}
+
+#logo {
+    width: 60px;
+    margin: 0 20px 0 15px;
+    padding: 8px;
+}
+
+#main-menu > a {
+    color: white;
+    padding: 0 8px 8px 8px;
+    margin: 0;
+}
+
+#main-menu > a:hover {
+    background-color: #432d67;
+    color: #e4e4e4;
+}
+
+nav {
+    background-color: #c4c4c4;
+}
+
+.tool-menu > a {
+    padding: 0 10px 0 12px;
+    border-left: 1px solid grey;
+}
+
+.tool-menu > a:hover {
+    background-color: #b6b6b6;
+}
+
+nav {
+    box-shadow: 0 1px 3px 0px grey;
+}
+
+body, section {
+    background-color: #eee;
+}
+
+#page {
+    background-color: white;
+    width: 750px;
+    min-height: 900px;
+    margin: auto;
+    margin-top: 15px;
+    margin-bottom: 30px;
+    border: 1px #ccc solid;
+    box-shadow: 1px 1px 8px #aaa;
+}
+
+#page:focus {
+    outline: none;
+}

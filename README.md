@@ -5,6 +5,9 @@ Clara est l'outil permettant la génération du fichier `html` d'un sujet de cou
 Dans ça version actuelle Clara ne permet pas l'édition de sujet mais uniquement la création de sujet.
 Clara à était développer en `JavaScript (Jquery)` & `PHP`.
 
+##
+https://drive.mindmup.com/map/0B9ayWAzD6AR2U21tR2RZSzhUS0U
+
 ##Installation
 Clara est un micro-site internet qui requiert:
 

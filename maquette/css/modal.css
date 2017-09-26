@@ -1,0 +1,31 @@
+.popup {
+    width: 400px;
+}
+
+.list-group-item {
+    background-color: #eee;
+    padding: 6px 20px 6px 20px;
+}
+
+.list-group-item:hover {
+    background-color: #c4c4c4;
+}
+
+.list-group-item.active {
+    background-color: #553982;
+    border: none;
+}
+
+.list-group-item > a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.download {
+    margin: 20px;
+}
+
+.btn-custom {
+    background-color: #553982;
+    color: white;;
+}

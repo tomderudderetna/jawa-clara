@@ -1,0 +1,176 @@
+#page {
+    padding: 15px 15px 15px 15px;
+    background-color: #FCFDFD;
+}
+
+#page h1 {
+    padding-left: 25px;
+    display: inline-block;
+    font-weight: bold;
+}
+
+#page h2 {
+    padding-left: 25px;
+    display: inline-block;
+    font-weight: bold;
+}
+
+#page h3 {
+    padding-left: 15px;
+    display: inline-block;
+    font-weight: bold;
+}
+
+#page h4 {
+    padding-left: 10px;
+    display: inline-block;
+    font-weight: bold;
+}
+
+#page li {
+    font-weight: bold;
+    line-height: 150%;
+}
+
+#page pre {
+    border: 1px solid black;
+    padding: 2px;
+    margin: 10px 0;
+    white-space: inherit;
+    background-color: #000;
+
+}
+
+#page pre > code {
+    color: #fff;
+}
+
+#page ul.normal, ol.normal {
+    margin-left: -20px;
+}
+
+#page .normal li {
+    font-weight: normal;
+}
+
+#page .fa {
+    color: white;
+    font-size: 38px;
+}
+
+#page .alert,
+#page .panel {
+    border: transparent;
+    -webkit-box-shadow: 1px 1px 2px 1px rgba(57, 65, 71, 0.39);
+    -moz-box-shadow: 1px 1px 2px 1px rgba(57, 65, 71, 0.39);
+    box-shadow: 1px 1px 2px 1px rgba(57, 65, 71, 0.39);
+}
+
+/* Panel global */
+#page .panel > .panel-heading {
+    padding: 1.7em;
+}
+
+#page .panel > .panel-heading * {
+    padding: 0;
+    margin: 0;
+}
+
+#page .panel > .panel-heading *:nth-child(2) {
+    padding-left: 25px;
+}
+
+#page .panel > .panel-heading p {
+    display: inline;
+    padding-left: 7px;
+    font-style: italic;
+    font-size: 18px;
+}
+
+/* Panel Primary */
+#page .panel-primary > .panel-heading .fa {
+    font-size: 30px;
+}
+
+#page .panel-primary > .panel-heading > h4 + p {
+    padding-left: 7px;
+    font-style: italic;
+    font-size: 18px;
+    display: inline;
+}
+
+/* Panel Danger */
+#page .panel-danger > .panel-heading {
+    background-color: #FD6767;
+    color: #394147;
+}
+
+#page .panel-info > .panel-heading .fa,
+#page .panel-danger > .panel-heading .fa {
+    font-size: 29px;
+}
+
+/* Panel Infos */
+#page .panel-info > .panel-heading {
+    background-color: #ace3ff;
+    color: #394147;
+}
+
+/* Panel Warning */
+#page .panel-warning > .panel-heading {
+    background-color: #fdd767;
+    color: #394147;
+}
+
+#page .panel-warning > .panel-heading .fa {
+    font-size: 27px;
+}
+
+/* Panel Questions, etc */
+#page .panel-default > .panel-heading {
+    padding: 1.3em;
+    background-color: #4e4e4e;
+    color: #fff;
+}
+
+#page .panel-default > .panel-heading .fa {
+    font-size: 27px;
+}
+
+#page .panel-default > .panel-heading h4 {
+    font-size: 21px;
+}
+
+/* Panel project */
+#page .panel-project > .panel-heading {
+    color: #ffffff;
+    background-color: #22ad54;
+}
+
+/* Panel success */
+#page .panel-success > .panel-heading {
+    background-color: #319c5e;
+    color: #fff;
+}
+
+#page .panel-body {
+    background-color: white;
+}
+
+#page ul.normal {
+    margin-left: -20px;
+}
+
+#page .normal li {
+    font-weight: normal;
+}
+
+@media (min-width: 900px) {
+    #page .panel-primary > .panel-heading {
+        background: url('https://dl.etna-alternance.net/css/banniere.png');
+        background-position: center right;
+        background-repeat: no-repeat;
+        background-size: 500px;
+        background-color: #337ab7;
+    }
+}
