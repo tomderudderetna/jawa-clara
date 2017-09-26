@@ -19,11 +19,21 @@
             <div class="form-group">
                 <a data-cmd="bold" class="btn btn-default btn-css"><i class="fa fa-bold"></i></a>
                 <a data-cmd="italic" class="btn btn-default btn-css"><i class="fa fa-italic"></i></a>
-                <a data-cmd="underline" class="btn btn-default btn-css"><i class="fa fa-underline"></i></a>
+                <a data-cmd="underline" class="btn btn-default btn-css"><i class="fa fa-underline"></i></a><br>
                 <a data-cmd="justifyleft" class="btn btn-default btn-css"><span class="glyphicon glyphicon-align-left"></a>
                 <a data-cmd="justifycenter" class="btn btn-default btn-css"><span class="glyphicon glyphicon-align-center"></a>
                 <a data-cmd="justifyright" class="btn btn-default btn-css"><span class="glyphicon glyphicon-align-right"></a>
-                <a data-cmd="justifyfull" class="btn btn-default btn-css"><span class="glyphicon glyphicon-align-justify"></a>
+                <a data-cmd="justifyfull" class="btn btn-default btn-css"><span class="glyphicon glyphicon-align-justify"></a><br>
+                <a data-cmd="insertUnorderedList" class="btn btn-default btn-css"><span class="glyphicon glyphicon-list"></a>
+                <a data-cmd="insertOrderedList" class="btn btn-default btn-css"><span class="glyphicon glyphicon-list"></a><br>
+                <a data-cmd="formatBlock" data-cmd-arg="<h1>" class="btn btn-default btn-css"><span class="glyphicon glyphicon-header">1</a>
+                <a data-cmd="formatBlock" data-cmd-arg="<h2>" class="btn btn-default btn-css"><span class="glyphicon glyphicon-header">2</a>
+                <a data-cmd="formatBlock" data-cmd-arg="<h3>" class="btn btn-default btn-css"><span class="glyphicon glyphicon-header">3</a>
+                <a data-cmd="formatBlock" data-cmd-arg="<h4>" class="btn btn-default btn-css"><span class="glyphicon glyphicon-header">4</a>
+                <a data-cmd="formatBlock" data-cmd-arg="<h5>" class="btn btn-default btn-css"><span class="glyphicon glyphicon-header">5</a>
+                <a data-cmd="formatBlock" data-cmd-arg="<h6>" class="btn btn-default btn-css"><span class="glyphicon glyphicon-header">6</a>
+                <a data-cmd="formatBlock" data-cmd-arg="<p>" class="btn btn-default btn-css"><span class="glyphicon glyphicon-">Normal</a><br>
+                <a data-cmd="insertImage" data-cmd-arg="<p>" class="btn btn-default btn-css"><span class="glyphicon glyphicon-picture"></a><br>
             </div>
         </div>
         <!--blocs drag & drop-->

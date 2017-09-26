@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CLARA</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            margin: 0;
+            background-color: #eee;
+            font-family: "Segoe UI", sans-serif;
+        }
+
+        body > * {
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .top-bar {
+            background-color: #553982;
+            height: 50px;
+            line-height: 50px;
+            border: 1px solid #3f2a60;
+        }
+
+        .top-bar > h1 {
+            margin: 0 0 0 20px;
+            color: #ecdfff;
+            font-family: "Roboto", sans-serif;
+            font-size: large;
+            letter-spacing: 2px;
+        }
+
+        .top-bar > h1 > b {
+            font-family: "Roboto bold", sans-serif;
+            letter-spacing: 1px;
+            color: #fff;
+        }
+
+        .last-sujet-list {
+            padding: 0 100px 0 100px;
+        }
+
+        .last-sujet-list > h2 {
+            color: #555;
+            font-family: Arial, sans-serif;
+            font-size: medium;
+        }
+
+        .new-sujet {
+            color: #eee;
+            background-color: #424249;
+            padding: 0 100px 0 100px;
+            height: 200px;
+            border: 1px solid #333338;
+        }
+
+        .new-sujet > h2 {
+            color: #eee;
+            font-family: Arial, sans-serif;
+            font-size: medium;
+        }
+
+        .box {
+            background-color: #59595F;
+            color: white;
+            width: 100px;
+            height: 130px;
+            line-height: 138px;
+            text-align: center;
+            margin: 5px;
+            border: 1px solid #333;
+        }
+
+        .box_row {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+<header class="top-bar">
+    <h1><b>Etna</b> - Clara</h1>
+</header>
+<section class="new-sujet">
+    <h2>Créer un nouveau sujet de cours</h2>
+    <div class="box_row">
+        <div class="box">
+            <a href="index.html">
+                <i class="fa fa-plus"></i>
+            </a>
+        </div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </div>
+</section>
+<section class="last-sujet-list">
+    <h2>Sujet récents</h2>
+    <div class="box_row">
+        <div class="box">
+            <a href="exemple.html">
+                FDI UNIX
+            </a>
+        </div>
+        <div class="box">
+            <a href="exemple.html">FDI DEVC</a>
+        </div>
+        <div class="box">
+            <a href="exemple.html">FDI DPHP</a>
+        </div>
+    </div>
+</section>
+</body>
+</html>
