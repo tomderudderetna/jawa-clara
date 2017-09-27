@@ -11,5 +11,7 @@
 <?php include_once "src/header_simple.html" ?>
 <!-- sectiob recents sujets -->
 <?php include_once "src/section_recents_sujets.html" ?>
+<!-- section all sujets -->
+<?php include_once "src/section_all_sujets.html" ?>
 </body>
 </html>
