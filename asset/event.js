@@ -4,6 +4,7 @@
  */
 function commande(nom, argument) {
     typeof argument === 'undefined' ? argument = '' : null;
+    console.log(nom + ' ' + argument);
     document.execCommand(nom, false, argument);
 }
 
@@ -82,7 +83,7 @@ $(document).ready(function () {
     $('.btn-css')
         .on('click', function (ev) {
             //evenement - click:    cliquer sur le bouton de mise en forme du texte
-            commande($(this).attr('data-cmd'));
+            commande($(this).attr('data-cmd'),$(this).attr('data-cmd-arg'));
         });
     /*
      * evenements liés aux bouton de validation du formulaire
