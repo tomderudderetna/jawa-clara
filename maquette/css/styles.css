@@ -63,7 +63,7 @@ header.header-bar > .db-lign {
 section.banner {
     background-color: #424249;
     border-bottom: 2px solid #333338;
-    padding: 0 100px 0 100px;
+    padding: 0 100px 10px 100px;
 }
 
 section.banner > h2 {
@@ -87,6 +87,10 @@ body > * {
 a {
     color: inherit;
     text-decoration: none;
+}
+
+script {
+    display: none;
 }
 
 .last-sujet-list {
@@ -113,11 +117,12 @@ a {
 
 .box-s {
     box-shadow: 2px 2px 2px #aaa;
+    margin-bottom: 10px;
 }
 
 .box_row {
     display: flex;
-    margin-bottom: 10px;
+    flex-wrap: wrap;
     /*background-color: #4e4e4e;*/
 }
 
@@ -174,6 +179,16 @@ a {
 
 #page:focus {
     outline: none;
+}
+
+#page2 {
+    margin: auto;
+    margin-top: 50px;
+    background-color: white;
+    /*overflow: auto;*/
+    width: 750px;
+    height: 90vh;
+    max-height: 1000px;
 }
 
 .op80 {

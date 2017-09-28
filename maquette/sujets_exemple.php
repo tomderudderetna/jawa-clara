@@ -14,9 +14,8 @@
 <!-- baner tool menu -->
 <?php include_once "src/banner_tool_menu.html" ?>
 <!-- section page -->
-<?php //include_once "src/section_page.html" ?>
-<section id="page" contenteditable="true">
-    <?php include_once "sujet.html" ?>
-</section>
+<div id="page2">
+    <iframe src="src/sujet.html" width="100%" height="100%"></iframe>
+</div>
 </body>
 </html>
