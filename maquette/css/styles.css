@@ -5,6 +5,7 @@ header.header-bar {
     height: 60px;
     line-height: 60px;
     color: #fff;
+    display: flex;
     flex-direction: row;
 }
 
@@ -79,7 +80,8 @@ body {
     font-family: "Segoe UI", sans-serif;
 }
 
-body > * {
+/*body > * {*/
+body {
     display: flex;
     flex-direction: column;
 }
@@ -118,6 +120,11 @@ script {
 .box-s {
     box-shadow: 2px 2px 2px #aaa;
     margin-bottom: 10px;
+}
+
+.box-s:active {
+    position: relative;
+    top: 2px;
 }
 
 .box_row {
