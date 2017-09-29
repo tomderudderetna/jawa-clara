@@ -1,5 +1,7 @@
 function overlay_show(id) {
-    document.getElementById(id).style.display = "block";
+    make(function () {
+        document.getElementById(id).style.display = "block";
+    });
 }
 
 function overlay_hide(id) {
