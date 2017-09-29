@@ -1,5 +1,5 @@
 <section id="page">
-    <form class="form" action="creator.php" method="post">
+    <form class="form" action="incluator.php" method="post" name="form">
 
         <!--partie static formulaire, contenant les elements basic d'un sujet (titre du  module, paramètres du  module, css:prep'/alternant, etc...)-->
         <!--champs cachés quis seront remplis transmis avec le formulaire-->
@@ -46,25 +46,17 @@
 <div>
     <!--describ-->
     <div id="data-describ"
-         data-html="<?php include "./src/block/block_describ.php"; ?>"></div>
-<!--step-->
-<div id="data-step"
-     data-html="<?php include "./src/block/block_step.php"; ?>"></div>
-<!--warning-->
-<div id="data-warning"
-     data-html="<?php include "./src/block/block_warning.php"; ?>"></div>
-<!--danger-->
-<div id="data-danger"
-     data-html="<?php include "./src/block/block_danger.php"; ?>"></div>
-<!--info-->
-<div id="data-info"
-     data-html="<?php include "./src/block/block_info.php"; ?>"></div>
+         data-html="<?php include './src/block/block_describ.php'; ?>"></div>
+    <!--step-->
+    <div id="data-step"
+         data-html="<?php include './src/block/block_step.php'; ?>"></div>
+    <!--warning-->
+    <div id="data-warning"
+         data-html="<?php include './src/block/block_warning.php'; ?>"></div>
+    <!--danger-->
+    <div id="data-danger"
+         data-html="<?php include './src/block/block_danger.php'; ?>"></div>
+    <!--info-->
+    <div id="data-info"
+         data-html="<?php include './src/block/block_info.php'; ?>"></div>
 </div>
-<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-<script src="../asset/js/pannel_project_steps.js"></script>
-<script src="../asset/js/pannel_project_descriptions.js"></script>
-<script src="../asset/js/pannel_project_warnings.js"></script>
-<script src="../asset/js/pannel_project_dangers.js"></script>
-<script src="../asset/js/pannel_project_infos.js"></script>
-<script src="asset/event.js"></script>
-<script src="asset/blind.js"></script>

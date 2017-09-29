@@ -6,10 +6,16 @@
         <input id="title" placeholder="Document sans titre" title="Renommer">
         <div id="main-menu">
             <a href="/jawa-clara/clara/index.php">Nouveau</a>
-            <!--<a href="sujets.php">Ouvrir</a>-->
-            <!--<a onclick="overlay_show('overlay_preview')">Preview</a>-->
-            <!--validation du formulaire-->
+            <a onclick="submitForm()">Preview</a>
             <a id="btn-valid-form" class="btn btn-primary" target="_blank">Générer</a>
+            <a id="btn-download">download file</a>
         </div>
     </div>
 </header>
+<script>
+    function submitForm() {
+        document.form.target = "myActionWin";
+        window.open("myActionWin", "myActionWin", "width=500,height=300,toolbar=0");
+        document.form.submit();
+    }
+</script>

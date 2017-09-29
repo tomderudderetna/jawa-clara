@@ -1,4 +1,59 @@
 /*
+ * Fonction:        make
+ * Description:     envoie le formulaire serialisé et génére le fichier
+ */
+function make(callback) {
+    $('#param_project').val($('#edit_param_project')[0].innerHTML);
+    for (i = 1; i <= nb_steps; i++) {
+        if (typeof $('#edit_step_' + i + '_id')[0] !== 'undefined')
+            $('#step_' + i + '_id').val($('#edit_step_' + i + '_id')[0].innerHTML);
+        if (typeof $('#edit_step_' + i + '_name')[0] !== 'undefined')
+            $('#step_' + i + '_name').val($('#edit_step_' + i + '_name')[0].innerHTML);
+        if (typeof $('#edit_step_' + i + '_content')[0] !== 'undefined')
+            $('#step_' + i + '_content').val($('#edit_step_' + i + '_content')[0].innerHTML);
+    }
+    for (i = 1; i <= nb_describs; i++) {
+        if (typeof $('#edit_describ_' + i + '_name')[0] !== 'undefined')
+            $('#describ_' + i + '_name').val($('#edit_describ_' + i + '_name')[0].innerHTML);
+        if (typeof $('#edit_describ_' + i + '_content')[0] !== 'undefined')
+            $('#describ_' + i + '_content').val($('#edit_describ_' + i + '_content')[0].innerHTML);
+    }
+    for (i = 1; i <= nb_warnings; i++) {
+        if (typeof $('#edit_warning_' + i + '_name')[0] !== 'undefined')
+            $('#warning_' + i + '_name').val($('#edit_warning_' + i + '_name')[0].innerHTML);
+        if (typeof $('#edit_warning_' + i + '_content')[0] !== 'undefined')
+            $('#warning_' + i + '_content').val($('#edit_warning_' + i + '_content')[0].innerHTML);
+    }
+    for (i = 1; i <= nb_dangers; i++) {
+        if (typeof $('#edit_danger_' + i + '_name')[0] !== 'undefined')
+            $('#danger_' + i + '_name').val($('#edit_danger_' + i + '_name')[0].innerHTML);
+        if (typeof $('#edit_danger_' + i + '_content')[0] !== 'undefined')
+            $('#danger_' + i + '_content').val($('#edit_danger_' + i + '_content')[0].innerHTML);
+    }
+    for (i = 1; i <= nb_infos; i++) {
+        if (typeof $('#edit_info_' + i + '_name')[0] !== 'undefined')
+            $('#info_' + i + '_name').val($('#edit_info_' + i + '_name')[0].innerHTML);
+        if (typeof $('#edit_info_' + i + '_content')[0] !== 'undefined')
+            $('#info_' + i + '_content').val($('#edit_info_' + i + '_content')[0].innerHTML);
+    }
+    form_serial = $('form').serialize();
+
+
+    var oldaction = $('form')[0].action;
+    var newaction = oldaction.replace("incluator", "make_sujet");
+    $('form').attr("action", newaction);
+    // make();
+    $.post($('form')[0].action, form_serial)
+        .done(function (data) {
+            console.log(data);
+            var newaction = oldaction.replace("make_sujet", "incluator");
+            $('form').attr("action", newaction);
+            if (callback)
+                callback();
+        });
+}
+
+/*
  * Fonction:        commande
  * Description:     applique une action passer en paramétre sur une div editable
  */
@@ -76,6 +131,7 @@ $(document).ready(function () {
     nb_warnings = 0;
     nb_infos = 0;
     tmp = null;
+    form_serial = null;
     blind();
     /*
      * evenements liés aux bouton de mise en forme du texte
@@ -94,39 +150,12 @@ $(document).ready(function () {
          * Actif:       lorsqu'on clique sur le bouton cree.
          * Description: on rempli les champs cachées du formulaire par le contenu des div editable.
          */
-        $('#param_project').val($('#edit_param_project')[0].innerHTML);
-        for (i = 1; i <= nb_steps; i++) {
-            if (typeof $('#edit_step_' + i + '_id')[0] !== 'undefined')
-                $('#step_' + i + '_id').val($('#edit_step_' + i + '_id')[0].innerHTML);
-            if (typeof $('#edit_step_' + i + '_name')[0] !== 'undefined')
-                $('#step_' + i + '_name').val($('#edit_step_' + i + '_name')[0].innerHTML);
-            if (typeof $('#edit_step_' + i + '_content')[0] !== 'undefined')
-                $('#step_' + i + '_content').val($('#edit_step_' + i + '_content')[0].innerHTML);
-        }
-        for (i = 1; i <= nb_describs; i++) {
-            if (typeof $('#edit_describ_' + i + '_name')[0] !== 'undefined')
-                $('#describ_' + i + '_name').val($('#edit_describ_' + i + '_name')[0].innerHTML);
-            if (typeof $('#edit_describ_' + i + '_content')[0] !== 'undefined')
-                $('#describ_' + i + '_content').val($('#edit_describ_' + i + '_content')[0].innerHTML);
-        }
-        for (i = 1; i <= nb_warnings; i++) {
-            if (typeof $('#edit_warning_' + i + '_name')[0] !== 'undefined')
-                $('#warning_' + i + '_name').val($('#edit_warning_' + i + '_name')[0].innerHTML);
-            if (typeof $('#edit_warning_' + i + '_content')[0] !== 'undefined')
-                $('#warning_' + i + '_content').val($('#edit_warning_' + i + '_content')[0].innerHTML);
-        }
-        for (i = 1; i <= nb_dangers; i++) {
-            if (typeof $('#edit_danger_' + i + '_name')[0] !== 'undefined')
-                $('#danger_' + i + '_name').val($('#edit_danger_' + i + '_name')[0].innerHTML);
-            if (typeof $('#edit_danger_' + i + '_content')[0] !== 'undefined')
-                $('#danger_' + i + '_content').val($('#edit_danger_' + i + '_content')[0].innerHTML);
-        }
-        for (i = 1; i <= nb_infos; i++) {
-            if (typeof $('#edit_info_' + i + '_name')[0] !== 'undefined')
-                $('#info_' + i + '_name').val($('#edit_info_' + i + '_name')[0].innerHTML);
-            if (typeof $('#edit_info_' + i + '_content')[0] !== 'undefined')
-                $('#info_' + i + '_content').val($('#edit_info_' + i + '_content')[0].innerHTML);
-        }
-        $('form').submit();
+
+        make();
     });
+    $('#btn-download').click(function () {
+        make(function () {
+            $("#file-download")[0].click();
+        });
+    })
 });
