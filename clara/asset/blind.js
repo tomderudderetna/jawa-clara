@@ -59,4 +59,19 @@ function blind() {
                 default:
             }
         });
+
+    $(".blc > .blc-body")
+        .each(function () {
+            $(this)
+                .off("focus")
+                .on("focus", function () {
+                    if ($(this).html() == "")
+                        $(this).html("<p>votre texte</p>");
+                })
+                .off("focusout")
+                .on("focusout", function () {
+                    if ($(this).html() == "<p>votre texte</p>" || $(this).html() == "<p><br></p>")
+                        $(this).html("");
+                });
+        });
 }

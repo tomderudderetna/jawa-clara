@@ -5,7 +5,7 @@
     <title>Clara</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../asset/css/style.css">
+    <link rel="stylesheet" href="asset/css/style.css">
 </head>
 <body>
 <!--barre latérale droite-->
@@ -156,12 +156,12 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.5/ace.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
-<script src="../asset/js/pannel_project_steps.js"></script>
-<script src="../asset/js/pannel_project_descriptions.js"></script>
-<script src="../asset/js/pannel_project_warnings.js"></script>
-<script src="../asset/js/pannel_project_dangers.js"></script>
-<script src="../asset/js/pannel_project_infos.js"></script>
-<script src="../asset/event.js"></script>
-<script src="../asset/blind.js"></script>
+<script src="asset/js/pannel_project_steps.js"></script>
+<script src="asset/js/pannel_project_descriptions.js"></script>
+<script src="asset/js/pannel_project_warnings.js"></script>
+<script src="asset/js/pannel_project_dangers.js"></script>
+<script src="asset/js/pannel_project_infos.js"></script>
+<script src="asset/event.js"></script>
+<script src="asset/blind.js"></script>
 </body>
 </html>

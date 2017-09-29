@@ -22,21 +22,6 @@
 <footer>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <!--    <script src="js/overlay.js"></script>-->
-    <script>
-        $(".blc > .blc-body")
-            .each(function () {
-                $(this)
-                    .on("focus", function () {
-                        if ($(this).html() == "")
-                            $(this).html("<p>votre texte</p>");
-                    });
-            });
-        $(".blc > .blc-body")
-            .on("focusout", function () {
-                if ($(this).html() == "<p>votre texte</p>" || $(this).html() == "<p><br></p>")
-                    $(this).html("");
-            });
-    </script>
 </footer>
 </body>
 </html>
