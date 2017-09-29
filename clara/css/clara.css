@@ -87,7 +87,6 @@ body {
     user-select: none;
 }
 
-
 a {
     color: inherit;
     text-decoration: none;
@@ -139,6 +138,7 @@ script {
     padding-top: 2px;
     padding-bottom: 2px;
     color: #ccc;
+    /*color: #bebab0;*/
     background-color: #424249;
     font-size: large;
     /*border: 1px solid #333338;*/
@@ -153,14 +153,17 @@ script {
     border-left: 1px #eee inset;
 }
 
-.tool-menu > .group > a {
+.tool-menu > .group > a,
+.tool-menu > .group > div {
     padding-left: 5px;
     padding-right: 5px;
     border: 1px transparent solid;
     border-radius: 3px;
+    display: inline;
 }
 
-.tool-menu > .group > a:hover {
+.tool-menu > .group > a:hover,
+.tool-menu > .group > div:hover {
     padding: 5px;
     color: #fff;
     background-color: #4e4e4e;
@@ -169,7 +172,8 @@ script {
     z-index: 1;
 }
 
-.tool-menu > .group > a:active {
+.tool-menu > .group > a:active,
+.tool-menu > .group > div:active {
     position: relative;
     top: 2px;
 }
@@ -179,11 +183,14 @@ script {
     width: 800px;
     min-height: 900px;
     margin: auto;
-    margin-top: 15px;
+    margin-top: 20px;
     margin-bottom: 30px;
     border: 1px #ccc solid;
     box-shadow: 1px 1px 8px #aaa;
     display: flex;
+    flex-direction: column;
+    padding: 10px;
+    /*font-family: Arial, sans-serif;*/
 }
 
 #page:focus {
@@ -220,6 +227,18 @@ script {
     opacity: 0;
 }
 
+h1 > input.size3 {
+    max-width: 60px;
+}
+
+h1 > input.size4 {
+    max-width: 80px;
+}
+
+h1 > input.size10 {
+    max-width: 200px;
+}
+
 #overlay_preview {
     position: fixed; /* Sit on top of the page content */
     display: none; /* Hidden by default */
@@ -232,4 +251,125 @@ script {
     background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
     z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
     cursor: pointer; /* Add a pointer on hover */
+}
+
+.green:hover,
+.green {
+    background-color: #4b6c53 !important;
+}
+
+.grey:hover,
+.grey {
+    background-color: #62626c !important;
+}
+
+.orange:hover,
+.orange {
+    background-color: #6f644c !important;
+}
+
+.red:hover,
+.red {
+    background-color: #684343 !important;
+}
+
+.blue:hover,
+.blue {
+    background-color: #474d6a !important;
+}
+
+.bloc-lg {
+    padding-left: 50px !important;
+    padding-right: 50px !important;
+}
+
+/* BLOC */
+.blc {
+    box-shadow: 1px 1px 2px 1px rgba(57, 65, 71, 0.39);
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 4px 4px 1px 1px;
+
+}
+
+/* BLOC HEADING */
+.blc-heading {
+    border-radius: 4px 4px 0 0;
+}
+
+/* BLOC BODY */
+.blc-body {
+    font-size: 14px;
+    padding: 0 10px;
+    color: #000;
+}
+
+.blc-heading > h1 > input::placeholder {
+    color: rgba(0, 0, 0, 0.2);
+}
+
+/* primary */
+.blc-primary > .blc-heading {
+    background-color: #337AB7;
+}
+
+/* primary */
+.blc-project > .blc-heading {
+    background-color: #22AD54;
+}
+
+/* step */
+.blc-default > .blc-heading,
+.blc-step > .blc-heading {
+    background-color: #4E4E4E;
+}
+
+/* danger */
+.blc-danger > .blc-heading {
+    background-color: #FD6767;
+}
+
+/* warning */
+.blc-warning > .blc-heading {
+    background-color: #FDD767;
+}
+
+/* info */
+.blc-info > .blc-heading {
+    background-color: #ACE3FF;
+}
+
+.blc-heading > h1 {
+    color: white;
+}
+
+.blc-heading > h1 > i {
+    width: 50px;
+    margin-left: 25px;
+}
+
+.blc-heading input {
+    font-weight: bold;
+    font-size: 30px;
+    color: white;
+    background-color: transparent;
+    border: none;
+
+    display: inline;
+    outline: none;
+}
+
+.blc-heading input:focus {
+    outline: none;
+}
+
+.target_drop {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #999;
 }
