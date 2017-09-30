@@ -70,7 +70,8 @@ function commande(nom, argument) {
  */
 function allowDrop(ev, id) {
     ev.preventDefault();
-    $(id).addClass('green');
+    // $(id).addClass('green');
+    $(id).addClass('drop_hover');
 }
 
 /*
@@ -89,7 +90,8 @@ function drag(ev) {
  */
 function drop(ev, id) {
     ev.preventDefault();
-    $('.target_drop').removeClass('green');
+    // $('.target_drop').removeClass('green');
+    $('.target_drop').removeClass('drop_hover');
     tmp = null;
     $('#blocks').after(function () {
         switch (type) {
@@ -159,3 +161,11 @@ $(document).ready(function () {
         });
     })
 });
+
+
+
+function submitForm() {
+    document.form.target = "myActionWin";
+    window.open("myActionWin", "myActionWin", "width=500,height=300,toolbar=0");
+    document.form.submit();
+}

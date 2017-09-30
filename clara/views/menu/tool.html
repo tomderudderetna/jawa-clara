@@ -1,48 +1,70 @@
-<nav>
-    <div class="tool-menu">
-        <div class="group">
-            <a title="undo"><i class="fa fa-undo"></i></a>
-            <a title="redo"><i class="fa fa-repeat"></i></a>
+<nav class="tool-menu">
+    <div class="group">
+        <a title="undo"><i class="fa fa-undo"></i></a>
+        <a title="redo"><i class="fa fa-repeat"></i></a>
+    </div>
+    <div class="group">
+        <a title="zoom"><i class="fa fa-search"></i></a>
+    </div>
+    <div class="group">
+        <a title="zoom">Arial</a>
+    </div>
+    <div class="group">
+        <a title="zoom">11</a>
+    </div>
+    <div class="group">
+        <a title="gras"><i class="fa fa-bold"></i></a>
+        <a title="italique"><i class="fa fa-italic"></i></a>
+        <a title="souligner"><i class="fa fa-underline"></i></a>
+    </div>
+    <div class="group">
+        <a title="lien"><i class="fa fa-chain"></i></a>
+    </div>
+    <div class="group">
+        <a title="comment"><i class="fa fa-comment"></i></a>
+    </div>
+    <div class="group">
+        <a title="justifier"><i class="fa fa-align-justify"></i></a>
+        <a title="aligner à gauche"><i class="fa fa-align-left"></i></a>
+        <a title="aligner à droite"><i class="fa fa-align-right"></i></a>
+        <a title="centrer"><i class="fa fa-align-center"></i></a>
+    </div>
+    <div class="group">
+        <a title="list"><i class="fa fa-list-ol"></i></a>
+        <a title="list"><i class="fa fa-list-ul"></i></a>
+    </div>
+    <div class="group">
+        <a title="indent"><i class="fa fa-outdent"></i></a>
+        <a title="indent"><i class="fa fa-indent"></i></a>
+    </div>
+    <div class="group">
+        <a title="copier"><i class="fa fa-copy"></i></a>
+        <a title="coller"><i class="fa fa-cut"></i></a>
+        <a title="coller"><i class="fa fa-clipboard"></i></a>
+    </div>
+
+    <div class="group">
+        <!--bloc descriptif-->
+        <div title="bloc" class="bloc-lg green" draggable="true" ondragstart="drag(event)" data-type="describ">
+            <a id="btn_add_describ" class="btn btn-add btn-success"><i class="fa fa-book"></i></a>
         </div>
-        <div class="group">
-            <a title="zoom"><i class="fa fa-search"></i></a>
+        <!--bloc d'etape-->
+        <div title="bloc" class="bloc-lg grey" draggable="true" ondragstart="drag(event)" data-type="step">
+            <a id="btn_add_step" class="btn btn-add btn-step"><i class="fa fa-flag"></i></a>
         </div>
-        <div class="group">
-            <a title="zoom">Arial</a>
+        <!--bloc de mise en garde-->
+        <div title="bloc" class="bloc-lg orange" draggable="true" ondragstart="drag(event)" data-type="warning">
+            <a id="btn_add_warning" class="btn btn-add btn-warning"> <i class="fa fa-exclamation-triangle"></i></a>
         </div>
-        <div class="group">
-            <a title="zoom">11</a>
+        <!--bloc d'interdiction-->
+        <div title="bloc" class="bloc-lg red" draggable="true" ondragstart="drag(event)" data-type="danger">
+            <a id="btn_add_danger" class="btn btn-add btn-danger"><i class="fa fa-ban"></i></a>
         </div>
-        <div class="group">
-            <a title="gras"><i class="fa fa-bold"></i></a>
-            <a title="italique"><i class="fa fa-italic"></i></a>
-            <a title="souligner"><i class="fa fa-underline"></i></a>
+        <!--bloc d'information-->
+        <div title="bloc" class="bloc-lg blue" draggable="true" ondragstart="drag(event)" data-type="info">
+            <a id="btn_add_info" class="btn btn-add btn-info"><i class="fa fa-info"></i></a>
         </div>
-        <div class="group">
-            <a title="lien"><i class="fa fa-chain"></i></a>
-        </div>
-        <div class="group">
-            <a title="comment"><i class="fa fa-comment"></i></a>
-        </div>
-        <div class="group">
-            <a title="justifier"><i class="fa fa-align-justify"></i></a>
-            <a title="aligner à gauche"><i class="fa fa-align-left"></i></a>
-            <a title="aligner à droite"><i class="fa fa-align-right"></i></a>
-            <a title="centrer"><i class="fa fa-align-center"></i></a>
-        </div>
-        <div class="group">
-            <a title="list"><i class="fa fa-list-ol"></i></a>
-            <a title="list"><i class="fa fa-list-ul"></i></a>
-        </div>
-        <div class="group">
-            <a title="indent"><i class="fa fa-outdent"></i></a>
-            <a title="indent"><i class="fa fa-indent"></i></a>
-        </div>
-        <div class="group">
-            <a title="copier"><i class="fa fa-copy"></i></a>
-            <a title="coller"><i class="fa fa-cut"></i></a>
-            <a title="coller"><i class="fa fa-clipboard"></i></a>
-        </div>
-        <div class="group"></div>
+    </div>
+    <!--<div class="group"></div>-->
     </div>
 </nav>

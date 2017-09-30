@@ -32,7 +32,7 @@
                 <input type="hidden" id="nb_infos" name="nb_infos" value="0">
                 <!--zone de drop-->
                 <div id="target_drop" class="target_drop" ondrop="drop(event,'#target_drop')"
-                     ondragover="allowDrop(event,'#target_drop')">
+                     ondragover="allowDrop(event,'#target_drop')" ondragleave="$(this).removeClass('drop_hover')">
                     <a class="btn btn-default"><i class="fa fa-plus"></i></a>&nbsp;deplace un bloc ici.
                 </div>
                 <!--point de reférnce pour l'ajout de bloc de saisie-->
