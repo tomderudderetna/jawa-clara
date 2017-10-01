@@ -1,8 +1,92 @@
 <div id="main-menu">
-    <a href="index.php">Nouveau</a>
-    <a onclick="overlay_show('overlay_open')">Ouvrir</a>
+    <div class="onglet">Fichier
+        <div class="onglet-body">
+            <div class="onglet-item">
+                <a href="index.php">Nouveau</a>
+            </div>
+            <div class="onglet-item">
+                <a onclick="overlay_show('overlay_open')">Ouvrir</a>
+            </div>
+            <div class="onglet-sep"></div>
+            <div class="onglet-item">
+                <a href="home.php">Fermer</a>
+            </div>
+        </div>
+    </div>
+    <div class="onglet">Édition
+        <div class="onglet-body">
+            <div class="onglet-item">
+                <a>Couper</a>
+            </div>
+            <div class="onglet-item">
+                <a>Copier</a>
+            </div>
+            <div class="onglet-item">
+                <a>Coller</a>
+            </div>
+        </div>
+    </div>
     <a onclick="submitForm()">Preview 1</a>
     <a onclick="overlay_show('overlay_preview')">Preview 2</a>
     <a id="btn-valid-form" class="btn btn-primary" target="_blank">Générer</a>
     <a id="btn-download">download file</a>
 </div>
+
+<style>
+    .onglet {
+        position: relative;
+        display: inline-block;
+    }
+
+    .onglet > .onglet-body {
+        visibility: hidden;
+        /*width: 120px;*/
+        width: 270px;
+        /*background-color: #553982;*/
+        background-color: #585861;
+        color: #fff;
+        /*text-align: center;*/
+        /*border-radius: 6px;*/
+        padding: 6px 0;
+        position: absolute;
+        z-index: 1;
+        /*top: 150%;*/
+        /*left: 113%;*/
+        left: 60px;
+        margin-left: -60px;
+    }
+
+    .onglet > .onglet-body > .onglet-item {
+        padding: 6px 10px 6px 30px;
+        line-height: normal;
+    }
+
+    /*.onglet > .onglet-body::after {*/
+    /*content: "";*/
+    /*position: absolute;*/
+    /*bottom: 100%;*/
+    /*left: 50%;*/
+    /*margin-left: -5px;*/
+    /*border-width: 5px;*/
+    /*border-style: solid;*/
+    /*border-color: transparent transparent black transparent;*/
+    /*}*/
+
+    .onglet > .onglet-body > .onglet-sep {
+        border-top: 1px solid transparent;
+        margin-top: 6px;
+        margin-bottom: 6px;
+    }
+
+    .onglet:hover > .onglet-body {
+        visibility: visible;
+    }
+
+    .onglet:hover {
+        background-color: #585861;
+    }
+
+    .onglet > .onglet-body > .onglet-item:hover {
+        background-color: #424249;
+    }
+</style>

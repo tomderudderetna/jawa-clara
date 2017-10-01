@@ -14,8 +14,6 @@
         <?php include_once "views/header/index.php" ?>
         <!-- baner tool menu -->
         <?php include_once "views/menu/tool.html" ?>
-        <!-- baner block menu -->
-        <?php //include_once "views/menu/blocks.html" ?>
         <!-- section page -->
         <?php include_once "views/workspace/index.html" ?>
         <!-- overlay section preview -->
