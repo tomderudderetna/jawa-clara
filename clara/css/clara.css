@@ -163,17 +163,27 @@ script {
     /*border-bottom: 1px solid #333;*/
 }
 
+.tool-menu > .tool,
 .group {
     margin: 0 8px 0 0;
     padding: 0 0 0 10px;
     display: inline;
     border-left: 1px #eee inset;
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+.sep {
+    margin: 0 12px 0 0;
+    border-left: 1px #decfe4 inset;
 }
 
 .group:first-child {
     border-left: none;
 }
 
+/*.tool-menu > a,*/
+.tool-menu > .tool,
 .tool-menu > .group > a,
 .tool-menu > .group > div {
     padding-left: 5px;
@@ -188,9 +198,10 @@ script {
 }
 
 .tool-menu > .group > div:hover {
-    margin: 0 6px;;
+    margin: 0 6px;
 }
 
+.tool-menu > .tool:hover,
 .tool-menu > .group > a:hover,
 .tool-menu > .group > div:hover {
     padding: 5px;
@@ -202,6 +213,7 @@ script {
     z-index: 1;
 }
 
+.tool-menu > .tool:active,
 .tool-menu > .group > a:active,
 .tool-menu > .group > div:active {
     position: relative;
@@ -481,4 +493,41 @@ section.return {
     border-top-left-radius: 7px 4px;
     border-bottom-left-radius: 7px 4px;
     box-shadow: 2px 2px 2px #aaa;
+}
+
+/* TOOL TIP*/
+.tooltip > .tool {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tooltip > .tool .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    top: 150%;
+    left: 50%;
+    margin-left: -60px;
+}
+
+.tooltip > .tool .tooltiptext::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent black transparent;
+}
+
+.tooltip > .tool:hover .tooltiptext {
+    visibility: visible;
 }
