@@ -59,7 +59,7 @@ function make(callback) {
  */
 function commande(nom, argument) {
     typeof argument === 'undefined' ? argument = '' : null;
-    console.log(nom + ' ' + argument);
+    // console.log(nom + ' ' + argument);
     document.execCommand(nom, false, argument);
 }
 
@@ -163,9 +163,8 @@ $(document).ready(function () {
 });
 
 
-
 function submitForm() {
     document.form.target = "myActionWin";
-    window.open("myActionWin", "myActionWin", "width=500,height=300,toolbar=0");
+    window.open("myActionWin", "myActionWin", "width=800,height=800,toolbar=0");
     document.form.submit();
 }

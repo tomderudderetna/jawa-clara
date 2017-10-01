@@ -1,135 +1,117 @@
-<nav class="tool-menu tooltip multi">
-
-    <div class="tool">
+<nav class="tool-menu tooltip">
+    <div data-cmd="" class="tool btn-css">
         <i class="fa fa-undo"></i>
         <span class="tooltiptext">Annuler</span>
     </div>
-    <div class="tool">
+    <div data-cmd="" class="tool btn-css">
         <i class="fa fa-repeat"></i>
         <span class="tooltiptext">Rétablir</span>
     </div>
     <span class="sep"></span>
-
-    <div class="tool">
+    <div data-cmd="" class="tool btn-css">
         <i class="fa fa-search"></i>
         <span class="tooltiptext">Zoomer</span>
     </div>
     <span class="sep"></span>
-
-    <div class="tool">
+    <div data-cmd="" class="tool btn-css">
         Arial
         <span class="tooltiptext">Police</span>
     </div>
     <span class="sep"></span>
-
-    <div class="tool">
+    <div data-cmd="italic" class="tool btn-css">
         11
         <span class="tooltiptext">Taille de Police</span>
     </div>
     <span class="sep"></span>
-
-    <div class="tool">
+    <div data-cmd="bold" class="tool btn-css">
         <i class="fa fa-bold"></i>
         <span class="tooltiptext">Gras</span>
     </div>
-
-    <div class="tool">
+    <div data-cmd="" class="tool btn-css">
         <i class="fa fa-italic"></i>
         <span class="tooltiptext">Italique</span>
     </div>
-
-    <div class="tool">
+    <div data-cmd="" class="tool btn-css">
         <i class="fa fa-underline"></i>
         <span class="tooltiptext">Souligner</span>
     </div>
     <span class="sep"></span>
-
-    <div class="tool">
+    <div data-cmd="" class="tool btn-css">
         <i class="fa fa-chain"></i>
         <span class="tooltiptext">Insérer un lien</span>
     </div>
     <span class="sep"></span>
-
-    <div class="tool">
+    <div data-cmd="" class="tool btn-css">
         <i class="fa fa-comment"></i>
         <span class="tooltiptext">Commenter</span>
     </div>
     <span class="sep"></span>
-
-    <div class="tool">
+    <div data-cmd="" class="tool btn-css">
         <i class="fa fa-align-left"></i>
         <span class="tooltiptext">Aligner à gauche</span>
     </div>
-    <div class="tool">
+    <div data-cmd="" class="tool btn-css">
         <i class="fa fa-align-center"></i>
         <span class="tooltiptext">Aligner au centre</span>
     </div>
-    <div class="tool">
+    <div data-cmd="" class="tool btn-css">
         <i class="fa fa-align-right"></i>
         <span class="tooltiptext">Aligner à droite</span>
     </div>
-    <div class="tool">
+    <div data-cmd="" class="tool btn-css">
         <i class="fa fa-align-justify"></i>
         <span class="tooltiptext">Justifier</span>
     </div>
     <span class="sep"></span>
-
-    <div class="tool">
+    <div data-cmd="" class="tool btn-css">
         <i class="fa fa-list-ol"></i>
         <span class="tooltiptext">Liste numérotée</span>
     </div>
-    <div class="tool">
+    <div data-cmd="" class="tool btn-css">
         <i class="fa fa-list-ul"></i>
         <span class="tooltiptext">Liste à puces</span>
     </div>
     <span class="sep"></span>
-
-    <div class="tool">
+    <div data-cmd="" class="tool btn-css">
         <i class="fa fa-outdent"></i>
         <span class="tooltiptext">Diminuer le retrait</span>
     </div>
-    <div class="tool">
+    <div data-cmd="" class="tool btn-css">
         <i class="fa fa-indent"></i>
         <span class="tooltiptext">Augmenter le retrait</span>
     </div>
     <span class="sep"></span>
-
-    <div class="tool">
+    <div data-cmd="" class="tool btn-css">
         <i class="fa fa-copy"></i>
         <span class="tooltiptext">Couper</span>
     </div>
-    <div class="tool">
+    <div data-cmd="" class="tool btn-css">
         <i class="fa fa-cut"></i>
         <span class="tooltiptext">Copier</span>
     </div>
-    <div class="tool">
+    <div data-cmd="" class="tool btn-css">
         <i class="fa fa-clipboard"></i>
         <span class="tooltiptext">Coller</span>
     </div>
-    <!--<span class="sep"></span>-->
-
-    <div class="group">
-        <!--bloc descriptif-->
-        <div title="bloc" class="bloc-lg green" draggable="true" ondragstart="drag(event)" data-type="describ">
-            <a id="btn_add_describ" class="btn btn-add btn-success"><i class="fa fa-book"></i></a>
-        </div>
-        <!--bloc d'etape-->
-        <div title="bloc" class="bloc-lg grey" draggable="true" ondragstart="drag(event)" data-type="step">
-            <a id="btn_add_step" class="btn btn-add btn-step"><i class="fa fa-flag"></i></a>
-        </div>
-        <!--bloc de mise en garde-->
-        <div title="bloc" class="bloc-lg orange" draggable="true" ondragstart="drag(event)" data-type="warning">
-            <a id="btn_add_warning" class="btn btn-add btn-warning"> <i class="fa fa-exclamation-triangle"></i></a>
-        </div>
-        <!--bloc d'interdiction-->
-        <div title="bloc" class="bloc-lg red" draggable="true" ondragstart="drag(event)" data-type="danger">
-            <a id="btn_add_danger" class="btn btn-add btn-danger"><i class="fa fa-ban"></i></a>
-        </div>
-        <!--bloc d'information-->
-        <div title="bloc" class="bloc-lg blue" draggable="true" ondragstart="drag(event)" data-type="info">
-            <a id="btn_add_info" class="btn btn-add btn-info"><i class="fa fa-info"></i></a>
-        </div>
+    <span class="sep"></span>
+    <div class="tool bloc-lg green" draggable="true" ondragstart="drag(event)" data-type="describ">
+        <i class="fa fa-book"></i>
+        <span class="tooltiptext">bloc descriptif</span>
     </div>
-    <!--<div class="group"></div>-->
+    <div class="tool bloc-lg grey" draggable="true" ondragstart="drag(event)" data-type="step">
+        <i class="fa fa-flag"></i>
+        <span class="tooltiptext">bloc d'etape</span>
+    </div>
+    <div class="tool bloc-lg orange" draggable="true" ondragstart="drag(event)" data-type="warning">
+        <i class="fa fa-exclamation-triangle"></i>
+        <span class="tooltiptext">bloc de mise en garde</span>
+    </div>
+    <div class="tool bloc-lg red" draggable="true" ondragstart="drag(event)" data-type="danger">
+        <i class="fa fa-ban"></i>
+        <span class="tooltiptext">bloc d'interdiction</span>
+    </div>
+    <div class="tool bloc-lg blue" draggable="true" ondragstart="drag(event)" data-type="info">
+        <i class="fa fa-info"></i>
+        <span class="tooltiptext">bloc d'information</span>
     </div>
 </nav>
