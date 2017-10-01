@@ -1,9 +1,9 @@
 <nav class="tool-menu tooltip">
-    <div data-cmd="" class="tool btn-css">
+    <div data-cmd="undo" class="tool btn-css">
         <i class="fa fa-undo"></i>
         <span class="tooltiptext">Annuler</span>
     </div>
-    <div data-cmd="" class="tool btn-css">
+    <div data-cmd="redo" class="tool btn-css">
         <i class="fa fa-repeat"></i>
         <span class="tooltiptext">Rétablir</span>
     </div>
@@ -13,12 +13,12 @@
         <span class="tooltiptext">Zoomer</span>
     </div>
     <span class="sep"></span>
-    <div data-cmd="" class="tool btn-css">
+    <div data-cmd="fontName" class="tool btn-css">
         Arial
         <span class="tooltiptext">Police</span>
     </div>
     <span class="sep"></span>
-    <div data-cmd="italic" class="tool btn-css">
+    <div data-cmd="" class="tool btn-css">
         11
         <span class="tooltiptext">Taille de Police</span>
     </div>
@@ -27,7 +27,7 @@
         <i class="fa fa-bold"></i>
         <span class="tooltiptext">Gras</span>
     </div>
-    <div data-cmd="" class="tool btn-css">
+    <div data-cmd="italic" class="tool btn-css">
         <i class="fa fa-italic"></i>
         <span class="tooltiptext">Italique</span>
     </div>
@@ -35,8 +35,12 @@
         <i class="fa fa-underline"></i>
         <span class="tooltiptext">Souligner</span>
     </div>
+    <div data-cmd="strikeThrough" class="tool btn-css">
+        <i class="fa fa-strikethrough"></i>
+        <span class="tooltiptext">Barrer</span>
+    </div>
     <span class="sep"></span>
-    <div data-cmd="" class="tool btn-css">
+    <div data-cmd="createLink" class="tool btn-css">
         <i class="fa fa-chain"></i>
         <span class="tooltiptext">Insérer un lien</span>
     </div>
@@ -46,15 +50,15 @@
         <span class="tooltiptext">Commenter</span>
     </div>
     <span class="sep"></span>
-    <div data-cmd="" class="tool btn-css">
+    <div data-cmd="justifyLeft" class="tool btn-css">
         <i class="fa fa-align-left"></i>
         <span class="tooltiptext">Aligner à gauche</span>
     </div>
-    <div data-cmd="" class="tool btn-css">
+    <div data-cmd="justifyCenter" class="tool btn-css">
         <i class="fa fa-align-center"></i>
         <span class="tooltiptext">Aligner au centre</span>
     </div>
-    <div data-cmd="" class="tool btn-css">
+    <div data-cmd="justifyRight" class="tool btn-css">
         <i class="fa fa-align-right"></i>
         <span class="tooltiptext">Aligner à droite</span>
     </div>
@@ -63,35 +67,39 @@
         <span class="tooltiptext">Justifier</span>
     </div>
     <span class="sep"></span>
-    <div data-cmd="" class="tool btn-css">
+    <div data-cmd="insertOrderedList" class="tool btn-css">
         <i class="fa fa-list-ol"></i>
         <span class="tooltiptext">Liste numérotée</span>
     </div>
-    <div data-cmd="" class="tool btn-css">
+    <div data-cmd="insertUnorderedList" class="tool btn-css">
         <i class="fa fa-list-ul"></i>
         <span class="tooltiptext">Liste à puces</span>
     </div>
     <span class="sep"></span>
-    <div data-cmd="" class="tool btn-css">
+    <div data-cmd="outdent" class="tool btn-css">
         <i class="fa fa-outdent"></i>
         <span class="tooltiptext">Diminuer le retrait</span>
     </div>
-    <div data-cmd="" class="tool btn-css">
+    <div data-cmd="indent" class="tool btn-css">
         <i class="fa fa-indent"></i>
         <span class="tooltiptext">Augmenter le retrait</span>
     </div>
     <span class="sep"></span>
-    <div data-cmd="" class="tool btn-css">
-        <i class="fa fa-copy"></i>
+    <div data-cmd="cut" class="tool btn-css">
+        <i class="fa fa-cut"></i>
         <span class="tooltiptext">Couper</span>
     </div>
-    <div data-cmd="" class="tool btn-css">
-        <i class="fa fa-cut"></i>
+    <div data-cmd="copy" class="tool btn-css">
+        <i class="fa fa-copy"></i>
         <span class="tooltiptext">Copier</span>
     </div>
-    <div data-cmd="" class="tool btn-css">
+    <div data-cmd="paste" class="tool btn-css">
         <i class="fa fa-clipboard"></i>
         <span class="tooltiptext">Coller</span>
+    </div>
+    <div data-cmd="insertText" class="tool btn-css">
+        <i class="fa fa-clipboard"></i>
+        <span class="tooltiptext">Coller sans la mise ne forme</span>
     </div>
     <span class="sep"></span>
     <div class="tool bloc-lg green" draggable="true" ondragstart="drag(event)" data-type="describ">
