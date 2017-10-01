@@ -1,5 +1,5 @@
 <header class="header-bar">
-    <a href="home.php">
+    <a href="index.php">
         <h1><b>Etna</b> - Clara</h1>
     </a>
     <div class="db-lign">

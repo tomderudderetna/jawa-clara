@@ -59,25 +59,31 @@ footer {
 /* MAIN MENU */
 #main-menu {
     color: #ecdfff;
+    cursor: default;
 }
 
 #main-menu > .onglet,
 #main-menu > a {
+    display: inline-block;
     margin-bottom: 0;
     font-family: Arial, sans-serif;
     font-size: 13px;
-    padding: 3px 7px 6px 7px;
+    padding: 3px 7px 6px 7px;;
 }
 
-/*#main-menu > a:hover {*/
-    /*background-color: #3f2a60;*/
-/*}*/
+#main-menu > a {
+    cursor: pointer;
+}
+
+#main-menu > a:hover {
+    background-color: #3f2a60;
+}
 
 /* BANNER */
 section.banner {
     background-color: #424249;
     border-bottom: 2px solid #333338;
-    padding: 0 100px 10px 100px;
+    /*padding: 0 100px 10px 100px;*/
 }
 
 section.banner > h2 {
@@ -415,8 +421,7 @@ h1 > input.size10 {
     cursor: grab;
 }
 
-.target_drop,
-#main-menu {
+.target_drop {
     cursor: default;
 }
 
@@ -497,4 +502,9 @@ section.return {
 
 .tooltip > .tool:active .tooltiptext {
     visibility: hidden;
+}
+
+
+#home   section {
+    padding: 0 100px 10px 100px;
 }

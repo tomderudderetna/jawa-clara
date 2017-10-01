@@ -41,12 +41,14 @@ function make(callback) {
 
     var oldaction = $('form')[0].action;
     var newaction = oldaction.replace("incluator", "make_sujet");
+    var newaction = "http://localhost/jawa-clara/clara/actions/make_sujet.php";
     $('form').attr("action", newaction);
     // make();
     $.post($('form')[0].action, form_serial)
         .done(function (data) {
             console.log(data);
-            var newaction = oldaction.replace("make_sujet", "incluator");
+            // var newaction = oldaction.replace("make_sujet", "incluator");
+            var newaction = "http://localhost/jawa-clara/clara/views/render/index.php";
             $('form').attr("action", newaction);
             if (callback)
                 callback();

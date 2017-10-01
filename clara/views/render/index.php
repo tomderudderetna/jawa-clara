@@ -1,3 +1,6 @@
+<?php
+require_once __DIR__ . "/../../model/clara.php";
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,7 +19,8 @@
          */
         $types = ["param", "descriptions", "steps", "dangers", "warnings", "infos"];
         foreach ($types as $type) {
-            $file = "./src/pannel/pannel_project_$type.php";
+            $str = model\clara::get_root_directory();
+            $file = $str."clara/src/pannel/pannel_project_$type.php";
             include $file;
         }
         ?>

@@ -70,7 +70,7 @@ function blind() {
                 })
                 .off("focusout")
                 .on("focusout", function () {
-                    if ($(this).html() == "<p>votre texte</p>" || $(this).html() == "<p><br></p>")
+                    if ($(this).html() == "<p></p>" || $(this).html() == "<p><br></p>")
                         $(this).html("");
                 });
         });
