@@ -164,7 +164,6 @@ $(document).ready(function () {
     })
 });
 
-
 function submitForm() {
     document.form.target = "myActionWin";
     window.open("myActionWin", "myActionWin", "width=800,height=800,toolbar=0");
