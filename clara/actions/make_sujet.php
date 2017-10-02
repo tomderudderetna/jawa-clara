@@ -8,4 +8,3 @@ function get_include_contents($filename) {
 }
 $data = get_include_contents('..//views/render/index.php');
 file_put_contents("../sujet.html", $data);
-echo "ok";

@@ -134,7 +134,9 @@ script {
     margin-right: 15px;
     width: 100px;
     height: 130px;
-    line-height: 130px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: white;
     text-align: center;
 }
@@ -148,6 +150,11 @@ script {
 .box-s:active {
     position: relative;
     top: 2px;
+}
+
+.box-s > a {
+    /*text-align: center;*/
+    /*border: 3px solid green;*/
 }
 
 .box_row {
@@ -218,20 +225,44 @@ script {
     max-height: 1000px;
 }
 
+.op1 {
+    opacity: 1;
+}
+
+.op90 {
+    opacity: 0.9;
+}
+
 .op80 {
     opacity: 0.8;
+}
+
+.op70 {
+    opacity: 0.7;
 }
 
 .op60 {
     opacity: 0.6;
 }
 
+.op50 {
+    opacity: 0.5;
+}
+
 .op40 {
     opacity: 0.4;
 }
 
+.op30 {
+    opacity: 0.3;
+}
+
 .op20 {
     opacity: 0.2;
+}
+
+.op10 {
+    opacity: 0.1;
 }
 
 .op0 {
@@ -504,7 +535,6 @@ section.return {
     visibility: hidden;
 }
 
-
-#home   section {
+#home section {
     padding: 0 100px 10px 100px;
 }
