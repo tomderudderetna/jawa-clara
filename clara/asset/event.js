@@ -179,10 +179,12 @@ function save_sujet() {
 }
 
 $("#sujet_name").on("change", function () {
+    var id = $.urlParam('id');
+    var name = $(this).val();
     var url = "http://localhost/jawa-clara/clara/controllers/sujet/rename.php";
     var data = {
-        name: $.urlParam('name'),
-        id: $.urlParam('id')
+        name: name,
+        id: id
     };
     $.post(url, data)
         .done(function (data) {
@@ -190,7 +192,7 @@ $("#sujet_name").on("change", function () {
         });
 });
 
-$.urlParam = function(name){
+$.urlParam = function (name) {
     var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
     return results[1] || 0;
 }

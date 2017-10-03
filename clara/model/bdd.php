@@ -69,4 +69,11 @@ class bdd
         $db = self::connect();
         $db->exec("UPDATE `sujet` SET `name` = '{$name}' WHERE `sujet`.`id` = {$id}");
     }
+
+    static function get_sujet_name($id)
+    {
+        $db = self::connect();
+        $response=$db->query("SELECT `name` FROM `sujet` WHERE `id` = {$id}");
+        return $response->fetch()['name'];
+    }
 }

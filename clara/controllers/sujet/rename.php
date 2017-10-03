@@ -15,5 +15,4 @@ if ($id && $name) {
     sujet::rename($id, $name);
     echo "[sujet rename]";
 }
-var_dump($id, $name);
 exit;
