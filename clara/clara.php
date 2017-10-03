@@ -1,8 +1,5 @@
 <?php
 require_once "model/bdd.php";
-if (!\model\bdd::get_new_sujet_is_create()) {
-  model\bdd::new_sujet();
-}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -12,7 +9,7 @@ if (!\model\bdd::get_new_sujet_is_create()) {
     <!-- CDN -->
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">-->
     <!-- LOCAL -->
-    <link rel="stylesheet" href="vendor/font-awesome.min.css">
+    <link rel="stylesheet" href="../vendor/font-awesome.min.css">
     <link rel="stylesheet" href="css/clara.css">
 </head>
 <body>
@@ -30,7 +27,7 @@ if (!\model\bdd::get_new_sujet_is_create()) {
     <!-- CDN -->
     <!--<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>-->
     <!-- LOCAL -->
-    <script src="vendor/jquery-3.2.1.min.js"></script>
+    <script src="../vendor/jquery-3.2.1.min.js"></script>
     <script src="asset/js/overlay.js"></script>
     <script src="asset/js/pannel_project_steps.js"></script>
     <script src="asset/js/pannel_project_descriptions.js"></script>

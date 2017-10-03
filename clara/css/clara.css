@@ -538,3 +538,46 @@ section.return {
 #home section {
     padding: 0 100px 10px 100px;
 }
+
+
+.onglet {
+    position: relative;
+    display: inline-block;
+}
+
+.onglet > .onglet-body {
+    visibility: hidden;
+    width: 270px;
+    background-color: #4d4d55;
+    color: #ccc;
+    padding: 6px 0;
+    position: absolute;
+    z-index: 1;
+    left: 60px;
+    margin-left: -60px;
+}
+
+.onglet > .onglet-body > .onglet-item {
+    padding: 6px 10px 6px 30px;
+    line-height: normal;
+}
+
+
+.onglet > .onglet-body > .onglet-sep {
+    border-top: 1px solid transparent;
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+.onglet:hover > .onglet-body {
+    visibility: visible;
+}
+
+.onglet:hover {
+    background-color: #4d4d55;
+}
+
+.onglet > .onglet-body > .onglet-item:hover {
+    background-color: #424249;
+    color: #fff;
+}

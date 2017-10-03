@@ -20,4 +20,5 @@ class clara {
     $tab = scandir($str);
     return $tab;
   }
+
 }

@@ -41,7 +41,7 @@ function make(callback) {
 
     var oldaction = $('form')[0].action;
     var newaction = oldaction.replace("incluator", "make_sujet");
-    var newaction = "http://localhost/jawa-clara/clara/actions/make_sujet.php";
+    var newaction = "http://localhost/jawa-clara/clara/controllers/sujet/generate.php";
     $('form').attr("action", newaction);
     // make();
     $.post($('form')[0].action, form_serial)
@@ -168,4 +168,12 @@ function submitForm() {
     document.form.target = "myActionWin";
     window.open("myActionWin", "myActionWin", "width=800,height=800,toolbar=0");
     document.form.submit();
+}
+
+function save_sujet() {
+    var url = "http://localhost/jawa-clara/clara/actions/change_state.php";
+    $.post(url)
+        .done(function (data) {
+            console.log(data);
+        });
 }

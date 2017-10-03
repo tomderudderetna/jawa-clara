@@ -2,10 +2,13 @@
     <div class="onglet">Fichier
         <div class="onglet-body">
             <div class="onglet-item">
-                <a href="clara.php">Nouveau</a>
+                <a href="controllers/sujet/create.php">Nouveau</a>
             </div>
             <div class="onglet-item">
                 <a onclick="overlay_show('overlay_open')">Ouvrir</a>
+            </div>
+            <div class="onglet-item">
+                <a onclick="save_sujet()">Enregistrer</a>
             </div>
             <div class="onglet-sep"></div>
             <div class="onglet-item">
@@ -39,63 +42,3 @@
     <a id="btn-valid-form" class="btn btn-primary" target="_blank">Générer</a>
     <a id="btn-download">Télécharger</a>
 </div>
-
-<style>
-    .onglet {
-        position: relative;
-        display: inline-block;
-    }
-
-    .onglet > .onglet-body {
-        visibility: hidden;
-        /*width: 120px;*/
-        width: 270px;
-        /*background-color: #553982;*/
-        background-color: #4d4d55;
-        color: #ccc;
-        /*text-align: center;*/
-        /*border-radius: 6px;*/
-        padding: 6px 0;
-        position: absolute;
-        z-index: 1;
-        /*top: 150%;*/
-        /*left: 113%;*/
-        left: 60px;
-        margin-left: -60px;
-    }
-
-    .onglet > .onglet-body > .onglet-item {
-        padding: 6px 10px 6px 30px;
-        line-height: normal;
-    }
-
-    /*.onglet > .onglet-body::after {*/
-    /*content: "";*/
-    /*position: absolute;*/
-    /*bottom: 100%;*/
-    /*left: 50%;*/
-    /*margin-left: -5px;*/
-    /*border-width: 5px;*/
-    /*border-style: solid;*/
-    /*border-color: transparent transparent black transparent;*/
-    /*}*/
-
-    .onglet > .onglet-body > .onglet-sep {
-        border-top: 1px solid transparent;
-        margin-top: 6px;
-        margin-bottom: 6px;
-    }
-
-    .onglet:hover > .onglet-body {
-        visibility: visible;
-    }
-
-    .onglet:hover {
-        background-color: #4d4d55;
-    }
-
-    .onglet > .onglet-body > .onglet-item:hover {
-        background-color: #424249;
-        color: #fff;
-    }
-</style>

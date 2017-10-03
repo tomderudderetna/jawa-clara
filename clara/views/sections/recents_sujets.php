@@ -13,7 +13,7 @@ require_once "model/bdd.php";
       $tab = model\bdd::get_list_recent_sujet();
       for ($i = 0; $i < count($tab); ++$i): ?>
           <div class="box box-s op<?php echo (10 - $i) + 4 ?>0">
-              <a><?php echo $tab[$i]['name'] ?></a>
+              <a href="clara.php?id=<?php echo $tab[$i]['id'] ?>"><?php echo $tab[$i]['name'] ?></a>
           </div>
       <?php endfor; ?>
     </div>

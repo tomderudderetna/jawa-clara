@@ -2,6 +2,6 @@
 .idea/
 clara/sujet.html
 maquette/img/
-clara/vendor/
+vendor/
 files/
 .gitignore
