@@ -8,7 +8,7 @@ require_once "model/bdd.php";
       <?php
       $tab = model\bdd::get_list_all_sujet();
       for ($i = 0; $i < count($tab); ++$i): ?>
-          <div class="box box-s op<?php echo -$i + count($tab) ?>0">
+          <div class="box box-s">
               <a><?php echo $tab[$i]['name'] ?></a>
           </div>
       <?php endfor; ?>

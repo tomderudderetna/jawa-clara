@@ -1,5 +1,10 @@
 <header class="header-bar">
-    <a href="index.php">
+    <a href="index.php" id="logo">
+        <div class="logo">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
         <h1><b>Etna</b> - Clara</h1>
     </a>
     <div class="db-lign">

@@ -163,7 +163,7 @@ script {
 }
 
 .tool-menu {
-    padding: 4px 155px;
+    padding: 4px 193px;
     color: #ccc;
     background-color: #424249;
     box-shadow: 0 2px 3px #aaa;
@@ -539,7 +539,6 @@ section.return {
     padding: 0 100px 10px 100px;
 }
 
-
 .onglet {
     position: relative;
     display: inline-block;
@@ -562,7 +561,6 @@ section.return {
     line-height: normal;
 }
 
-
 .onglet > .onglet-body > .onglet-sep {
     border-top: 1px solid transparent;
     margin-top: 6px;
@@ -580,4 +578,41 @@ section.return {
 .onglet > .onglet-body > .onglet-item:hover {
     background-color: #424249;
     color: #fff;
+}
+
+.search-lign > input[type=text] {
+    border-radius: 4px;
+    padding: 6px 12px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    margin-left: 10px;
+    font-size: 1em;
+}
+
+.search-lign > input[type=text]:focus {
+    outline: none;
+}
+
+.logo {
+    margin: auto 0 auto 10px;
+    height: 20px;
+    width: 20px;
+    padding: 10px;
+}
+
+#logo:hover > .logo {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5em;
+}
+
+.logo > div {
+    width: 20px;
+    height: 2px;
+    background-color: #ecdfff;
+    margin: 4px 0;
+}
+
+#logo {
+    display: flex;
+    cursor: pointer;
 }
