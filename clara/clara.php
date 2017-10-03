@@ -1,5 +1,5 @@
 <?php
-require_once "model/bdd.php";
+//require_once "model/bdd.php";
 ?>
 <!DOCTYPE html>
 <html lang="fr">

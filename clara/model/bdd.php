@@ -63,4 +63,10 @@ class bdd
         $db = self::connect();
         $db->exec("UPDATE `conf` SET `null_sujet_exist` = {$state} WHERE `conf`.`id` = 0;");
     }
+
+    static function set_sujet_name($id, $name)
+    {
+        $db = self::connect();
+        $db->exec("UPDATE `sujet` SET `name` = '{$name}' WHERE `sujet`.`id` = {$id}");
+    }
 }

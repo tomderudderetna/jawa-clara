@@ -177,3 +177,20 @@ function save_sujet() {
             console.log(data);
         });
 }
+
+$("#sujet_name").on("change", function () {
+    var url = "http://localhost/jawa-clara/clara/controllers/sujet/rename.php";
+    var data = {
+        name: $.urlParam('name'),
+        id: $.urlParam('id')
+    };
+    $.post(url, data)
+        .done(function (data) {
+            console.log(data);
+        });
+});
+
+$.urlParam = function(name){
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    return results[1] || 0;
+}

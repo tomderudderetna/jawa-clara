@@ -6,7 +6,9 @@
  * Time: 10:38
  */
 
+
 namespace model;
+require_once "bdd.php";
 
 
 class sujet
@@ -25,5 +27,10 @@ class sujet
         $contents = ob_get_contents();
         ob_end_clean();
         return $contents;
+    }
+
+    static function rename($id, $name)
+    {
+        bdd::set_sujet_name($id, $name);
     }
 }
