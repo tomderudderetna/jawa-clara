@@ -15,6 +15,6 @@ require_once __DIR__ . "/../../model/sujet.php";
                placeholder="Document sans titre"
                value="<?php echo \model\sujet::get_name($_GET["id"]) ?>"
                title="Renommer">
-        <?php include_once "views/menu/main.html" ?>
+        <?php include_once "views/menu/main.php" ?>
     </div>
 </header>

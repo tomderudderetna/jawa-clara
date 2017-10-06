@@ -20,7 +20,7 @@ class bdd
         try {
             $db = new PDO('mysql:host=localhost;dbname=clara;charset=utf8', 'root', '');
         } catch (Exception $e) {
-            die('Erreur : ' . $e->getMessage());
+            return NULL;
         }
         return $db;
 
@@ -32,16 +32,29 @@ class bdd
 
             $db = self::connect();
             $db->exec('INSERT INTO `sujet` (`id`, `name`, `path`) VALUES (NULL, \'Document sans titre\', \'path\');');
-//        $db->exec('UPDATE `conf` SET `null_sujet_exist` = 1 WHERE `conf`.`id` = 0;');
+            $last_id = $db->lastInsertId();
+            $db->exec("UPDATE `conf` SET `null_sujet_id` = '{$last_id}' WHERE `conf`.`id` = 0;");
             self::set_sujet_existe(1);
+            return $last_id;
+        }
+    }
+
+    static function get_null_sujet_id()
+    {
+        $db = self::connect();
+        if ($db != NULL) {
+            $response = $db->query('SELECT `null_sujet_id` FROM `conf` WHERE `id` = 0');
+            return $response->fetch()['null_sujet_id'];
         }
     }
 
     static function get_new_sujet_is_create()
     {
         $db = self::connect();
-        $response = $db->query('SELECT `null_sujet_exist` FROM `conf`');
-        return $response->fetch()['null_sujet_exist'];
+        if ($db != NULL) {
+            $response = $db->query('SELECT `null_sujet_exist` FROM `conf`');
+            return $response->fetch()['null_sujet_exist'];
+        }
     }
 
     static public function get_list_all_sujet()
@@ -54,8 +67,10 @@ class bdd
     static public function get_list_recent_sujet()
     {
         $db = self::connect();
-        $response = $db->query('SELECT `name`, `id` FROM sujet ORDER BY id DESC LIMIT 10');
-        return $response->fetchAll();
+        if ($db != NULL) {
+            $response = $db->query('SELECT `name`, `id` FROM sujet ORDER BY id DESC LIMIT 10');
+            return $response->fetchAll();
+        }
     }
 
     static function set_sujet_existe($state)
@@ -68,6 +83,7 @@ class bdd
     {
         $db = self::connect();
         $db->exec("UPDATE `sujet` SET `name` = '{$name}' WHERE `sujet`.`id` = {$id}");
+        self::set_sujet_existe(0);
     }
 
     static function get_sujet_name($id)
@@ -75,5 +91,12 @@ class bdd
         $db = self::connect();
         $response=$db->query("SELECT `name` FROM `sujet` WHERE `id` = {$id}");
         return $response->fetch()['name'];
+    }
+
+    static function delete_sujet($id)
+    {
+        $db = self::connect();
+        $db->exec("DELETE FROM `sujet` WHERE `sujet`.`id` = {$id} ");
+        self::set_sujet_existe(0);
     }
 }

@@ -34,6 +34,11 @@ class sujet
         bdd::set_sujet_name($id, $name);
     }
 
+    static function delete($id)
+    {
+        bdd::delete_sujet($id);
+    }
+
     static function get_name($id)
     {
         return bdd::get_sujet_name($id);
