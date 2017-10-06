@@ -12,6 +12,10 @@
             </div>
             <div class="onglet-sep"></div>
             <div class="onglet-item">
+                <a href="/jawa-clara/clara/controllers/sujet/delete.php?id=<?php echo isset($_GET['id']) ? $_GET['id'] : false;?>">Supprimer</a>
+            </div>
+            <div class="onglet-sep"></div>
+            <div class="onglet-item">
                 <a href="index.php">Fermer</a>
             </div>
         </div>
