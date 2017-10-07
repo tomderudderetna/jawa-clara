@@ -11,9 +11,9 @@
 </head>
 <body id="home">
 <!-- header -->
-<?php include_once "views/header/simple.html" ?>
+<?php include_once "views/header/simple.php" ?>
 <!-- section new sujet -->
-<?php include_once "views/sections/new_sujets.html" ?>
+<?php include_once "views/sections/new_sujets.php" ?>
 <!-- section recents sujets -->
 <?php include_once "views/sections/recents_sujets.php" ?>
 </body>
