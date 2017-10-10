@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteRule ^(favicon\.ico|(.*).css|(.*).js|(.*).woff2|robots\.txt|sitemap\.xml) - [NC,L]
+RewriteRule ^(.*)$ index.php [QSA,L]
