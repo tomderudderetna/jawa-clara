@@ -3,46 +3,57 @@
  * Description:     envoie le formulaire serialisé et génére le fichier
  */
 function make(callback) {
-    for (i = 1; i <= nb_steps; i++) {
-        if (typeof $('#edit_step_' + i + '_id')[0] !== 'undefined')
-            $('#step_' + i + '_id').val($('#edit_step_' + i + '_id')[0].innerHTML);
-        if (typeof $('#edit_step_' + i + '_name')[0] !== 'undefined')
-            $('#step_' + i + '_name').val($('#edit_step_' + i + '_name')[0].innerHTML);
-        if (typeof $('#edit_step_' + i + '_content')[0] !== 'undefined')
-            $('#step_' + i + '_content').val($('#edit_step_' + i + '_content')[0].innerHTML);
-    }
-    for (i = 1; i <= nb_describs; i++) {
-        if (typeof $('#edit_describ_' + i + '_name')[0] !== 'undefined')
-            $('#describ_' + i + '_name').val($('#edit_describ_' + i + '_name')[0].innerHTML);
-        if (typeof $('#edit_describ_' + i + '_content')[0] !== 'undefined')
-            $('#describ_' + i + '_content').val($('#edit_describ_' + i + '_content')[0].innerHTML);
-    }
-    for (i = 1; i <= nb_warnings; i++) {
-        if (typeof $('#edit_warning_' + i + '_name')[0] !== 'undefined')
-            $('#warning_' + i + '_name').val($('#edit_warning_' + i + '_name')[0].innerHTML);
-        if (typeof $('#edit_warning_' + i + '_content')[0] !== 'undefined')
-            $('#warning_' + i + '_content').val($('#edit_warning_' + i + '_content')[0].innerHTML);
-    }
-    for (i = 1; i <= nb_dangers; i++) {
-        if (typeof $('#edit_danger_' + i + '_name')[0] !== 'undefined')
-            $('#danger_' + i + '_name').val($('#edit_danger_' + i + '_name')[0].innerHTML);
-        if (typeof $('#edit_danger_' + i + '_content')[0] !== 'undefined')
-            $('#danger_' + i + '_content').val($('#edit_danger_' + i + '_content')[0].innerHTML);
-    }
-    for (i = 1; i <= nb_infos; i++) {
-        if (typeof $('#edit_info_' + i + '_name')[0] !== 'undefined')
-            $('#info_' + i + '_name').val($('#edit_info_' + i + '_name')[0].innerHTML);
-        if (typeof $('#edit_info_' + i + '_content')[0] !== 'undefined')
-            $('#info_' + i + '_content').val($('#edit_info_' + i + '_content')[0].innerHTML);
-    }
-    for (i = 1; i <= nb_blocs; i++) {
-        if (typeof $('#edit_blc_' + i + '_content')[0] !== 'undefined')
-            $('#blc_' + i + '_content').val($('#edit_blc_' + i + '_content')[0].innerHTML);
-    }
+    // for (i = 1; i <= nb_steps; i++) {
+    //     if (typeof $('#edit_step_' + i + '_id')[0] !== 'undefined')
+    //         $('#step_' + i + '_id').val($('#edit_step_' + i + '_id')[0].innerHTML);
+    //     if (typeof $('#edit_step_' + i + '_name')[0] !== 'undefined')
+    //         $('#step_' + i + '_name').val($('#edit_step_' + i + '_name')[0].innerHTML);
+    //     if (typeof $('#edit_step_' + i + '_content')[0] !== 'undefined')
+    //         $('#step_' + i + '_content').val($('#edit_step_' + i + '_content')[0].innerHTML);
+    // }
+    // for (i = 1; i <= nb_describs; i++) {
+    //     if (typeof $('#edit_describ_' + i + '_name')[0] !== 'undefined')
+    //         $('#describ_' + i + '_name').val($('#edit_describ_' + i + '_name')[0].innerHTML);
+    //     if (typeof $('#edit_describ_' + i + '_content')[0] !== 'undefined')
+    //         $('#describ_' + i + '_content').val($('#edit_describ_' + i + '_content')[0].innerHTML);
+    // }
+    // for (i = 1; i <= nb_warnings; i++) {
+    //     if (typeof $('#edit_warning_' + i + '_name')[0] !== 'undefined')
+    //         $('#warning_' + i + '_name').val($('#edit_warning_' + i + '_name')[0].innerHTML);
+    //     if (typeof $('#edit_warning_' + i + '_content')[0] !== 'undefined')
+    //         $('#warning_' + i + '_content').val($('#edit_warning_' + i + '_content')[0].innerHTML);
+    // }
+    // for (i = 1; i <= nb_dangers; i++) {
+    //     if (typeof $('#edit_danger_' + i + '_name')[0] !== 'undefined')
+    //         $('#danger_' + i + '_name').val($('#edit_danger_' + i + '_name')[0].innerHTML);
+    //     if (typeof $('#edit_danger_' + i + '_content')[0] !== 'undefined')
+    //         $('#danger_' + i + '_content').val($('#edit_danger_' + i + '_content')[0].innerHTML);
+    // }
+    // for (i = 1; i <= nb_infos; i++) {
+    //     if (typeof $('#edit_info_' + i + '_name')[0] !== 'undefined')
+    //         $('#info_' + i + '_name').val($('#edit_info_' + i + '_name')[0].innerHTML);
+    //     if (typeof $('#edit_info_' + i + '_content')[0] !== 'undefined')
+    //         $('#info_' + i + '_content').val($('#edit_info_' + i + '_content')[0].innerHTML);
+    // }
+    // for (i = 0; i < nb_blocs; i++) {
+    //     if (typeof $('.edit_blc_content')[i] !== 'undefined')
+    //         $('.blc_content').val($('.edit_blc_content')[i].innerHTML);
+    // }
+    $('.blc_content').each(function () {
+        $(this).val($(this).next('.edit_blc_content').html());
+        // console.log($(this).next('.edit_blc_content').html());
+    });
+    // $('#blocks').children().each(function () {
+    //     var content = $($(this).find("div")[1]).html();
+    //     // console.log(content);
+    //     $(this).find("input:hidden").val(content);
+    //     console.log($(this).find("input:hidden").val());
+    // });
     form_serial = $('form').serialize();
-    console.log(nb_blocs);
+    // console.log(form_serial);
     console.log(form_serial);
     for (var i = 1; i <= nb_blocs; i++) {
+        form_serial = form_serial.replace(/step_%24id%24_id/, "step_" + i + "_id");
         form_serial = form_serial.replace(/blc_%24id%24_type/, "blc_" + i + "_type");
         form_serial = form_serial.replace(/blc_%24id%24_name/, "blc_" + i + "_name");
         form_serial = form_serial.replace(/blc_%24id%24_content/, "blc_" + i + "_content");
@@ -144,21 +155,32 @@ $(function () {
     nb_dangers = 0;
     nb_warnings = 0;
     nb_infos = 0;
-    nb_blocs = 0;
+    nb_blocs = 1;
     tmp = null;
     form_serial = null;
     blind();
     $('#blocks').sortable({
         cancel: ':input,button,.blc-body',
-        placeholder: "ui-sortable-placeholder",
+        placeholder: "ui-sortable-placeholder"
     });
     /*
      * evenements liés aux bouton de mise en forme du texte
      */
     $('.btn-css')
         .on('click', function (ev) {
+            var cmd = $(this).attr('data-cmd');
+            var cmd_arg = $(this).attr('data-cmd-arg');
+            switch (cmd) {
+                case "insertHTML":
+
+                    cmd_arg = table(cmd_arg.charAt(0), cmd_arg.charAt(2));
+                    console.log(cmd_arg);
+                    commande(cmd, cmd_arg);
+                    break;
+                default:
+                    commande(cmd, cmd_arg);
+            }
             //evenement - click:    cliquer sur le bouton de mise en forme du texte
-            commande($(this).attr('data-cmd'), $(this).attr('data-cmd-arg'));
         });
     /*
      * evenements liés aux bouton de validation du formulaire
@@ -178,6 +200,19 @@ $(function () {
         });
     })
 });
+
+function table(x, y) {
+    var str = "<table class='table table-hover'><tbody>";
+    // alert("x = " + x + ", y = " + y);
+    for (i = 0; i < x; i++) {
+        str += "<tr>";
+        for (j = 0; j < y; j++)
+            str += "<td>" + i + "-" + j + "</td>";
+        str += "</tr>";
+    }
+    str += "</tbody></table>";
+    return str;
+}
 
 function submitForm() {
     document.form.target = "myActionWin";
@@ -211,3 +246,28 @@ $.urlParam = function (name) {
     var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
     return results[1] || 0;
 };
+
+function pnl_proj_descriptions(id) {
+    var text = ($("#data-describ").attr("data-html"));
+    return text;
+}
+
+function pnl_proj_steps(id) {
+    var text = ($("#data-step").attr("data-html"));
+    return text;
+}
+
+function pnl_proj_dangers(id) {
+    var text = ($("#data-danger").attr("data-html"));
+    return text;
+}
+
+function pnl_proj_infos(id) {
+    var text = ($("#data-info").attr("data-html"));
+    return text;
+}
+
+function pnl_proj_warnings(id) {
+    var text = ($("#data-warning").attr("data-html"));
+    return text;
+}

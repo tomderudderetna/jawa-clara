@@ -30,7 +30,7 @@
 <!--            <script src="Resource/clara/js/pannel_project_warnings.js"></script>-->
 <!--            <script src="Resource/clara/js/pannel_project_dangers.js"></script>-->
 <!--            <script src="Resource/clara/js/pannel_project_infos.js"></script>-->
-            <script src="Resource/clara/js/pannel.js"></script>
+<!--            <script src="Resource/clara/js/pannel.js"></script>-->
             <script src="Resource/clara/js/blind.js"></script>
         </footer>
     </body>

@@ -75,6 +75,11 @@
         <span class="tooltiptext">Justifier</span>
     </div>
     <span class="sep"></span>
+    <div data-cmd="insertHTML" data-cmd-arg="4-5" class="tool btn-css">
+        <i class="fa fa-table"></i>
+        <span class="tooltiptext">Tableau</span>
+    </div>
+    <span class="sep"></span>
     <div data-cmd="insertOrderedList" class="tool btn-css">
         <i class="fa fa-list-ol"></i>
         <span class="tooltiptext">Liste numérotée</span>

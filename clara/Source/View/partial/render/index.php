@@ -5,8 +5,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title><?php echo $_POST['module_code'] ?? NULL;
-            echo isset($_POST['project_code']) ? ' - ' . $_POST['project_code'] : NULL ?></title>
+        <title><?php echo $_POST['project_code'] ?? NULL;
+            echo isset($_POST['module_code']) ? ' - ' . $_POST['module_code'] : NULL ?></title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/styles/monokai-sublime.min.css">
@@ -18,7 +18,7 @@
         /**
          * remplissage du cours avec les données du formulaire
          */
-        var_dump($_POST);
+//        var_dump($_POST);
         $types = ["param", "blc"];
         foreach ($types as $type) {
             $file = __DIR__ . "/../pannel/pannel_project_$type.php";
