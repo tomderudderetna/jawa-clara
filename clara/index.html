@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<title>Clara</title>
+	<link rel="stylesheet" href="css/clara.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+	<header class="header header-bar">
+		<div class="logo">
+			<div class="logo-icon">
+				<div></div><div></div><div></div>
+			</div>
+			<h1 class="logo-label">
+				<b>Etna</b> - Clara
+			</h1>
+		</div>
+		<div id="main-menu">
+			<div id="main-menu">
+			    <a href="">Nouveau</a>
+			    <!-- <a onclick="overlay_show('overlay_preview')">Aperçu</a> -->
+			    <a id="btn-download">Télécharger</a>
+			</div>
+		</div>
+	</header>
+
+	<nav class="tool-menu tooltip">
+		<div data-cmd="undo" class="tool btn-css">
+			<i class="fa fa-undo"></i>
+			<span class="tooltiptext">Annuler</span>
+		</div>
+		<div data-cmd="redo" class="tool btn-css">
+			<i class="fa fa-repeat"></i>
+			<span class="tooltiptext">Rétablir</span>
+		</div>
+		<span class="sep"></span>
+		<div data-cmd="bold" class="tool btn-css">
+			<i class="fa fa-bold"></i>
+			<span class="tooltiptext">Gras</span>
+		</div>
+		<div data-cmd="italic" class="tool btn-css">
+			<i class="fa fa-italic"></i>
+			<span class="tooltiptext">Italique</span>
+		</div>
+		<div data-cmd="underline" class="tool btn-css">
+			<i class="fa fa-underline"></i>
+			<span class="tooltiptext">Souligner</span>
+		</div>
+		<div data-cmd="strikeThrough" class="tool btn-css">
+			<i class="fa fa-strikethrough"></i>
+			<span class="tooltiptext">Barrer</span>
+		</div>
+		<div data-cmd="justifyLeft" class="tool btn-css">
+			<i class="fa fa-align-left"></i>
+			<span class="tooltiptext">Aligner à gauche</span>
+		</div>
+		<div data-cmd="justifyCenter" class="tool btn-css">
+			<i class="fa fa-align-center"></i>
+			<span class="tooltiptext">Aligner au centre</span>
+		</div>
+		<div data-cmd="justifyRight" class="tool btn-css">
+			<i class="fa fa-align-right"></i>
+			<span class="tooltiptext">Aligner à droite</span>
+		</div>
+		<div data-cmd="justifyFull" class="tool btn-css">
+			<i class="fa fa-align-justify"></i>
+			<span class="tooltiptext">Justifier</span>
+		</div>
+		<span class="sep"></span>
+		<div data-cmd="insertHTML" data-cmd-arg="4-5" class="tool btn-css">
+			<i class="fa fa-table"></i>
+			<span class="tooltiptext">Tableau</span>
+		</div>
+		<span class="sep"></span>
+		<div data-cmd="insertOrderedList" class="tool btn-css">
+			<i class="fa fa-list-ol"></i>
+			<span class="tooltiptext">Liste numérotée</span>
+		</div>
+		<div data-cmd="insertUnorderedList" class="tool btn-css">
+			<i class="fa fa-list-ul"></i>
+			<span class="tooltiptext">Liste à puces</span>
+		</div>
+		<span class="sep"></span>
+		<div data-cmd="outdent" class="tool btn-css">
+			<i class="fa fa-outdent"></i>
+			<span class="tooltiptext">Diminuer le retrait</span>
+		</div>
+		<div data-cmd="indent" class="tool btn-css">
+			<i class="fa fa-indent"></i>
+			<span class="tooltiptext">Augmenter le retrait</span>
+		</div>
+		<span class="sep"></span>
+		<div data-cmd="cut" class="tool btn-css">
+			<i class="fa fa-cut"></i>
+			<span class="tooltiptext">Couper</span>
+		</div>
+		<div data-cmd="copy" class="tool btn-css">
+			<i class="fa fa-copy"></i>
+			<span class="tooltiptext">Copier</span>
+		</div>
+		<div data-cmd="paste" class="tool btn-css red">
+			<i class="fa fa-clipboard"></i>
+			<span class="tooltiptext">Coller</span>
+		</div>
+		<div data-cmd="insertText" class="tool btn-css red">
+			<i class="fa fa-clipboard"></i>
+			<span class="tooltiptext">Coller sans la mise ne forme</span>
+		</div>
+		<span class="sep"></span>
+		<div class="tool bloc-lg green" draggable="true" ondragstart="drag(event)" data-type="describ">
+			<i class="fa fa-book"></i>
+			<span class="tooltiptext">bloc descriptif</span>
+		</div>
+		<div class="tool bloc-lg grey" draggable="true" ondragstart="drag(event)" data-type="step">
+			<i class="fa fa-flag"></i>
+			<span class="tooltiptext">bloc d'etape</span>
+		</div>
+		<div class="tool bloc-lg orange" draggable="true" ondragstart="drag(event)" data-type="warning">
+			<i class="fa fa-exclamation-triangle"></i>
+			<span class="tooltiptext">bloc de mise en garde</span>
+		</div>
+		<div class="tool bloc-lg red" draggable="true" ondragstart="drag(event)" data-type="danger">
+			<i class="fa fa-ban"></i>
+			<span class="tooltiptext">bloc d'interdiction</span>
+		</div>
+		<div class="tool bloc-lg blue" draggable="true" ondragstart="drag(event)" data-type="info">
+			<i class="fa fa-info"></i>
+			<span class="tooltiptext">bloc d'information</span>
+		</div>
+	</nav>
+
+	<section class="page" id="page">
+		<form class="form" action="views/render/index.php" method="post" name="form">
+			<div class="blc blc-primary">
+				<div class="blc-heading">
+					<h1>
+						<i class="fa fa-cogs"></i>
+						<input class="size10" id="project_name" name="project_name" placeholder="Projet">
+						( <input class="size3" id="project_code" name="project_code" placeholder="_ _ _" maxlength="3"> -
+						<input class="size4" id="module_code" name="module_code" placeholder="_ _ _ _" maxlength="4"> )
+					</h1>
+				</div>
+				<input type="hidden" class="blc_content" name="param_project">
+				<div id="edit_param_project" class="blc-body edit_blc_content" contenteditable="true">
+					<p>votre texte</p>
+				</div>
+			</div>
+			<input type="hidden" name="nb_blocs" id="nb_blocs" value="1">
+			<div id="blocks">
+
+				<div class="blc blc-project">
+					<div class="blc-heading">
+						<a class="btn btn-danger btn-del-blc" data-type="describ">
+							<i class="fa fa-remove"></i>
+						</a>
+						<h1>
+							<i class="fa fa-book"></i>
+							<input class="size10" name="blc_$id$_name" placeholder="Projet">
+						</h1>
+					</div>
+					<input type="hidden" id="blc_content" class="blc_content" name="blc_$id$_content">
+					<div id="edit_blc_content" class="blc-body edit_blc_content" contenteditable="true">
+						<p>votre texte</p>
+					</div>
+					<input type="hidden" name="blc_$id$_type" value="project">
+				</div>
+			</div>
+			<div id="target_drop" class="target_drop" ondrop="drop(event,'#target_drop')"
+			ondragover="allowDrop(event,'#target_drop')" ondragleave="$(this).removeClass('drop_hover')">
+			<a class="btn btn-default">
+				<i class="fa fa-plus"></i>
+			</a>&nbsp;deplace un bloc ici.
+		</div>
+	</form>
+</section>
+
+<div>
+	<!--describ-->
+	<div id="data-describ" data-html="<div class='blc blc-project'>
+    <div class='blc-heading'>
+        <a class='btn btn-danger btn-del-blc' data-type='describ'>
+            <i class='fa fa-remove'></i>
+        </a>
+        <h1>
+            <i class='fa fa-book'></i>
+            <input class='size10' name='blc_$id$_name' placeholder='Projet'>
+        </h1>
+    </div>
+    <input type='hidden' id='blc_content' class='blc_content' name='blc_$id$_content'>
+    <div id='edit_blc_content' class='blc-body edit_blc_content' contenteditable='true'>
+        <p>votre texte</p>
+    </div>
+    <input type='hidden' name='blc_$id$_type' value='project'>
+</div>
+"></div>
+	<!--step-->
+	<div id="data-step" data-html="<div class='blc blc-step'>
+    <div class='blc-heading'>
+        <a class='btn btn-danger btn-del-blc' data-type='danger'>
+            <i class='fa fa-remove'></i>
+        </a>
+        <h1>
+            <i class='fa fa-flag'></i>
+            <input class='size10' id='step_$id$_id' name='step_$id$_id' placeholder='Etape'>
+            <input class='size10' name='blc_$id$_name' placeholder='Titre'>
+        </h1>
+    </div>
+    <input type='hidden' class='blc_content' name='blc_$id$_content'>
+    <div id='edit_blc_$id$_content' class='blc-body edit_blc_content' contenteditable='true'>
+        <p>votre texte</p>
+    </div>
+    <input type='hidden' name='blc_$id$_type' value='step'>
+</div>"></div>
+	<!--warning-->
+	<div id="data-warning" data-html="<div class='blc blc-warning'>
+    <div class='blc-heading'>
+        <a class='btn btn-danger btn-del-blc' data-type='warning'>
+            <i class='fa fa-remove'></i>
+        </a>
+        <h1>
+            <i class='fa fa-exclamation-triangle'></i>
+            <input class='size10' name='blc_$id$_name' placeholder='Attention !'>
+        </h1>
+    </div>
+    <input type='hidden' class='blc_content' name='blc_$id$_content'>
+    <div id='edit_blc_content' class='blc-body edit_blc_content' contenteditable='true'>
+        <p>votre texte</p>
+    </div>
+    <input type='hidden' name='blc_$id$_type' value='warning'>
+</div>"></div>
+	<!--danger-->
+	<div id="data-danger" data-html="<div class='blc blc-danger'>
+		<div class='blc-heading'>
+			<a class='btn btn-danger btn-del-blc' data-type='danger'>
+				<i class='fa fa-remove'></i>
+			</a>
+			<h1>
+				<i class='fa fa-ban'></i>
+				<input class='size10' name='blc_$id$_name' placeholder='Interdits !'>
+			</h1>
+		</div>
+		<input type='hidden' class='blc_content' name='blc_$id$_content'>
+		<div id='edit_blc_content' class='blc-body edit_blc_content' contenteditable='true'>
+			<p>votre texte</p>
+		</div>
+		<input type='hidden' name='blc_$id$_type' value='danger'>
+	</div>"></div>
+	<!--info-->
+	<div id="data-info" data-html="<div class='blc blc-info'>
+    <div class='blc-heading'>
+        <a class='btn btn-danger btn-del-blc' data-type='info'>
+            <i class='fa fa-remove'></i>
+        </a>
+        <h1>
+            <i class='fa fa-info'></i>
+            <input class='size10' name='blc_$id$_name' placeholder='Informations'>
+        </h1>
+    </div>
+    <input type='hidden' id='blc_content' class='blc_content' name='blc_$id$_content'>
+    <div id='edit_blc_content' class='blc-body edit_blc_content' contenteditable='true'>
+        <p>votre texte</p>
+    </div>
+    <input type='hidden' name='blc_$id$_type' value='info'>
+</div>"></div>
+</div>
+
+<div onclick="overlay_hide('overlay_preview')" id="overlay_preview">
+	<div id="page2">
+		<iframe width="100%" height="100%"></iframe>
+	</div>
+
+	<a id="file-download" href="sujet" download="sujet.html">file</a>
+</div>
+
+<footer>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+	<script src="js/clara.js"></script>
+	<script src="js/download.js"></script>
+	<script type="text/javascript"></script>
+</footer>
+
+</body>
+</html>
