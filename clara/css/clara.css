@@ -202,16 +202,6 @@ script {
 }
 
 .page {
-
-    background-color: white;
-    width: 800px;
-    min-height: 900px;
-    margin: 20px auto 30px;
-    border: 1px #ccc solid;
-    box-shadow: 1px 1px 8px #aaa;
-}
-
-#page {
     background-color: white;
     width: 800px;
     min-height: 900px;
@@ -223,17 +213,17 @@ script {
     padding: 10px;
 }
 
-#page:focus {
-    outline: none;
-}
+/*#page:focus {*/
+    /*outline: none;*/
+/*}*/
 
-#page2 {
-    margin: 50px auto auto;
-    background-color: white;
-    width: 750px;
-    height: 90vh;
-    max-height: 1000px;
-}
+/*#page2 {*/
+    /*margin: 50px auto auto;*/
+    /*background-color: white;*/
+    /*width: 750px;*/
+    /*height: 90vh;*/
+    /*max-height: 1000px;*/
+/*}*/
 
 .op1 {
     opacity: 1;

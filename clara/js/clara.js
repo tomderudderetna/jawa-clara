@@ -9,6 +9,7 @@
   };
 })(jQuery);
 */
+
 /*
  * Fonction:        make
  * Description:     envoie le formulaire serialisé et génére le fichier
@@ -52,7 +53,7 @@ function make(callback) {
 
             // $('#blocks').html(html);
         });*/
-        callback();
+    callback();
 }
 
 /*
@@ -321,13 +322,19 @@ function overlay_hide(id) {
     document.getElementById(id).style.display = "none";
 }
 
-function rendering(str)
-{
-	var tab = str.split( "&" );
-	var tab0 = tab[0].split( "=" );
-	console.log( tab );
-	console.log( tab0.indexOf( "project_name" ) + 1);
-	var code = `<!DOCTYPE html>
+function rendering() {
+    var pannel_type = {
+        "param": "primary",
+        "describ": "project",
+        "": ""
+    };
+    var fa_type = {
+        "param": "cogs",
+        "describ": "book",
+        "": ""
+    };
+    var obj = generator();
+    var code = `<!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -338,26 +345,16 @@ function rendering(str)
         <link rel="stylesheet" href="https://dl.etna-alternance.net/css/sujet-etna.css">
     </head>
     <body>`;
-    code += `<div class="panel panel-primary">
-			<div class="panel-heading">
-				<i class="fa fa-cogs"></i>
-				<h2>` + tab[0].split( '=' )[tab0.indexOf( "project_name" ) + 1] + `</h2>
-			</div>
-			<div class="panel-body">
-				<ul>
-					<li>Rendu SVN : $$RENDU$$</li>
-					<li>VM : $$VM$$</li>
-					<li>Nom du rendu : result.txt</li>
-					<li>Vous serez corrigés par une moulinette. TOUTES vos réponses doivent être suivies d'un retour à la ligne</li>
-					<li>Vous ne devez que mettre la lettre correspondant à la réponse, et rien d'autre. C'est-à-dire a, b, c, ou d</li>
-					<li>Une bonne réponse rapporte 1 point</li>
-					<li>Une mauvaise réponse enlève 2 point</li>
-					<li>Aucune réponse enlève 1 point</li>
-					<li>Vous avez 45 minutes</li>
-				</ul>
-			</div>
-		</div>`;
-	return code += `<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    obj.forEach(function (e) {
+        code += `<div class="panel panel-` + pannel_type[e.type] + `">
+		<div class="panel-heading">
+			<i class="fa fa-` + fa_type[e.type] + `"></i>
+			<h3>` + e.name + `</h3>
+		</div>
+		<div class="panel-body">` + e.content + `</div>
+	</div>`;
+    });
+    return code += `<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.5/ace.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
@@ -392,4 +389,16 @@ function rendering(str)
         </script>
     </body>
 </html>`;
+}
+
+function generator() {
+    var blcs = [];
+    $(".blc").each(function () {
+        var blc = {};
+        blc.type = $(this).data("type");
+        blc.name = $($(this).find("[data-name*='blc_name']")[0]).val();
+        blc.content = $($(this).find("[data-name*='blc_content']")[0]).html();
+        blcs.push(blc);
+    });
+    return blcs;
 }
