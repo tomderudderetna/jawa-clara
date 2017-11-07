@@ -1,14 +1,42 @@
 /*
-(function($) {
-  $.fn.gis = function()
-  {
-    this.each(function() {
-      $(this).wrap('<b><i><u></u></i></b>');
-    });
-    return this;
-  };
+ ***********************************************************************************************************************
+ Plugin Jawa Clara
+ ***********************************************************************************************************************
+ */
+
+(function ($) {
+    /*
+    * Fonction:        commande
+    * Description:     applique une action passer en paramétre sur une div editable
+    */
+    $.fn.commande = function (nom, argument) {
+        this.each(function () {
+            typeof argument === 'undefined' ? argument = '' : null;
+            document.execCommand(nom, false, argument);
+        });
+        return this;
+    };
+
+    /*
+    * Fonction:        allowDrop
+    * Actif:           lorsque un bloc peux etre deposer dans une zone de drop.
+    * Description:     la zone de drop devient verte.
+    */
+    $.fn.allowDrop = function (ev, id) {
+        this.each(function () {
+            ev.preventDefault();
+            console.log($(id));
+            $(id).addClass('drop_hover');
+        });
+        return this;
+    }
+
 })(jQuery);
-*/
+
+$("#target_drop")
+    .on('dragover', function (ev) {
+        $(this).allowDrop(ev, '#target_drop');
+    });
 
 /*
  * Fonction:        make
@@ -54,27 +82,6 @@ function make(callback) {
             // $('#blocks').html(html);
         });*/
     callback();
-}
-
-/*
- * Fonction:        commande
- * Description:     applique une action passer en paramétre sur une div editable
- */
-function commande(nom, argument) {
-    typeof argument === 'undefined' ? argument = '' : null;
-    // console.log(nom + ' ' + argument);
-    document.execCommand(nom, false, argument);
-}
-
-/*
- * Fonction:        allowDrop
- * Actif:           lorsque un bloc peux etre deposer dans une zone de drop.
- * Description:     la zone de drop devient verte.
- */
-function allowDrop(ev, id) {
-    ev.preventDefault();
-    // $(id).addClass('green');
-    $(id).addClass('drop_hover');
 }
 
 /*
@@ -152,11 +159,12 @@ $(function () {
                 case "insertHTML":
 
                     cmd_arg = table(cmd_arg.charAt(0), cmd_arg.charAt(2));
-                    //console.log(cmd_arg);
-                    commande(cmd, cmd_arg);
+                    console.log("commande");
+                    $('.btn-css').commande(cmd, cmd_arg);
                     break;
                 default:
-                    commande(cmd, cmd_arg);
+                    console.log("commande");
+                    $('.btn-css').commande(cmd, cmd_arg);
             }
             //evenement - click:    cliquer sur le bouton de mise en forme du texte
         });
@@ -312,10 +320,15 @@ function blind() {
 }
 
 function overlay_show(id) {
-    make(function () {
-        $("#page2 > iframe").attr("src", "sujet");
-        document.getElementById(id).style.display = "block";
-    });
+    // document.getElementById(id).style.display = "block";
+    // $("#" + id + "> .page > iframe").contents("<h1>toto</h1>");
+    // console.log($("#" + id + "> .page > iframe").contents());
+    // $("#" + id + "> .page > iframe").contents(rendering());
+    // debugger;
+    // make(function () {
+    //     $("#page2 > iframe").attr("src", "sujet");
+    // document.getElementById(id).style.display = "block";
+    // });
 }
 
 function overlay_hide(id) {
@@ -326,14 +339,21 @@ function rendering() {
     var pannel_type = {
         "param": "primary",
         "describ": "project",
-        "": ""
+        "step": "default",
+        "warning": "warning",
+        "danger": "danger",
+        "info": "info"
     };
     var fa_type = {
         "param": "cogs",
         "describ": "book",
-        "": ""
+        "step": "flag",
+        "warning": "exclamation-triangle",
+        "danger": "ban",
+        "info": "info"
     };
-    var obj = generator();
+    var obj = get_form_blcs();
+    // console.log(obj);
     var code = `<!DOCTYPE html>
 <html>
     <head>
@@ -391,7 +411,7 @@ function rendering() {
 </html>`;
 }
 
-function generator() {
+function get_form_blcs() {
     var blcs = [];
     $(".blc").each(function () {
         var blc = {};

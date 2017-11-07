@@ -23,7 +23,7 @@
 
 	<div id="main-menu">
 		<a href="">Nouveau</a>
-		<a onclick="/*overlay_show('overlay_preview')*/">Aperçu</a>
+		<a onclick="overlay_show('overlay_preview')">Aperçu</a>
 		<a onclick="console.log(generator())">Generator</a>
 		<a id="btn-download">Télécharger</a>
 	</div>
@@ -188,7 +188,7 @@
 			</div>
 		</div>
 		<div id="target_drop" class="target_drop" ondrop="drop(event,'#target_drop')"
-			 ondragover="allowDrop(event,'#target_drop')" ondragleave="$(this).removeClass('drop_hover')">
+			 ondragover="//allowDrop(event,'#target_drop')" ondragleave="$(this).removeClass('drop_hover')">
 			<a class="btn btn-default">
 				<i class="fa fa-plus"></i>
 			</a>&nbsp;deplace un bloc ici.
@@ -206,33 +206,29 @@
         </a>
         <h1>
             <i class='fa fa-book'></i>
-            <input class='size10' name='blc_$id$_name' placeholder='Projet'>
+            <input class='size10' data-name='blc_name' placeholder='Projet'>
         </h1>
     </div>
-    <input type='hidden' id='blc_content' class='blc_content' name='blc_$id$_content'>
-    <div id='edit_blc_content' class='blc-body edit_blc_content' contenteditable='true'>
+    <div data-name='blc_content' class='blc-body edit_blc_content' contenteditable='true'>
         <p>votre texte</p>
     </div>
-    <input type='hidden' name='blc_$id$_type' value='project'>
 </div>
 "></div>
 	<!--step-->
-	<div id="data-step" data-html="<div class='blc blc-step' data-type='danger'>
+	<div id="data-step" data-html="<div class='blc blc-step' data-type='step'>
     <div class='blc-heading'>
         <a class='btn btn-danger btn-del-blc'>
             <i class='fa fa-remove'></i>
         </a>
         <h1>
             <i class='fa fa-flag'></i>
-            <input class='size10' id='step_$id$_id' name='step_$id$_id' placeholder='Etape'>
-            <input class='size10' name='blc_$id$_name' placeholder='Titre'>
+            <input class='size10' data-name='blc_id' placeholder='Etape'>
+            <input class='size10' data-name='blc_name' placeholder='Titre'>
         </h1>
     </div>
-    <input type='hidden' class='blc_content' name='blc_$id$_content'>
-    <div id='edit_blc_$id$_content' class='blc-body edit_blc_content' contenteditable='true'>
+    <div data-name='blc_content' class='blc-body edit_blc_content' contenteditable='true'>
         <p>votre texte</p>
     </div>
-    <input type='hidden' name='blc_$id$_type' value='step'>
 </div>"></div>
 	<!--warning-->
 	<div id="data-warning" data-html="<div class='blc blc-warning' data-type='warning'>
@@ -242,14 +238,12 @@
         </a>
         <h1>
             <i class='fa fa-exclamation-triangle'></i>
-            <input class='size10' name='blc_$id$_name' placeholder='Attention !'>
+            <input class='size10' data-name='blc_name' placeholder='Attention !'>
         </h1>
     </div>
-    <input type='hidden' class='blc_content' name='blc_$id$_content'>
-    <div id='edit_blc_content' class='blc-body edit_blc_content' contenteditable='true'>
+    <div data-name='blc_content' class='blc-body edit_blc_content' contenteditable='true'>
         <p>votre texte</p>
     </div>
-    <input type='hidden' name='blc_$id$_type' value='warning'>
 </div>"></div>
 	<!--danger-->
 	<div id="data-danger" data-html="<div class='blc blc-danger' data-type='danger'>
@@ -259,14 +253,12 @@
 			</a>
 			<h1>
 				<i class='fa fa-ban'></i>
-				<input class='size10' name='blc_$id$_name' placeholder='Interdits !'>
+				<input class='size10' data-name='blc_name' placeholder='Interdits !'>
 			</h1>
 		</div>
-		<input type='hidden' class='blc_content' name='blc_$id$_content'>
-		<div id='edit_blc_content' class='blc-body edit_blc_content' contenteditable='true'>
+		<div data-name='blc_content' class='blc-body edit_blc_content' contenteditable='true'>
 			<p>votre texte</p>
 		</div>
-		<input type='hidden' name='blc_$id$_type' value='danger'>
 	</div>"></div>
 	<!--info-->
 	<div id="data-info" data-html="<div class='blc blc-info' data-type='info'>
@@ -276,23 +268,21 @@
         </a>
         <h1>
             <i class='fa fa-info'></i>
-            <input class='size10' name='blc_$id$_name' placeholder='Informations'>
+            <input class='size10' data-name='blc_name' placeholder='Informations'>
         </h1>
     </div>
-    <input type='hidden' id='blc_content' class='blc_content' name='blc_$id$_content'>
-    <div id='edit_blc_content' class='blc-body edit_blc_content' contenteditable='true'>
+    <div data-name='blc_content' class='blc-body edit_blc_content' contenteditable='true'>
         <p>votre texte</p>
     </div>
-    <input type='hidden' name='blc_$id$_type' value='info'>
 </div>"></div>
 </div>
 
 <div onclick="overlay_hide('overlay_preview')" id="overlay_preview">
-	<div id="page2">
+	<div class="page">
 		<iframe width="100%" height="100%"></iframe>
 	</div>
 
-	<a id="file-download" href="sujet" download="sujet.html">file</a>
+	<!--<a id="file-download" href="sujet" download="sujet.html">file</a>-->
 </div>
 
 <footer>

@@ -214,15 +214,15 @@ script {
 }
 
 /*#page:focus {*/
-    /*outline: none;*/
+/*outline: none;*/
 /*}*/
 
 /*#page2 {*/
-    /*margin: 50px auto auto;*/
-    /*background-color: white;*/
-    /*width: 750px;*/
-    /*height: 90vh;*/
-    /*max-height: 1000px;*/
+/*margin: 50px auto auto;*/
+/*background-color: white;*/
+/*width: 750px;*/
+/*height: 90vh;*/
+/*max-height: 1000px;*/
 /*}*/
 
 .op1 {
@@ -456,16 +456,8 @@ h1 > input.size10 {
 }
 
 .drop_hover {
-    /*background-color: red;*/
-    /*color: yellow;*/
-}
-
-.drop_hover:-moz-drag-over {
-    cursor: grab;
-}
-
-.target_drop {
-    cursor: default;
+    background-color: #999;
+    color: #fff;
 }
 
 section.return {
