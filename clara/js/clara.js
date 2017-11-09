@@ -10,32 +10,18 @@
     * Description:     applique une action passer en paramétre sur une div editable
     */
     $.fn.commande = function (nom, argument) {
-        this.each(function () {
-            typeof argument === 'undefined' ? argument = '' : null;
-            document.execCommand(nom, false, argument);
-        });
+        typeof argument === 'undefined' ? argument = '' : null;
+        document.execCommand(nom, false, argument);
         return this;
     };
 
-    /*
-    * Fonction:        allowDrop
-    * Actif:           lorsque un bloc peux etre deposer dans une zone de drop.
-    * Description:     la zone de drop devient verte.
-    */
-    $.fn.allowDrop = function (ev, id) {
-        this.each(function () {
-            ev.preventDefault();
-            console.log($(id));
-            $(id).addClass('drop_hover');
-        });
-        return this;
-    }
-
 })(jQuery);
+
 
 $("#target_drop")
     .on('dragover', function (ev) {
-        $(this).allowDrop(ev, '#target_drop');
+        ev.preventDefault();
+        $(this).addClass('drop_hover');
     });
 
 /*
@@ -188,15 +174,15 @@ $(function () {
 });
 
 function table(x, y) {
-    var str = "<table class='table table-hover'><tbody>";
+    var str = "<table class='table table-hover'>\n              <tbody>";
     // alert("x = " + x + ", y = " + y);
     for (i = 0; i < x; i++) {
-        str += "<tr>";
+        str += "\n                  <tr>";
         for (j = 0; j < y; j++)
-            str += "<td>" + i + "-" + j + "</td>";
-        str += "</tr>";
+            str += "\n                      <td>" + i + "-" + j + "</td>";
+        str += "\n                 </tr>";
     }
-    str += "</tbody></table>";
+    str += "\n             </tbody>\n               </table>";
     return str;
 }
 
@@ -337,81 +323,41 @@ function overlay_hide(id) {
 
 function rendering() {
     var pannel_type = {
-        "param": "primary",
+        "param": "module",
         "describ": "project",
         "step": "default",
         "warning": "warning",
-        "danger": "danger",
-        "info": "info"
-    };
-    var fa_type = {
-        "param": "cogs",
-        "describ": "book",
-        "step": "flag",
-        "warning": "exclamation-triangle",
-        "danger": "ban",
+        "danger": "forbidden",
         "info": "info"
     };
     var obj = get_form_blcs();
-    // console.log(obj);
+    console.log(obj);
     var code = `<!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title></title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/styles/monokai-sublime.min.css">
-        <link rel="stylesheet" href="https://dl.etna-alternance.net/css/sujet-etna.css">
-    </head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>` + obj.param.module + ` - ` + obj.param.projet + `</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://dl.etna-alternance.net/css/prism.css">
+		<link rel="stylesheet" href="https://dl.etna-alternance.net/css/sujet-etna-new.css">
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.8.3/prism.js"></script>
+	</head>
     <body>`;
-    obj.forEach(function (e) {
-        code += `<div class="panel panel-` + pannel_type[e.type] + `">
-		<div class="panel-heading">
-			<i class="fa fa-` + fa_type[e.type] + `"></i>
-			<h3>` + e.name + `</h3>
-		</div>
-		<div class="panel-body">` + e.content + `</div>
+    obj.blcs.forEach(function (e) {
+        code += `
+    <div class="panel panel-` + pannel_type[e.type] + `">
+            <div class="panel-heading">` + e.name + `
+            </div>
+		    <div class="panel-body">` + e.content + `</div>
 	</div>`;
     });
-    return code += `<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.5/ace.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
-        <script>
-            $(function () {
-                $("code").each(function (i, block) {
-                    hljs.highlightBlock(block);
-                });
-                const ids = $(".coding");
-                var jqPre = $(".ace");
-                for (var idi = 0; idi < ids.length; idi++) {
-                    var id = ids[idi],
-                        editor = ace.edit(id),
-                        jqEditor = $(id),
-                        mode = jqEditor.attr("data-mode"),
-                        fontSize = 12,
-                        lineHeight = 16,
-                        lines = editor.session.getLength();
-                    editor.getSession().setMode("ace/mode/" + mode);
-                    editor.setTheme("ace/theme/monokai");
-                    editor.setReadOnly(true);
-                    editor.setHighlightActiveLine(true);
-                    editor.setShowPrintMargin(false);
-                    jqEditor.css({
-                        "font-size": fontSize + "px",
-                        "line-height": lineHeight + "px",
-                        "height": ( lineHeight * lines ) + "px"
-                    });
-                }
-                jqPre.css("background-color", "#272822")
-            });
-        </script>
+    return code += `
     </body>
 </html>`;
 }
 
 function get_form_blcs() {
+    var param = {module: $($("[data-name*='module']")[0]).val(), projet: $($("[data-name*='projet']")[0]).val()};
     var blcs = [];
     $(".blc").each(function () {
         var blc = {};
@@ -420,5 +366,5 @@ function get_form_blcs() {
         blc.content = $($(this).find("[data-name*='blc_content']")[0]).html();
         blcs.push(blc);
     });
-    return blcs;
+    return {param: param, blcs: blcs};
 }
