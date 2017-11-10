@@ -6,6 +6,12 @@
 
 (function ($) {
     /*
+    ********************************************************************************************************************
+    Fonctions
+    ********************************************************************************************************************
+    */
+
+    /*
     * Fonction:        commande
     * Description:     applique une action passer en paramétre sur une div editable
     */
@@ -15,14 +21,34 @@
         return this;
     };
 
+
+    /*
+    ********************************************************************************************************************
+    Evenements
+    ********************************************************************************************************************
+    */
+
+    /*
+     * Evenement:
+     * Actif:           lorsqu'on prend un bloc pour le deplacer.
+     * Description:     on recupére le type de bloc est on le stock dans une GLOBAL.
+     */
+    $(".tool[draggable*='true']")
+        .on('dragstart', function (ev) {
+            type = $(this).data('type');
+        });
+    /*
+     * Evenement:
+     * Actif:           lorque l'on survole la zone de drop
+     * Description:     on ajoute une classe sur la zone de drop.
+     */
+    $("#target_drop")
+        .on('dragover', function (ev) {
+            ev.preventDefault();
+            $(this).addClass('drop_hover');
+        });
 })(jQuery);
 
-
-$("#target_drop")
-    .on('dragover', function (ev) {
-        ev.preventDefault();
-        $(this).addClass('drop_hover');
-    });
 
 /*
  * Fonction:        make
@@ -31,14 +57,7 @@ $("#target_drop")
 function make(callback) {
     $('.blc_content').each(function () {
         $(this).val($(this).next('.edit_blc_content').html());
-        // console.log($(this).next('.edit_blc_content').html());
     });
-    // $('#blocks').children().each(function () {
-    //     var content = $($(this).find("div")[1]).html();
-    //     // console.log(content);
-    //     $(this).find("input:hidden").val(content);
-    //     console.log($(this).find("input:hidden").val());
-    // });
     form_serial = $('form').serialize();
     // console.log(form_serial);
     //console.log(form_serial);
@@ -48,36 +67,15 @@ function make(callback) {
         form_serial = form_serial.replace(/blc_%24id%24_name/, "blc_" + i + "_name");
         form_serial = form_serial.replace(/blc_%24id%24_content/, "blc_" + i + "_content");
     }
-    //console.log(form_serial);
-
-
     var oldaction = $('form')[0].action;
     var newaction = oldaction.replace("incluator", "make_sujet");
     var newaction = "http://localhost/generate";
     $('form').attr("action", newaction);
-    download(rendering(form_serial), "sujet.html", "text/plain");
-    // make();
-    /*$.post($('form')[0].action, form_serial)
-        .done(function (data) {
-            console.log(data);
-            var newaction = "http://localhost/jawa-clara/clara/views/render/index.php";
-            $('form').attr("action", newaction);
-            if (callback)
-                callback();
-
-            // $('#blocks').html(html);
-        });*/
+    download(rendering("render"), "sujet.html", "text/plain");
+    // download(rendering(form_serial), "sujet.html", "text/plain");
     callback();
 }
 
-/*
- * Fonction:        drag
- * Actif:           lorsqu'on prend un bloc pour le deplacer.
- * Description:     on recupére le type de bloc est on le stock dans une GLOBAL.
- */
-function drag(ev) {
-    type = $(ev.srcElement).data('type');
-}
 
 /*
  * Fonction:        drop
@@ -100,13 +98,16 @@ function drop(ev, id) {
                 return pnl_proj_steps(id);
                 break;
             case 'warning':
-                return pnl_proj_warnings(id);
+                return ($("#data-warning").attr("data-html"));
+                // return pnl_proj_warnings(id);
                 break;
             case 'danger':
-                return pnl_proj_dangers(id);
+                return ($("#data-danger").attr("data-html"));
+                // return pnl_proj_dangers(id);
                 break;
             case 'info':
-                return pnl_proj_infos(id);
+                return ($("#data-info").attr("data-html"));
+                // return pnl_proj_infos(id);
                 break;
             default:
         }
@@ -145,14 +146,11 @@ $(function () {
                 case "insertHTML":
 
                     cmd_arg = table(cmd_arg.charAt(0), cmd_arg.charAt(2));
-                    console.log("commande");
                     $('.btn-css').commande(cmd, cmd_arg);
                     break;
                 default:
-                    console.log("commande");
                     $('.btn-css').commande(cmd, cmd_arg);
             }
-            //evenement - click:    cliquer sur le bouton de mise en forme du texte
         });
     /*
      * evenements liés aux bouton de validation du formulaire
@@ -163,19 +161,16 @@ $(function () {
          * Actif:       lorsqu'on clique sur le bouton cree.
          * Description: on rempli les champs cachées du formulaire par le contenu des div editable.
          */
-
         make();
     });
     $('#btn-download').click(function () {
         make(function () {
-            //$("#file-download")[0].click();
         });
     })
 });
 
 function table(x, y) {
     var str = "<table class='table table-hover'>\n              <tbody>";
-    // alert("x = " + x + ", y = " + y);
     for (i = 0; i < x; i++) {
         str += "\n                  <tr>";
         for (j = 0; j < y; j++)
@@ -184,20 +179,6 @@ function table(x, y) {
     }
     str += "\n             </tbody>\n               </table>";
     return str;
-}
-
-function submitForm() {
-    document.form.target = "myActionWin";
-    window.open("myActionWin", "myActionWin", "width=800,height=800,toolbar=0");
-    document.form.submit();
-}
-
-function save_sujet() {
-    var url = "http://localhost/jawa-clara/clara/actions/change_state.php";
-    $.post(url)
-        .done(function (data) {
-            //console.log(data);
-        });
 }
 
 $("#sujet_name").on("change", function () {
@@ -210,7 +191,6 @@ $("#sujet_name").on("change", function () {
     };
     $.post(url, data)
         .done(function (data) {
-            //console.log(data);
         });
 });
 
@@ -230,17 +210,17 @@ function pnl_proj_steps(id) {
 }
 
 function pnl_proj_dangers(id) {
-    var text = ($("#data-danger").attr("data-html"));
+    // var text = ;
     return text;
 }
 
 function pnl_proj_infos(id) {
-    var text = ($("#data-info").attr("data-html"));
+    // var text = ;
     return text;
 }
 
 function pnl_proj_warnings(id) {
-    var text = ($("#data-warning").attr("data-html"));
+    // var text = ;
     return text;
 }
 
@@ -306,7 +286,8 @@ function blind() {
 }
 
 function overlay_show(id) {
-    // document.getElementById(id).style.display = "block";
+    document.getElementById(id).style.display = "block";
+    $("#" + id + "> .page").html(rendering());
     // $("#" + id + "> .page > iframe").contents("<h1>toto</h1>");
     // console.log($("#" + id + "> .page > iframe").contents());
     // $("#" + id + "> .page > iframe").contents(rendering());
@@ -321,7 +302,8 @@ function overlay_hide(id) {
     document.getElementById(id).style.display = "none";
 }
 
-function rendering() {
+function rendering(type) {
+    // var type = "preview";
     var pannel_type = {
         "param": "module",
         "describ": "project",
@@ -332,7 +314,9 @@ function rendering() {
     };
     var obj = get_form_blcs();
     console.log(obj);
-    var code = `<!DOCTYPE html>
+    if (type === "render") {
+        // debugger;
+        var code = `<!DOCTYPE html>
 <html>
     <head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -343,6 +327,11 @@ function rendering() {
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.8.3/prism.js"></script>
 	</head>
     <body>`;
+    }
+    else {
+        var code = ``;
+    }
+
     obj.blcs.forEach(function (e) {
         code += `
     <div class="panel panel-` + pannel_type[e.type] + `">
@@ -351,9 +340,14 @@ function rendering() {
 		    <div class="panel-body">` + e.content + `</div>
 	</div>`;
     });
-    return code += `
+    if (type === "render") {
+        return code += `
     </body>
 </html>`;
+    }
+    else {
+        return code;
+    }
 }
 
 function get_form_blcs() {
