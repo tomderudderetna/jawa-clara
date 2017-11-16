@@ -354,13 +354,12 @@ h1 > input.size10 {
 
 /* BLOC */
 .blc {
-    box-shadow: 1px 1px 2px 1px rgba(57, 65, 71, 0.39);
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    border-radius: 4px 4px 1px 1px;
-
+    /*box-shadow: 1px 1px 2px 1px rgba(57, 65, 71, 0.39);*/
+    /*margin-bottom: 20px;*/
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*width: 100%;*/
+    /*border-radius: 4px 4px 1px 1px;*/
 }
 
 .ui-sortable-placeholder {
@@ -374,15 +373,15 @@ h1 > input.size10 {
 
 /* BLOC HEADING */
 .blc-heading {
-    border-radius: 4px 4px 0 0;
+    /*border-radius: 4px 4px 0 0;*/
 }
 
 /* BLOC BODY */
 .blc-body {
-    font-size: 14px;
-    padding: 0 10px;
-    color: #000;
-    background-color: #fff;
+    /*font-size: 14px;*/
+    /*padding: 0 10px;*/
+    /*color: #000;*/
+    /*background-color: #fff;*/
 }
 
 .blc-heading > h1 > input::placeholder {
@@ -392,33 +391,33 @@ h1 > input.size10 {
 
 /* primary */
 .blc-primary > .blc-heading {
-    background-color: #337AB7;
+    /*background-color: #337AB7;*/
 }
 
 /* primary */
 .blc-project > .blc-heading {
-    background-color: #22AD54;
+    /*background-color: #22AD54;*/
 }
 
 /* step */
 .blc-default > .blc-heading,
 .blc-step > .blc-heading {
-    background-color: #4E4E4E;
+    /*background-color: #4E4E4E;*/
 }
 
 /* danger */
 .blc-danger > .blc-heading {
-    background-color: #FD6767;
+    /*background-color: #FD6767;*/
 }
 
 /* warning */
 .blc-warning > .blc-heading {
-    background-color: #FDD767;
+    /*background-color: #FDD767;*/
 }
 
 /* info */
 .blc-info > .blc-heading {
-    background-color: #ACE3FF;
+    /*background-color: #ACE3FF;*/
 }
 
 .blc-heading > h1 {
@@ -658,4 +657,12 @@ section.return {
 .table th,
 .table td {
     border: 1px solid black;
+}
+
+#tab td{
+    border: 1px black solid;
+    background-color: #3f2a60;
+    width: 5px;
+    height: 5px;
+    display: block;
 }
