@@ -47,8 +47,26 @@
             ev.preventDefault();
             $(this).addClass('drop_hover');
         });
+
+
+    $("td")
+        .on('click', function (ev) {
+            // alert();
+            // $(this).focus();
+            $(".table-menu").show();
+            td = this;
+            console.log($(this));
+        });
+
+    // $("body")
+    //     .on('click', function (ev) {
+    // $(".table-menu").hide();
+    // console.log("hide");
+    // });
+
 })(jQuery);
 
+var td = null;
 
 /*
  * Fonction:        make
@@ -67,10 +85,10 @@ function make(callback) {
         form_serial = form_serial.replace(/blc_%24id%24_name/, "blc_" + i + "_name");
         form_serial = form_serial.replace(/blc_%24id%24_content/, "blc_" + i + "_content");
     }
-    var oldaction = $('form')[0].action;
-    var newaction = oldaction.replace("incluator", "make_sujet");
-    var newaction = "http://localhost/generate";
-    $('form').attr("action", newaction);
+    // var oldaction = $('form')[0].action;
+    // var newaction = oldaction.replace("incluator", "make_sujet");
+    // var newaction = "http://localhost/generate";
+    // $('form').attr("action", newaction);
     download(rendering("render"), "sujet.html", "text/plain");
     // download(rendering(form_serial), "sujet.html", "text/plain");
     callback();
@@ -132,7 +150,7 @@ $(function () {
     form_serial = null;
     blind();
     $('#blocks').sortable({
-        cancel: ':input,button,.blc-body',
+        cancel: ':input,button,.panel-body',
         placeholder: "ui-sortable-placeholder"
     });
     /*
@@ -143,10 +161,18 @@ $(function () {
             var cmd = $(this).attr('data-cmd');
             var cmd_arg = $(this).attr('data-cmd-arg');
             switch (cmd) {
-                case "insertHTML":
-
-                    cmd_arg = table(cmd_arg.charAt(0), cmd_arg.charAt(2));
-                    $('.btn-css').commande(cmd, cmd_arg);
+                case "table":
+                    edit_table(cmd_arg);
+                    break;
+                case "insertTable":
+                    var cmd_arg_x = prompt("largeur ?");
+                    var cmd_arg_y = prompt("hauteur ?");
+                    if (1 < cmd_arg_x && cmd_arg_x < 10 && 1 < cmd_arg_y && cmd_arg_y < 10) {
+                        cmd_arg = table(cmd_arg_x, cmd_arg_y);
+                        $('.btn-css').commande("insertHTML", cmd_arg);
+                    }
+                    else
+                        alert("Saisie invalide.");
                     break;
                 default:
                     $('.btn-css').commande(cmd, cmd_arg);
@@ -169,7 +195,7 @@ $(function () {
     })
 });
 
-function table(x, y) {
+function table(y, x) {
     var str = "<table class='table table-hover'>\n              <tbody>";
     for (i = 0; i < x; i++) {
         str += "\n                  <tr>";
@@ -179,6 +205,16 @@ function table(x, y) {
     }
     str += "\n             </tbody>\n               </table>";
     return str;
+}
+
+function edit_table(cmd_arg) {
+    switch (parseInt(cmd_arg)) {
+        case 4:
+            $(td).parent("tr")[0].remove();
+            break;
+        case 5:
+            break;
+    }
 }
 
 $("#sujet_name").on("change", function () {
@@ -269,7 +305,7 @@ function blind() {
             $('#nb_blocs').val(--window.nb_blocs);
         });
 
-    $(".blc > .blc-body")
+    $(".blc > .blc-body, .panel > .panel-body")
         .each(function () {
             $(this)
                 .off("focus")
@@ -287,7 +323,7 @@ function blind() {
 
 function overlay_show(id) {
     document.getElementById(id).style.display = "block";
-    $("#" + id + "> .page").html(rendering());
+    $("#overlay_preview > .page").html(rendering());
     // $("#" + id + "> .page > iframe").contents("<h1>toto</h1>");
     // console.log($("#" + id + "> .page > iframe").contents());
     // $("#" + id + "> .page > iframe").contents(rendering());
@@ -303,10 +339,11 @@ function overlay_hide(id) {
 }
 
 function rendering(type) {
+    $("#overlay_preview > .page").empty();
     // var type = "preview";
     var pannel_type = {
-        "param": "module",
-        "describ": "project",
+        "module": "module",
+        "project": "project",
         "step": "default",
         "warning": "warning",
         "danger": "forbidden",
@@ -353,11 +390,11 @@ function rendering(type) {
 function get_form_blcs() {
     var param = {module: $($("[data-name*='module']")[0]).val(), projet: $($("[data-name*='projet']")[0]).val()};
     var blcs = [];
-    $(".blc").each(function () {
+    $(".panel").each(function () {
         var blc = {};
         blc.type = $(this).data("type");
-        blc.name = $($(this).find("[data-name*='blc_name']")[0]).val();
-        blc.content = $($(this).find("[data-name*='blc_content']")[0]).html();
+        blc.name = $($(this).find(".panel-heading > input")[0]).val();
+        blc.content = $($(this).find(".panel-body")[0]).html();
         blcs.push(blc);
     });
     return {param: param, blcs: blcs};

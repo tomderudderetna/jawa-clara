@@ -9,60 +9,22 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-
 <header class="header header-bar">
-
 	<div class="logo">
 		<div class="logo-icon">
 			<div></div>
 			<div></div>
 			<div></div>
 		</div>
-		<h1 class="logo-label">
-			<b>Etna</b> - Clara
-		</h1>
+		<h1 class="logo-label"><b>Etna</b> - Clara</h1>
 	</div>
-
 	<div id="main-menu">
 		<a href="">Nouveau</a>
 		<a onclick="overlay_show('overlay_preview')">Aperçu</a>
-		<!--<a onclick="console.log(generator())">Generator</a>-->
 		<a id="btn-download">Télécharger</a>
 	</div>
 </header>
-
-<!--<div id="tab">-->
-	<!--<div class="goog-menu goog-menu-vertical docs-material docs-menu-hide-mnemonics" style="user-select: none; left: 508.734px; top: 199px; " role="menu" aria-haspopup="true">-->
-		<!--<div class="goog-dimension-picker" aria-hidden="true" role="menuitem" id=":10x" style="width: 20em; user-select: none;">-->
-			<!--<div style="width: 100%; height: 100%; user-select: none;">-->
-				<!--<div class="goog-dimension-picker-mousecatcher" style="width: 20em; height: 20em; user-select: none;"></div>-->
-				<!--<div class="goog-dimension-picker-unhighlighted" style="width: 20em; height: 20em; user-select: none;"></div>-->
-				<!--<div class="goog-dimension-picker-highlighted" style="width: 20em; height: 20em; user-select: none;"></div>-->
-			<!--</div>-->
-			<!--<div class="goog-dimension-picker-status" style="user-select: none;">‪20 x 20‬</div>-->
-		<!--</div>-->
-	<!--</div>-->
-<!--</div>-->
-
-<style>
-	.goog-menu {
-		background: #fff;
-		border: 1px solid #ccc;
-		position: absolute;
-	}
-	.goog-dimension-picker{
-		font-size: 18px;
-		padding: 4px;
-	}
-	.goog-dimension-picker div.goog-dimension-picker-mousecatcher{
-		position: absolute!important;
-	}
-	.goog-dimension-picker-unhighlighted{
-		background: url(//ssl.gstatic.com/docs/documents/images/dimension-unhighlighted.png);
-	}
-</style>
 <nav class="tool-menu tooltip">
-
 	<div data-cmd="undo" class="tool btn-css">
 		<i class="fa fa-undo"></i>
 		<span class="tooltiptext">Annuler</span>
@@ -105,7 +67,7 @@
 		<span class="tooltiptext">Justifier</span>
 	</div>
 	<span class="sep"></span>
-	<div data-cmd="insertHTML" data-cmd-arg="4-5" class="tool btn-css">
+	<div data-cmd="insertTable" class="tool btn-css">
 		<i class="fa fa-table"></i>
 		<span class="tooltiptext">Tableau</span>
 	</div>
@@ -167,148 +129,114 @@
 	</div>
 
 </nav>
-
+<nav class="table-menu tooltip">
+	<div data-cmd="table" class="tool btn-css">
+		<i class="fa fa-table"></i>
+		<span class="tooltiptext">Ajouter une ligne au dessus</span>
+	</div>
+	<div data-cmd="" class="tool btn-css">
+		<i class="fa fa-table"></i>
+		<span class="tooltiptext">Ajouter une ligne au dessous</span>
+	</div>
+	<div data-cmd="" class="tool btn-css">
+		<i class="fa fa-table"></i>
+		<span class="tooltiptext">Colonne à gauche</span>
+	</div>
+	<div data-cmd="" class="tool btn-css">
+		<i class="fa fa-table"></i>
+		<span class="tooltiptext">Colonne à droite</span>
+	</div>
+	<span class="sep"></span>
+	<div data-cmd="table" data-cmd-arg="4" class="tool btn-css">
+		<i class="fa fa-table"></i>
+		<span class="tooltiptext">Supprimer la ligne</span>
+	</div>
+	<div data-cmd="table" data-cmd-arg="5" class="tool btn-css">
+		<i class="fa fa-table"></i>
+		<span class="tooltiptext">Supprimer la  colonne</span>
+	</div>
+	<div data-cmd="" class="tool btn-css">
+		<i class="fa fa-table"></i>
+		<span class="tooltiptext">Supprimer le tableau</span>
+	</div>
+</nav>
 <section class="page">
-	<form name="form">
-
-		<div class='blc blc-primary panel panel-module' data-type='param'>
-			<div class='blc-heading panel-heading ico-sets'>
-				<h1>
-					<!--<i class='fa fa-cogs'></i>-->
-					<input class='size10' data-name='blc_name' placeholder='Projet'>
-					( <input class="size3" data-name='module' id="project_code" name="project_code" placeholder="_ _ _" maxlength="3"> -
-					<input class="size4" data-name="projet" id="module_code" name="module_code" placeholder="_ _ _ _" maxlength="4"> )
-				</h1>
-			</div>
-
-			<div data-name='blc_content' class='blc-body panel-body edit_blc_content' contenteditable='true'>
-				<p>votre texte</p>
-			</div>
+	<div class="panel panel-module" data-type="module">
+		<div class="panel-heading ico-sets">
+			<input placeholder='Module'>
 		</div>
-
-		<input type="hidden" name="nb_blocs" id="nb_blocs" value="1">
-
-		<div id="blocks">
-
-			<div class="blc blc-project panel panel-project" data-type="describ">
-				<div class="blc-heading panel-heading ico-book">
-					<a class="btn btn-danger btn-del-blc">
-						<i class="fa fa-remove"></i>
-					</a>
-					<h1>
-						<!--<i class="fa fa-book"></i>-->
-						<input class="size10" data-name='blc_name' placeholder="Projet">
-					</h1>
-				</div>
-				<input type="hidden" id="blc_content" class="blc_content" name="blc_$id$_content">
-				<div data-name='blc_content' class="blc-body edit_blc_content" contenteditable="true">
-					<p>votre texte</p>
-				</div>
-				<input type="hidden" name="blc_$id$_type" value="project">
-			</div>
-		</div>
-		<div id="target_drop" class="target_drop" ondrop="drop(event,'#target_drop')"
-			 ondragover="//allowDrop(event,'#target_drop')" ondragleave="$(this).removeClass('drop_hover')">
-			<a class="btn btn-default">
-				<i class="fa fa-plus"></i>
-			</a>&nbsp;deplace un bloc ici.
-		</div>
-
-	</form>
-</section>
-
-<div>
-	<div class="panel panel-project">
-		<div class=">Nom du projet"</div>
-		<div class="">
+		<div class="panel-body" contenteditable="true">
+			<table>
+				<tr>
+					<th>Rendu</th>
+					<td>$$RENDU$$</td>
+				</tr>
+				<tr>
+					<th>VM</th>
+					<td>$$VM$$</td>
+				</tr>
+				<tr>
+					<th>Rendu</th>
+					<td>entrez le nom du rendu souhaiter</td>
+				</tr>
+			</table>
 		</div>
 	</div>
-	<!--describ-->
-	<div id="data-describ" data-html="<div class='blc blc-project panel panel-project' data-type='describ'>
-    <div class='blc-heading  panel-heading ico-book'>
-        <a class='btn btn-danger btn-del-blc'>
-            <i class='fa fa-remove'></i>
-        </a>
-        <h1>
-            <input class='size10' data-name='blc_name' placeholder='Projet'>
-        </h1>
-    </div>
-    <div data-name='blc_content' class='blc-body panel-body edit_blc_content' contenteditable='true'>
-        <p>votre texte</p>
-    </div>
-</div>
-"></div>
-	<!--step-->
-	<div id="data-step" data-html="<div class='blc blc-step panel' data-type='step'>
-    <div class='blc-heading'>
-        <a class='btn btn-danger btn-del-blc'>
-            <i class='fa fa-remove'></i>
-        </a>
-        <h1>
-            <i class='fa fa-flag'></i>
-            <!--<input class='size10' data-name='blc_id' placeholder='Etape'>-->
-            <input class='size10' data-name='blc_name' placeholder='Titre'>
-        </h1>
-    </div>
-    <div data-name='blc_content' class='blc-body edit_blc_content' contenteditable='true'>
-        <p>votre texte</p>
-    </div>
-</div>"></div>
-	<!--warning-->
-	<div id="data-warning" data-html="<div class='blc blc-warning panel' data-type='warning'>
-    <div class='blc-heading'>
-        <a class='btn btn-danger btn-del-blc'>
-            <i class='fa fa-remove'></i>
-        </a>
-        <h1>
-            <i class='fa fa-exclamation-triangle'></i>
-            <input class='size10' data-name='blc_name' placeholder='Attention !'>
-        </h1>
-    </div>
-    <div data-name='blc_content' class='blc-body edit_blc_content' contenteditable='true'>
-        <p>votre texte</p>
-    </div>
-</div>"></div>
-	<!--danger-->
-	<div id="data-danger" data-html="<div class='blc blc-danger panel  panel-danger' data-type='danger'>
-		<div class='blc-heading'>
-			<a class='btn btn-danger btn-del-blc'>
-				<i class='fa fa-remove'></i>
-			</a>
-			<h1>
-				<i class='fa fa-ban'></i>
-				<input class='size10' data-name='blc_name' placeholder='Interdits !'>
-			</h1>
+	<div id="blocks">
+		<div class="panel panel-project" data-type="project">
+			<div class="panel-heading ico-book"><input placeholder="Nom du projet"></div>
+			<div class="panel-body" contenteditable="true">
+				<p>Votre texte ici.</p>
+			</div>
 		</div>
-		<div data-name='blc_content' class='blc-body edit_blc_content' contenteditable='true'>
-			<p>votre texte</p>
+	</div>
+	<div id="target_drop" class="target_drop" ondrop="drop(event,'#target_drop')"
+		 ondragover="//allowDrop(event,'#target_drop')" ondragleave="$(this).removeClass('drop_hover')">
+		<a class="btn btn-default">
+			<i class="fa fa-plus"></i>
+		</a>&nbsp;deplace un bloc ici.
+	</div>
+</section>
+<div id="data-describ" data-html="
+	<div class='panel panel-project' data-type='project'>
+		<div class='panel-heading ico-book'><input placeholder='Nom du projet'></div>
+		<div class='panel-body' contenteditable='true'>
+			<p>Votre texte ici.</p>
 		</div>
 	</div>"></div>
-	<!--info-->
-	<div id="data-info" data-html="<div class='blc blc-info panel  panel-info' data-type='info'>
-    <div class='blc-heading'>
-        <a class='btn btn-danger btn-del-blc'>
-            <i class='fa fa-remove'></i>
-        </a>
-        <h1>
-            <i class='fa fa-info'></i>
-            <input class='size10' data-name='blc_name' placeholder='Informations'>
-        </h1>
-    </div>
-    <div data-name='blc_content' class='blc-body edit_blc_content' contenteditable='true'>
-        <p>votre texte</p>
-    </div>
-</div>"></div>
+<div id="data-warning" data-html="
+	<div class='panel panel-warning' data-type='warning'>
+		<div class='panel-heading ico-warn'><input placeholder='Attention'></div>
+		<div class='panel-body' contenteditable='true'>
+			<p>Votre texte ici.</p>
+		</div>
+	</div>"></div>
+<div id="data-danger" data-html="
+	<div class='panel panel-forbidden' data-type='danger'>
+		<div class='panel-heading ico-forb'><input placeholder='Interdits'></div>
+		<div class='panel-body' contenteditable='true'>
+			<p>Votre texte ici.</p>
+		</div>
+	</div>"></div>
+<div id="data-info" data-html="
+	<div class='panel panel-info' data-type='info'>
+		<div class='panel-heading ico-info'><input placeholder='Informations'></div>
+		<div class='panel-body' contenteditable='true'>
+			<p>Votre texte ici.</p>
+		</div>
+	</div>"></div>
+<div id="data-step" data-html="
+	<div class='panel panel-default' data-type='step'>
+		<div class='panel-heading ico-flag'><input placeholder='Etape 1 : nom de l'etape'></div>
+		<div class='panel-body' contenteditable='true'>
+			<p>Votre texte ici.</p>
+		</div>
+	</div>"></div>
 </div>
-
 <div onclick="overlay_hide('overlay_preview')" id="overlay_preview">
 	<div class="page" id="preview">
-		<!--<iframe width="100%" height="100%"></iframe>-->
 	</div>
-
-	<!--<a id="file-download" href="sujet" download="sujet.html">file</a>-->
 </div>
-
 <footer>
 	<script src="node_modules/jquery/dist/jquery.min.js"></script>
 	<script src="node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
@@ -316,6 +244,5 @@
 	<script src="js/download.js"></script>
 	<script type="text/javascript"></script>
 </footer>
-
 </body>
 </html>

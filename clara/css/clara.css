@@ -157,18 +157,30 @@ script {
     flex-wrap: wrap;
 }
 
-.tool-menu {
-    /*padding: 4px 193px;*/
-    padding: 4px;
+.tool-menu,
+.table-menu {
     color: #ccc;
     background-color: #424249;
+    padding: 4px;
     box-shadow: 0 2px 3px #aaa;
     text-align: center;
     position: fixed;
-    top: 48px;
     width: 100%
+
 }
 
+.tool-menu {
+    /*padding: 4px 193px;*/
+    top: 48px;
+}
+
+.table-menu {
+    display: none;
+    top: 80px;
+}
+
+
+.table-menu > .tool,
 .tool-menu > .tool {
     padding: 2px 5px;
     margin: 5px;
@@ -384,6 +396,7 @@ h1 > input.size10 {
     /*background-color: #fff;*/
 }
 
+.panel-heading > input::placeholder,
 .blc-heading > h1 > input::placeholder {
     /*color: rgba(0, 0, 0, 0.2);*/
     color: rgba(255, 255, 255, 0.4);
@@ -430,6 +443,7 @@ h1 > input.size10 {
     margin-left: 25px;
 }
 
+.panel-heading input,
 .blc-heading input {
     font-weight: bold;
     font-size: 30px;
@@ -441,6 +455,7 @@ h1 > input.size10 {
     outline: none;
 }
 
+.panel-heading input:focus,
 .blc-heading input:focus {
     outline: none;
 }
@@ -659,7 +674,7 @@ section.return {
     border: 1px solid black;
 }
 
-#tab td{
+#tab td {
     border: 1px black solid;
     background-color: #3f2a60;
     width: 5px;
