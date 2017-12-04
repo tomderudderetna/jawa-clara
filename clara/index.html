@@ -3,160 +3,159 @@
 <head>
 	<meta charset="utf-8">
 	<title>Clara</title>
-	<!--<link rel="stylesheet" href="css/etna.css">-->
 	<link rel="stylesheet" href="https://dl.etna-alternance.net/sujets/sujet-etna-new.css">
 	<link rel="stylesheet" href="css/clara.css">
-	<!--<link rel="stylesheet" href="css/preview.css">-->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-<header class="header header-bar">
-	<div class="logo">
-		<div class="logo-icon">
-			<div></div>
-			<div></div>
-			<div></div>
-		</div>
-		<h1 class="logo-label"><b>Etna</b> - Clara</h1>
+<header>
+	<div class="logo-icon">
+		<div></div>
+		<div></div>
+		<div></div>
 	</div>
-	<div id="main-menu">
-		<a href="">Nouveau</a>
-		<a onclick="overlay_show('overlay_preview')">Aperçu</a>
-		<a id="btn-download">Télécharger</a>
-	</div>
+	<h1 class="logo-label"><b>Etna</b> - Clara</h1>
+	<a href="">Nouveau</a>
+	<a onclick="overlay_show('overlay_preview')">Aperçu</a>
+	<a id="btn-download">Télécharger</a>
 </header>
 <nav class="tool-menu tooltip">
-	<div data-cmd="undo" class="tool btn-css">
+	<div data-cmd="undo" class="cmd-css">
 		<i class="fa fa-undo"></i>
 		<span class="tooltiptext">Annuler</span>
 	</div>
-	<div data-cmd="redo" class="tool btn-css">
+	<div data-cmd="redo" class="cmd-css">
 		<i class="fa fa-repeat"></i>
 		<span class="tooltiptext">Rétablir</span>
 	</div>
 	<span class="sep"></span>
-	<div data-cmd="bold" class="tool btn-css">
+	<div data-cmd="bold" class="cmd-css">
 		<i class="fa fa-bold"></i>
 		<span class="tooltiptext">Gras</span>
 	</div>
-	<div data-cmd="italic" class="tool btn-css">
+	<div data-cmd="italic" class="cmd-css">
 		<i class="fa fa-italic"></i>
 		<span class="tooltiptext">Italique</span>
 	</div>
-	<div data-cmd="underline" class="tool btn-css">
+	<div data-cmd="underline" class="cmd-css">
 		<i class="fa fa-underline"></i>
 		<span class="tooltiptext">Souligner</span>
 	</div>
-	<div data-cmd="strikeThrough" class="tool btn-css">
+	<div data-cmd="strikeThrough" class="cmd-css">
 		<i class="fa fa-strikethrough"></i>
 		<span class="tooltiptext">Barrer</span>
 	</div>
-	<div data-cmd="justifyLeft" class="tool btn-css">
+	<div data-cmd="justifyLeft" class="cmd-css">
 		<i class="fa fa-align-left"></i>
 		<span class="tooltiptext">Aligner à gauche</span>
 	</div>
-	<div data-cmd="justifyCenter" class="tool btn-css">
+	<div data-cmd="justifyCenter" class="cmd-css">
 		<i class="fa fa-align-center"></i>
 		<span class="tooltiptext">Aligner au centre</span>
 	</div>
-	<div data-cmd="justifyRight" class="tool btn-css">
+	<div data-cmd="justifyRight" class="cmd-css">
 		<i class="fa fa-align-right"></i>
 		<span class="tooltiptext">Aligner à droite</span>
 	</div>
-	<div data-cmd="justifyFull" class="tool btn-css">
+	<div data-cmd="justifyFull" class="cmd-css">
 		<i class="fa fa-align-justify"></i>
 		<span class="tooltiptext">Justifier</span>
 	</div>
 	<span class="sep"></span>
-	<div data-cmd="insertTable" class="tool btn-css">
+	<div data-cmd="insertTable" class="cmd-css">
 		<i class="fa fa-table"></i>
 		<span class="tooltiptext">Tableau</span>
 	</div>
 	<span class="sep"></span>
-	<div data-cmd="insertOrderedList" class="tool btn-css">
+	<div data-cmd="insertCode" class="cmd-css">
+		<i class="fa fa-code"></i>
+		<span class="tooltiptext">Code</span>
+	</div>
+	<span class="sep"></span>
+	<div data-cmd="insertOrderedList" class="cmd-css">
 		<i class="fa fa-list-ol"></i>
 		<span class="tooltiptext">Liste numérotée</span>
 	</div>
-	<div data-cmd="insertUnorderedList" class="tool btn-css">
+	<div data-cmd="insertUnorderedList" class="cmd-css">
 		<i class="fa fa-list-ul"></i>
 		<span class="tooltiptext">Liste à puces</span>
 	</div>
 	<span class="sep"></span>
-	<div data-cmd="outdent" class="tool btn-css">
+	<div data-cmd="outdent" class="cmd-css">
 		<i class="fa fa-outdent"></i>
 		<span class="tooltiptext">Diminuer le retrait</span>
 	</div>
-	<div data-cmd="indent" class="tool btn-css">
+	<div data-cmd="indent" class="cmd-css">
 		<i class="fa fa-indent"></i>
 		<span class="tooltiptext">Augmenter le retrait</span>
 	</div>
 	<span class="sep"></span>
-	<div data-cmd="cut" class="tool btn-css">
+	<div data-cmd="cut" class="cmd-css">
 		<i class="fa fa-cut"></i>
 		<span class="tooltiptext">Couper</span>
 	</div>
-	<div data-cmd="copy" class="tool btn-css">
+	<div data-cmd="copy" class="cmd-css">
 		<i class="fa fa-copy"></i>
 		<span class="tooltiptext">Copier</span>
 	</div>
-	<div data-cmd="paste" class="tool btn-css red">
+	<div data-cmd="paste" class="cmd-css red">
 		<i class="fa fa-clipboard"></i>
 		<span class="tooltiptext">Coller</span>
 	</div>
-	<div data-cmd="insertText" class="tool btn-css red">
+	<div data-cmd="insertText" class="cmd-css red">
 		<i class="fa fa-clipboard"></i>
 		<span class="tooltiptext">Coller sans la mise ne forme</span>
 	</div>
 	<span class="sep"></span>
-	<div class="tool bloc-lg green" draggable="true" ondragstart="//drag(event)" data-type="describ">
+	<div class="cmd-css bloc-lg green" draggable="true" ondragstart="//drag(event)" data-type="describ">
 		<i class="fa fa-book"></i>
 		<span class="tooltiptext">bloc descriptif</span>
 	</div>
-	<div class="tool bloc-lg grey" draggable="true" ondragstart="//drag(event)" data-type="step">
+	<div class="cmd-css bloc-lg grey" draggable="true" ondragstart="//drag(event)" data-type="step">
 		<i class="fa fa-flag"></i>
 		<span class="tooltiptext">bloc d'etape</span>
 	</div>
-	<div class="tool bloc-lg orange" draggable="true" ondragstart="//drag(event)" data-type="warning">
+	<div class="cmd-css bloc-lg orange" draggable="true" ondragstart="//drag(event)" data-type="warning">
 		<i class="fa fa-exclamation-triangle"></i>
 		<span class="tooltiptext">bloc de mise en garde</span>
 	</div>
-	<div class="tool bloc-lg red" draggable="true" ondragstart="//drag(event)" data-type="danger">
+	<div class="cmd-css bloc-lg red" draggable="true" ondragstart="//drag(event)" data-type="danger">
 		<i class="fa fa-ban"></i>
 		<span class="tooltiptext">bloc d'interdiction</span>
 	</div>
-	<div class="tool bloc-lg blue" draggable="true" ondragstart="//drag(event)" data-type="info">
+	<div class="cmd-css bloc-lg blue" draggable="true" ondragstart="//drag(event)" data-type="info">
 		<i class="fa fa-info"></i>
 		<span class="tooltiptext">bloc d'information</span>
 	</div>
 
 </nav>
 <nav class="table-menu">
-	<div data-cmd="table" data-cmd-arg="0" class="tool btn-css">
+	<div data-cmd="table" data-cmd-arg="0" class="cmd-css">
 		<i class="fa fa-table"></i>
 		<span class="tooltiptext">Ajouter une ligne au dessus</span>
 	</div>
-	<div data-cmd="table" data-cmd-arg="1" class="tool btn-css">
+	<div data-cmd="table" data-cmd-arg="1" class="cmd-css">
 		<i class="fa fa-table"></i>
 		<span class="tooltiptext">Ajouter une ligne au dessous</span>
 	</div>
-	<div data-cmd="table" data-cmd-arg="2" class="tool btn-css">
+	<div data-cmd="table" data-cmd-arg="2" class="cmd-css">
 		<i class="fa fa-table"></i>
 		<span class="tooltiptext">Colonne à gauche</span>
 	</div>
-	<div data-cmd="table" data-cmd-arg="3" class="tool btn-css">
+	<div data-cmd="table" data-cmd-arg="3" class="cmd-css">
 		<i class="fa fa-table"></i>
 		<span class="tooltiptext">Colonne à droite</span>
 	</div>
 	<span class="sep"></span>
-	<div data-cmd="table" data-cmd-arg="4" class="tool btn-css">
+	<div data-cmd="table" data-cmd-arg="4" class="cmd-css">
 		<i class="fa fa-table"></i>
 		<span class="tooltiptext">Supprimer la ligne</span>
 	</div>
-	<div data-cmd="table" data-cmd-arg="5" class="tool btn-css">
+	<div data-cmd="table" data-cmd-arg="5" class="cmd-css">
 		<i class="fa fa-table"></i>
 		<span class="tooltiptext">Supprimer la  colonne</span>
 	</div>
-	<div data-cmd="table" data-cmd-arg="6" class="tool btn-css">
+	<div data-cmd="table" data-cmd-arg="6" class="cmd-css">
 		<i class="fa fa-table"></i>
 		<span class="tooltiptext">Supprimer le tableau</span>
 	</div>
@@ -191,7 +190,8 @@
 			</div>
 		</div>
 	</div>
-	<div id="target_drop" class="target_drop" ondrop="drop(event,'#target_drop')"
+	<div id="target_drop" class="target_drop" ondrop="$().
+	drop(event,'#target_drop')"
 		 ondragover="//allowDrop(event,'#target_drop')" ondragleave="$(this).removeClass('drop_hover')">
 		<a class="btn btn-default">
 			<i class="fa fa-plus"></i>
@@ -228,7 +228,7 @@
 	</div>"></div>
 <div id="data-step" data-html="
 	<div class='panel panel-default' data-type='step'>
-		<div class='panel-heading ico-flag'><input placeholder='Etape 1 : nom de l'etape'></div>
+		<div class='panel-heading ico-flag'><input placeholder='Etape {1} : nom de l'etape'></div>
 		<div class='panel-body' contenteditable='true'>
 			<p>Votre texte ici.</p>
 		</div>
@@ -241,9 +241,8 @@
 <footer>
 	<script src="node_modules/jquery/dist/jquery.min.js"></script>
 	<script src="node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
-	<script src="js/clara.js"></script>
 	<script src="node_modules/downloadjs/download.js"></script>
-	<script type="text/javascript"></script>
+	<script src="js/clara.js"></script>
 </footer>
 </body>
 </html>

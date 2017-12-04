@@ -1,167 +1,55 @@
-/* HEADER */
-.header {
-    background: linear-gradient(#553982, #553982, #4f3578);
-    height: 48px;
-    line-height: 48px;
-    color: #fff;
-    margin-bottom: 48px;
-    position: fixed;
-    top: 0;
-    width: 100%
-}
-
-header.header-bar {
-    /*background-color: #553982;*/
-    border-bottom: 1px solid #3f2a60;
-    display: flex;
-    flex-direction: row;
-}
-
-header.header-bar > .db-lign {
-    line-height: 30px;
-}
-
-/* FOOTER */
-footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: red;
-    color: white;
-    text-align: center;
-}
-
-/* SUJET NAME */
-#sujet_name {
-    background-color: transparent;
-    border: none;
-    margin-left: 7px;
-    color: #bcc8ff;
-    font-size: 1em;
-}
-
-#sujet_name::placeholder {
-    color: #8d7ba1;
-    font-style: italic;
-}
-
-#sujet_name:focus {
-    outline: none;
-}
-
-/* MAIN MENU */
-#main-menu {
-    color: #ecdfff;
-    cursor: default;
-}
-
-#main-menu > .onglet,
-#main-menu > a {
-    display: inline-block;
-    margin-bottom: 0;
-    font-family: Arial, sans-serif;
-    font-size: 13px;
-    padding: 3px 15px 6px 15px;;
-}
-
-#main-menu > a {
-    cursor: pointer;
-}
-
-#main-menu > a:hover {
-    background-color: #3f2a60;
-}
-
-/* BANNER */
-section.banner {
-    background-color: #424249;
-    border-bottom: 2px solid #333338;
-    /*padding: 0 100px 10px 100px;*/
-}
-
-section.banner > h2 {
-    color: #eee;
-    font-family: Arial, sans-serif;
-    font-size: medium;
-}
-
-/**/
-body {
-    margin: 0;
-    background-color: #eee;
-    /*background: linear-gradient(90deg,#999, #eee, #999);*/
-    font-family: "Segoe UI", sans-serif;
-}
-
-/*body > * {*/
-body {
-    margin-top: 90px;
-    display: flex;
-    flex-direction: column;
-    user-select: none;
-}
-
+/* ALL */
 a {
     color: inherit;
     text-decoration: none;
 }
 
-script {
-    display: none;
+::-webkit-scrollbar {
+    width: 0;
 }
 
-.last-sujet-list {
-    /*padding: 0 100px 0 90px;*/
-}
-
-.last-sujet-list > h2 {
-    color: #555;
-    font-family: Arial, sans-serif;
-    font-size: medium;
-}
-
-.box {
-    background-color: #59595F;
-    background: linear-gradient(#525258, #59595F, #525258);
-    border: 1px solid #333;
-    border-radius: 1px;
-    margin-right: 15px;
-    width: 100px;
-    height: 130px;
+/* HEADER */
+header {
+    position: fixed;
+    top: 0;
+    height: 48px;
+    width: 100%;
+    background: linear-gradient(#553982, #553982, #4f3578);
+    border-bottom: 1px solid #3f2a60;
     display: flex;
-    justify-content: center;
     align-items: center;
-    color: white;
-    text-align: center;
 }
 
-.box-s {
-    box-shadow: 2px 2px 2px #aaa;
-    margin-bottom: 10px;
-    margin-right: 1.2%;
+header > a {
+    line-height: 40px;
+    cursor: default;
+    margin-bottom: 0;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    padding: 3px 15px 6px 15px;
 }
 
-.box-s:active {
-    position: relative;
-    top: 2px;
+header > a:hover {
+    background-color: #3f2a60;
 }
 
-.box-s > a {
-    /*text-align: center;*/
-    /*border: 3px solid green;*/
-}
-
-.box_row {
+/* BODY */
+body {
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+    margin-top: 90px;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    user-select: none;
+    color: #ddd;
 }
 
+/* TOOL MENU*/
 .tool-menu,
 .table-menu {
-    color: #ccc;
+    /*color: #ccc;*/
     background-color: #424249;
-    padding: 4px;
+    padding: 4px 0;
     box-shadow: 0 2px 3px #aaa;
     text-align: center;
     position: fixed;
@@ -179,9 +67,8 @@ script {
     top: 80px;
 }
 
-
-.table-menu > .tool,
-.tool-menu > .tool {
+.table-menu > .cmd-css,
+.tool-menu > .cmd-css {
     padding: 2px 5px;
     margin: 5px;
     font-size: 0.8em;
@@ -194,12 +81,12 @@ script {
     border-left: 1px #decfe4 inset;
 }
 
-.tool-menu > .tool {
+.tool-menu > .cmd-css {
     border: 1px transparent solid;
     border-radius: 4px;
 }
 
-.tool-menu > .tool:hover {
+.tool-menu > .cmd-css:hover {
     padding: 5px;
     margin: 2px 5px;
     color: #fff;
@@ -208,7 +95,7 @@ script {
     z-index: 1;
 }
 
-.tool-menu > .tool:active {
+.tool-menu > .cmd-css:active {
     position: relative;
     top: 2px;
 }
@@ -224,18 +111,6 @@ script {
     flex-direction: column;
     padding: 10px;
 }
-
-/*#page:focus {*/
-/*outline: none;*/
-/*}*/
-
-/*#page2 {*/
-/*margin: 50px auto auto;*/
-/*background-color: white;*/
-/*width: 750px;*/
-/*height: 90vh;*/
-/*max-height: 1000px;*/
-/*}*/
 
 .op1 {
     opacity: 1;
@@ -357,6 +232,7 @@ h1 > input.size10 {
 }
 
 .bloc-lg {
+    display: inline-block;
     /*padding: 3px 25px !important;*/
 }
 
@@ -475,7 +351,6 @@ h1 > input.size10 {
 }
 
 section.return {
-    /*padding: 0 100px 0 100px;*/
     margin-bottom: 20px;
 }
 
@@ -496,8 +371,6 @@ section.return {
     border-top: 13px solid transparent;
     border-bottom: 13px solid transparent;
     border-right: 13px solid #553982;
-    /*border-right: 13px solid #3f2a60;*/
-    /*display: none;*/
 }
 
 .cur-text {
@@ -516,11 +389,8 @@ section.return {
 }
 
 /* TOOL TIP*/
-.tooltip > .tool {
-    position: relative;
-}
 
-.tooltip > .tool .tooltiptext {
+.tooltip > .cmd-css .tooltiptext {
     visibility: hidden;
     width: 120px;
     background-color: black;
@@ -535,7 +405,7 @@ section.return {
     margin-left: -60px;
 }
 
-.tooltip > .tool .tooltiptext::after {
+.tooltip > .cmd-css .tooltiptext::after {
     content: "";
     position: absolute;
     bottom: 100%;
@@ -545,11 +415,11 @@ section.return {
     border-bottom-color: black;
 }
 
-.tooltip > .tool:hover .tooltiptext {
+.tooltip > .cmd-css:hover .tooltiptext {
     visibility: visible;
 }
 
-.tooltip > .tool:active .tooltiptext {
+.tooltip > .cmd-css:active .tooltiptext {
     visibility: hidden;
 }
 

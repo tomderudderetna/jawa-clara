@@ -1,13 +1,13 @@
 /*
  ***********************************************************************************************************************
- Plugin Jawa Clara
+ Plugin Jawa-Clara
  ***********************************************************************************************************************
  */
 
 (function ($) {
     /*
     ********************************************************************************************************************
-    Fonctions
+    * Fonctions
     ********************************************************************************************************************
     */
 
@@ -21,6 +21,71 @@
         return this;
     };
 
+    /*
+     * Fonction:        make
+     * Description:     envoie le formulaire serialisé et génére le fichier
+     */
+    $.fn.make = function (callback) {
+        download(rendering("render"), "sujeta.html", "text/plain");
+        callback();
+    };
+
+    /*
+     * Fonction:        drop
+     * Actif:           lorsqu'un bloc est deposer dans une zone de drop.
+     * Description:     on rajoute les evenement lier a ce bloc (ex: suppression).
+     */
+    $.fn.drop = function (ev, id) {
+        ev.preventDefault();
+        $('.target_drop').removeClass('drop_hover');
+        tmp = null;
+        $('#blocks').append(function () {
+            nb_blocs++;
+            switch (type) {
+                case 'describ':
+                    return pnl_proj_descriptions();
+                    break;
+                case 'step':
+                    return pnl_proj_steps();
+                    break;
+                case 'warning':
+                    return ($("#data-warning").attr("data-html"));
+                    break;
+                case 'danger':
+                    return ($("#data-danger").attr("data-html"));
+                    break;
+                case 'info':
+                    return ($("#data-info").attr("data-html"));
+                    break;
+                default:
+            }
+        });
+        blind();
+    };
+
+    /*
+     * Fonction:        table
+     * Description:     insere une table.
+     */
+    $.fn.table = function (y, x) {
+        var str = "<table class='table table-hover'>";
+        for (i = 0; i < x; i++) {
+            str += "\n                  <tr>";
+            for (j = 0; j < y; j++)
+                str += "\n                      <td>" + i + "-" + j + "</td>";
+            str += "\n                 </tr>";
+        }
+        str += "\n               </table>";
+        return str;
+    };
+
+    /*
+     * Fonction:        code
+     * Description:     insere un bloc de code.
+     */
+    $.fn.code = function () {
+        return "<pre><code>"+ prompt("type function name(type arg1, type arg2);") +"</code></pre>";
+    };
 
     /*
     ********************************************************************************************************************
@@ -33,7 +98,7 @@
      * Actif:           lorsqu'on prend un bloc pour le deplacer.
      * Description:     on recupére le type de bloc est on le stock dans une GLOBAL.
      */
-    $(".tool[draggable*='true']")
+    $(".cmd-css[draggable*='true']")
         .on('dragstart', function (ev) {
             type = $(this).data('type');
         });
@@ -48,81 +113,19 @@
             $(this).addClass('drop_hover');
         });
 
-
-    // $("body")
-    //     .on('click', function (ev) {
-    // $(".table-menu").hide();
-    // console.log("hide");
-    // });
-
 })(jQuery);
 
+/*
+ ***********************************************************************************************************************
+ Global var
+ ***********************************************************************************************************************
+ */
+
 var td = null;
-
-/*
- * Fonction:        make
- * Description:     envoie le formulaire serialisé et génére le fichier
- */
-function make(callback) {
-    $('.blc_content').each(function () {
-        $(this).val($(this).next('.edit_blc_content').html());
-    });
-    form_serial = $('form').serialize();
-    // console.log(form_serial);
-    //console.log(form_serial);
-    for (var i = 1; i <= nb_blocs; i++) {
-        form_serial = form_serial.replace(/step_%24id%24_id/, "step_" + i + "_id");
-        form_serial = form_serial.replace(/blc_%24id%24_type/, "blc_" + i + "_type");
-        form_serial = form_serial.replace(/blc_%24id%24_name/, "blc_" + i + "_name");
-        form_serial = form_serial.replace(/blc_%24id%24_content/, "blc_" + i + "_content");
-    }
-    // var oldaction = $('form')[0].action;
-    // var newaction = oldaction.replace("incluator", "make_sujet");
-    // var newaction = "http://localhost/generate";
-    // $('form').attr("action", newaction);
-    download(rendering("render"), "sujet.html", "text/plain");
-    // download(rendering(form_serial), "sujet.html", "text/plain");
-    callback();
-}
-
-
-/*
- * Fonction:        drop
- * Actif:           lorsqu'un bloc est deposer dans une zone de drop.
- * Description:     on rajoute les evenement lier a ce bloc (ex: suppression).
- */
-function drop(ev, id) {
-    ev.preventDefault();
-    // $('.target_drop').removeClass('green');
-    $('.target_drop').removeClass('drop_hover');
-    tmp = null;
-    $('#blocks').append(function () {
-        $('#nb_blocs').val(++window.nb_blocs);
-        id = nb_blocs;
-        switch (type) {
-            case 'describ':
-                return pnl_proj_descriptions(id);
-                break;
-            case 'step':
-                return pnl_proj_steps(id);
-                break;
-            case 'warning':
-                return ($("#data-warning").attr("data-html"));
-                // return pnl_proj_warnings(id);
-                break;
-            case 'danger':
-                return ($("#data-danger").attr("data-html"));
-                // return pnl_proj_dangers(id);
-                break;
-            case 'info':
-                return ($("#data-info").attr("data-html"));
-                // return pnl_proj_infos(id);
-                break;
-            default:
-        }
-    });
-    blind();
-}
+var nb_steps = 0;
+var nb_blocs = 0;
+var tmp = null;
+// var form_serial = null;
 
 $(function () {
 
@@ -131,14 +134,7 @@ $(function () {
      * Actif:           lorque la page est correctement charger.
      * Description:     on initie les compteurs de block à 0, on blind les evenements.
      */
-    nb_describs = 0;
-    nb_steps = 0;
-    nb_dangers = 0;
-    nb_warnings = 0;
-    nb_infos = 0;
-    nb_blocs = 1;
-    tmp = null;
-    form_serial = null;
+
     blind();
     $('#blocks').sortable({
         cancel: ':input,button,.panel-body',
@@ -159,12 +155,15 @@ $(function () {
                 case "insertTable":
                     var cmd_arg_x = prompt("largeur ?");
                     var cmd_arg_y = prompt("hauteur ?");
-                    if (1 < cmd_arg_x && cmd_arg_x < 10 && 1 < cmd_arg_y && cmd_arg_y < 10) {
-                        cmd_arg = table(cmd_arg_x, cmd_arg_y);
-                        $('.btn-css').commande("insertHTML", cmd_arg);
+                    if (1 <= cmd_arg_x && cmd_arg_x < 10 && 1 <= cmd_arg_y && cmd_arg_y < 10) {
+                        $('.btn-css').commande("insertHTML", $().table(cmd_arg_x, cmd_arg_y));
                     }
                     else
                         alert("Saisie invalide.");
+                    break;
+                case "insertCode":
+                    $().commande("insertHTML", $().code());
+                    // console.log(("code"));
                     break;
                 default:
                     $('.btn-css').commande(cmd, cmd_arg);
@@ -179,25 +178,14 @@ $(function () {
          * Actif:       lorsqu'on clique sur le bouton cree.
          * Description: on rempli les champs cachées du formulaire par le contenu des div editable.
          */
-        make();
+        $().make();
     });
     $('#btn-download').click(function () {
-        make(function () {
+        $().make(function () {
         });
     })
 });
 
-function table(y, x) {
-    var str = "<table class='table table-hover'>\n              <tbody>";
-    for (i = 0; i < x; i++) {
-        str += "\n                  <tr>";
-        for (j = 0; j < y; j++)
-            str += "\n                      <td>" + i + "-" + j + "</td>";
-        str += "\n                 </tr>";
-    }
-    str += "\n             </tbody>\n               </table>";
-    return str;
-}
 
 function edit_table(cmd_arg) {
     var index = $(td).index();
@@ -226,7 +214,6 @@ function edit_table(cmd_arg) {
                 .find("tr")
                 .find("td:nth-child(" + (index + 1 ) + "), th:nth-child(" + (index + 1) + ")")
                 .each(function () {
-                    console.log(this);
                     $(this).before('<td></td>')
                 });
             break;
@@ -281,9 +268,9 @@ function pnl_proj_descriptions(id) {
     return text;
 }
 
-function pnl_proj_steps(id) {
+function pnl_proj_steps() {
     var text = ($("#data-step").attr("data-html"));
-    return text;
+    return text.replace(/\{1}/g, ++nb_steps);
 }
 
 function pnl_proj_dangers(id) {
@@ -309,11 +296,8 @@ function blind() {
     $("td, th")
         .off('click')
         .on('click', function (ev) {
-            // alert();
-            // $(this).focus();
             $(".table-menu").show();
             td = this;
-            // console.log(td);
         });
 
     /*
@@ -353,7 +337,9 @@ function blind() {
         .on('click', function () {
             //evenement - click:    cliquer sur le bouton supprimer d'un bloc de saisie
             $(this).parent().parent().remove();
-            $('#nb_blocs').val(--window.nb_blocs);
+            // $('#nb_blocs').val(--window.nb_blocs);
+            nb_blocs--;
+            // debugger;
         });
 
     $(".blc > .blc-body, .panel > .panel-body")
@@ -375,14 +361,6 @@ function blind() {
 function overlay_show(id) {
     document.getElementById(id).style.display = "block";
     $("#overlay_preview > .page").html(rendering());
-    // $("#" + id + "> .page > iframe").contents("<h1>toto</h1>");
-    // console.log($("#" + id + "> .page > iframe").contents());
-    // $("#" + id + "> .page > iframe").contents(rendering());
-    // debugger;
-    // make(function () {
-    //     $("#page2 > iframe").attr("src", "sujet");
-    // document.getElementById(id).style.display = "block";
-    // });
 }
 
 function overlay_hide(id) {
@@ -401,17 +379,15 @@ function rendering(type) {
         "info": "info"
     };
     var obj = get_form_blcs();
-    // console.log(obj);
     if (type === "render") {
-        // debugger;
         var code = `<!DOCTYPE html>
 <html>
     <head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>` + obj.param.module + ` - ` + obj.param.projet + `</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-		<link rel="stylesheet" href="https://dl.etna-alternance.net/css/prism.css">
-		<link rel="stylesheet" href="https://dl.etna-alternance.net/css/sujet-etna-new.css">
+		<link rel="stylesheet" href="https://dl.etna-alternance.net/sujets/prism.css">
+		<link rel="stylesheet" href="https://dl.etna-alternance.net/sujets/sujet-etna-new.css">
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.8.3/prism.js"></script>
 	</head>
     <body>`;
