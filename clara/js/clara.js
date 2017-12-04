@@ -1,9 +1,24 @@
 /*
  ***********************************************************************************************************************
+ Plugin Tab
+ ***********************************************************************************************************************
+ */
+(function ($) {
+    $.fn.tabParent = function () {
+        return $(this.parents("table")[0]);
+    };
+    $.fn.rowParent = function () {
+        return $(this.parent()[0]);
+    };
+    $.fn.createTr = function (length) {
+        return ($("<i></i>").text("love "));
+    }
+})(jQuery);
+/*
+ ***********************************************************************************************************************
  Plugin Jawa-Clara
  ***********************************************************************************************************************
  */
-
 (function ($) {
     /*
     ********************************************************************************************************************
@@ -84,7 +99,7 @@
      * Description:     insere un bloc de code.
      */
     $.fn.code = function () {
-        return "<pre><code>"+ prompt("type function name(type arg1, type arg2);") +"</code></pre>";
+        return "<pre><code>" + prompt("type function name(type arg1, type arg2);") + "</code></pre>";
     };
 
     /*
@@ -143,9 +158,10 @@ $(function () {
     /*
      * evenements liés aux bouton de mise en forme du texte
      */
-    $('.btn-css')
+    $('.cmd-css')
         .off('click')
         .on('click', function (ev) {
+            console.log(this);
             var cmd = $(this).attr('data-cmd');
             var cmd_arg = $(this).attr('data-cmd-arg');
             switch (cmd) {
@@ -156,17 +172,18 @@ $(function () {
                     var cmd_arg_x = prompt("largeur ?");
                     var cmd_arg_y = prompt("hauteur ?");
                     if (1 <= cmd_arg_x && cmd_arg_x < 10 && 1 <= cmd_arg_y && cmd_arg_y < 10) {
-                        $('.btn-css').commande("insertHTML", $().table(cmd_arg_x, cmd_arg_y));
+                        $('.cmd-css').commande("insertHTML", $().table(cmd_arg_x, cmd_arg_y));
                     }
                     else
                         alert("Saisie invalide.");
+                    blind();
                     break;
                 case "insertCode":
                     $().commande("insertHTML", $().code());
                     // console.log(("code"));
                     break;
                 default:
-                    $('.btn-css').commande(cmd, cmd_arg);
+                    $('.cmd-css').commande(cmd, cmd_arg);
             }
         });
     /*
@@ -210,7 +227,7 @@ function edit_table(cmd_arg) {
             break;
         case 2:
             $(td)
-                .parents("table")
+                .tabParent()
                 .find("tr")
                 .find("td:nth-child(" + (index + 1 ) + "), th:nth-child(" + (index + 1) + ")")
                 .each(function () {
@@ -219,7 +236,7 @@ function edit_table(cmd_arg) {
             break;
         case 3:
             $(td)
-                .parents("table")
+                .tabParent()
                 .find("tr")
                 .find("td:nth-child(" + (index + 1 ) + "), th:nth-child(" + (index + 1) + ")")
                 .each(function () {
@@ -231,7 +248,7 @@ function edit_table(cmd_arg) {
             break;
         case 5:
             $(td)
-                .parents("table")
+                .tabParent()
                 .find("tr")
                 .find("td:nth-child(" + (index + 1 ) + "), th:nth-child(" + (index + 1) + ")")
                 .each(function () {
@@ -239,7 +256,7 @@ function edit_table(cmd_arg) {
                 });
             break;
         case 6:
-            $(td).parents("table")[0].remove();
+            $(td).tabParent().remove();
             break;
     }
     blind();
@@ -293,10 +310,22 @@ function pnl_proj_warnings(id) {
  * Description:     on ajoute les evenement attaché au html (ex: bouton de suppression).
  */
 function blind() {
-    $("td, th")
+    $(document).mouseup(function (e) {
+        var container = $(".table-menu");
+
+        // if the target of the click isn't the container nor a descendant of the container
+        if (!container.is(e.target) && container.has(e.target).length === 0) {
+            container.hide();
+        }
+    });
+    $("table")
         .off('click')
         .on('click', function (ev) {
             $(".table-menu").show();
+        });
+    $("td, th")
+        .off('click')
+        .on('click', function (ev) {
             td = this;
         });
 
