@@ -49,15 +49,6 @@
         });
 
 
-    $("td")
-        .on('click', function (ev) {
-            // alert();
-            // $(this).focus();
-            $(".table-menu").show();
-            td = this;
-            console.log($(this));
-        });
-
     // $("body")
     //     .on('click', function (ev) {
     // $(".table-menu").hide();
@@ -157,6 +148,7 @@ $(function () {
      * evenements liés aux bouton de mise en forme du texte
      */
     $('.btn-css')
+        .off('click')
         .on('click', function (ev) {
             var cmd = $(this).attr('data-cmd');
             var cmd_arg = $(this).attr('data-cmd-arg');
@@ -208,13 +200,62 @@ function table(y, x) {
 }
 
 function edit_table(cmd_arg) {
+    var index = $(td).index();
     switch (parseInt(cmd_arg)) {
+        case 0:
+            td = $($(td).parent()
+                .before(function () {
+                    var str = "<tr>";
+                    for (var i = $(this).children().length; i > 0; i--)
+                        str += "<td></td>";
+                    return (str + "</tr>");
+                })).prev().children()[index];
+            break;
+        case 1:
+            td = $($(td).parent()
+                .after(function () {
+                    var str = "<tr>";
+                    for (var i = $(this).children().length; i > 0; i--)
+                        str += "<td></td>";
+                    return (str + "</tr>");
+                })).next().children()[index];
+            break;
+        case 2:
+            $(td)
+                .parents("table")
+                .find("tr")
+                .find("td:nth-child(" + (index + 1 ) + "), th:nth-child(" + (index + 1) + ")")
+                .each(function () {
+                    console.log(this);
+                    $(this).before('<td></td>')
+                });
+            break;
+        case 3:
+            $(td)
+                .parents("table")
+                .find("tr")
+                .find("td:nth-child(" + (index + 1 ) + "), th:nth-child(" + (index + 1) + ")")
+                .each(function () {
+                    $(this).after('<td></td>')
+                });
+            break;
         case 4:
-            $(td).parent("tr")[0].remove();
+            $(td).parent().remove();
             break;
         case 5:
+            $(td)
+                .parents("table")
+                .find("tr")
+                .find("td:nth-child(" + (index + 1 ) + "), th:nth-child(" + (index + 1) + ")")
+                .each(function () {
+                    $(this).remove();
+                });
+            break;
+        case 6:
+            $(td).parents("table")[0].remove();
             break;
     }
+    blind();
 }
 
 $("#sujet_name").on("change", function () {
@@ -265,6 +306,16 @@ function pnl_proj_warnings(id) {
  * Description:     on ajoute les evenement attaché au html (ex: bouton de suppression).
  */
 function blind() {
+    $("td, th")
+        .off('click')
+        .on('click', function (ev) {
+            // alert();
+            // $(this).focus();
+            $(".table-menu").show();
+            td = this;
+            // console.log(td);
+        });
+
     /*
      * evenements liés aux divs editables
      */
@@ -350,7 +401,7 @@ function rendering(type) {
         "info": "info"
     };
     var obj = get_form_blcs();
-    console.log(obj);
+    // console.log(obj);
     if (type === "render") {
         // debugger;
         var code = `<!DOCTYPE html>
