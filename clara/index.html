@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>Clara</title>
 	<link rel="stylesheet" href="https://dl.etna-alternance.net/sujets/sujet-etna-new.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -129,32 +129,32 @@
 	</div>
 </nav>
 <nav class="table-menu">
-	<div data-cmd="table" data-cmd-arg="0" class="cmd-css">
+	<div data-cmd="table" data-cmd-arg="insertRowBefor" class="cmd-css">
 		<i class="fa fa-table"></i>
 		<span class="tooltiptext">Ajouter une ligne au dessus</span>
 	</div>
-	<div data-cmd="table" data-cmd-arg="1" class="cmd-css">
+	<div data-cmd="table" data-cmd-arg="insertRowAfter" class="cmd-css">
 		<i class="fa fa-table"></i>
 		<span class="tooltiptext">Ajouter une ligne au dessous</span>
 	</div>
-	<div data-cmd="table" data-cmd-arg="2" class="cmd-css">
+	<div data-cmd="table" data-cmd-arg="insertColumnBefor" class="cmd-css">
 		<i class="fa fa-table"></i>
 		<span class="tooltiptext">Colonne à gauche</span>
 	</div>
-	<div data-cmd="table" data-cmd-arg="3" class="cmd-css">
+	<div data-cmd="table" data-cmd-arg="insertColumnAfter" class="cmd-css">
 		<i class="fa fa-table"></i>
 		<span class="tooltiptext">Colonne à droite</span>
 	</div>
 	<span class="sep"></span>
-	<div data-cmd="table" data-cmd-arg="4" class="cmd-css">
+	<div data-cmd="table" data-cmd-arg="removeRow" class="cmd-css">
 		<i class="fa fa-table"></i>
 		<span class="tooltiptext">Supprimer la ligne</span>
 	</div>
-	<div data-cmd="table" data-cmd-arg="5" class="cmd-css">
+	<div data-cmd="table" data-cmd-arg="removeColumn" class="cmd-css">
 		<i class="fa fa-table"></i>
-		<span class="tooltiptext">Supprimer la  colonne</span>
+		<span class="tooltiptext">Supprimer la colonne</span>
 	</div>
-	<div data-cmd="table" data-cmd-arg="6" class="cmd-css">
+	<div data-cmd="table" data-cmd-arg="removeTable" class="cmd-css">
 		<i class="fa fa-table"></i>
 		<span class="tooltiptext">Supprimer le tableau</span>
 	</div>
@@ -162,7 +162,7 @@
 <section class="page">
 	<div class="panel panel-module" data-type="module">
 		<div class="panel-heading ico-sets">
-			<input placeholder='Module'>
+			<input id="module_input" placeholder='Module' pattern="[A-Z]{3}-[A-Z0-9]{4}">
 		</div>
 		<div class="panel-body" contenteditable="true">
 			<table>

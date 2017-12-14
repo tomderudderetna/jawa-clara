@@ -7,12 +7,62 @@
     $.fn.tabParent = function () {
         return $(this.parents("table")[0]);
     };
+    $.fn.tbodyParent = function () {
+        return $(this.parents("tbody")[0]);
+    };
     $.fn.rowParent = function () {
         return $(this.parent()[0]);
     };
     $.fn.createTr = function (length) {
-        return ($("<i></i>").text("love "));
-    }
+        var str = "<tr>";
+        for (var i = 0; i < length; i++) {
+            str += "<td></td>";
+        }
+        return str + "</tr>";
+    };
+    $.fn.tabWith = function () {
+        return this.rowParent().children().length
+    };
+    $.fn.tabHeigth = function () {
+        return this.tbodyParent().children().length
+    };
+    $.fn.insertRowBefor = function () {
+        $(this).tbodyParent()[0].insertBefore($($().createTr($(this).tabWith()))[0], $(this).rowParent()[0]);
+    };
+    $.fn.insertRowAfter = function () {
+        $(this).tbodyParent()[0].insertBefore($($().createTr($(this).tabWith()))[0], $(this).rowParent()[0].nextSibling);
+    };
+    $.fn.insertColumnBefor = function () {
+        this.tabParent().find("tr td:nth-child(" + ($(this).index() + 1) + ")").each(function () {
+            $(this).before('<td></td>')
+        });
+    };
+    $.fn.insertColumnAfter = function () {
+        this.tabParent().find("tr td:nth-child(" + ($(this).index() + 1) + ")").each(function () {
+            $(this).after('<td></td>')
+        });
+    };
+    $.fn.removeRow = function () {
+        console.log(this.tabHeigth());
+        if (this.tabHeigth() <= 1) {
+            this.removeTable();
+        }
+        this.rowParent().remove();
+    };
+    $.fn.removeColumn = function () {
+        if (this.tabWith() <= 1) {
+            this.removeTable();
+        }
+        console.log("width", $(this).tabWith());
+        var str = "tr td:nth-child(" + ($(this).index() + 1) + ")";
+        str += ", tr th:nth-child(" + ($(this).index() + 1) + ")";
+        this.tabParent().find(str).each(function () {
+            $(this).remove();
+        });
+    };
+    $.fn.removeTable = function () {
+        this.tabParent().remove();
+    };
 })(jQuery);
 /*
  ***********************************************************************************************************************
@@ -161,7 +211,7 @@ $(function () {
     $('.cmd-css')
         .off('click')
         .on('click', function (ev) {
-            console.log(this);
+            // console.log(this);
             var cmd = $(this).attr('data-cmd');
             var cmd_arg = $(this).attr('data-cmd-arg');
             switch (cmd) {
@@ -198,67 +248,15 @@ $(function () {
         $().make();
     });
     $('#btn-download').click(function () {
-        $().make(function () {
-        });
+        download("tom", "sujeta.html", "text/plain");
+        // $().make(function () {
+        // });
     })
 });
 
 
 function edit_table(cmd_arg) {
-    var index = $(td).index();
-    switch (parseInt(cmd_arg)) {
-        case 0:
-            td = $($(td).parent()
-                .before(function () {
-                    var str = "<tr>";
-                    for (var i = $(this).children().length; i > 0; i--)
-                        str += "<td></td>";
-                    return (str + "</tr>");
-                })).prev().children()[index];
-            break;
-        case 1:
-            td = $($(td).parent()
-                .after(function () {
-                    var str = "<tr>";
-                    for (var i = $(this).children().length; i > 0; i--)
-                        str += "<td></td>";
-                    return (str + "</tr>");
-                })).next().children()[index];
-            break;
-        case 2:
-            $(td)
-                .tabParent()
-                .find("tr")
-                .find("td:nth-child(" + (index + 1 ) + "), th:nth-child(" + (index + 1) + ")")
-                .each(function () {
-                    $(this).before('<td></td>')
-                });
-            break;
-        case 3:
-            $(td)
-                .tabParent()
-                .find("tr")
-                .find("td:nth-child(" + (index + 1 ) + "), th:nth-child(" + (index + 1) + ")")
-                .each(function () {
-                    $(this).after('<td></td>')
-                });
-            break;
-        case 4:
-            $(td).parent().remove();
-            break;
-        case 5:
-            $(td)
-                .tabParent()
-                .find("tr")
-                .find("td:nth-child(" + (index + 1 ) + "), th:nth-child(" + (index + 1) + ")")
-                .each(function () {
-                    $(this).remove();
-                });
-            break;
-        case 6:
-            $(td).tabParent().remove();
-            break;
-    }
+    $(td)[cmd_arg]();
     blind();
 }
 
@@ -433,6 +431,7 @@ function rendering(type) {
 		    <div class="panel-body">` + e.content + `</div>
 	</div>`;
     });
+    console.log(code);
     if (type === "render") {
         return code += `
     </body>
@@ -455,3 +454,14 @@ function get_form_blcs() {
     });
     return {param: param, blcs: blcs};
 }
+
+$('#module_input')
+    .on("change", function () {
+        var pattern = new RegExp('^[A-Z]{3}-[A-Z0-9]{4}$');
+        if (!pattern.test(this.value)) {
+            // alert("\"" + this.value + "\" n'est pas un saisie valide");
+            this.style.color = "red";
+        }
+        else
+            this.style.color = "#fff";
+    });
