@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>FDI-UNIX - Jour01</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/styles/monokai-sublime.min.css">
+	<link rel="stylesheet" href="https://dl.etna-alternance.net/css/sujet-etna.css">
+	<!--<link rel="stylesheet" href="css/sujet.css">-->
+</head>
+<body>
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<i class="fa fa-cogs"></i>
+			<h2>FDI-UNIX - Jour01</h2>
+		</div>
+		<div class="panel-body">
+			<ul>
+				<li>Lien du SVN : $$RENDU$$</li>
+			</ul>
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<i class="fa fa-info"></i>
+					<h3>Aide : Rendu avec SVN</h3>
+				</div>
+				<div class="panel-body">
+					<p>Les rendus doivent être effectués via Subversion.</p>
+					<p>Pour commencer à développer il faut récupérer une copie du répertoire de rendu en local sur votre machine.</p>
+					<p>Cela se fait à l'aide de la commande:</p>
+					<pre>
+						<code class="hljs sh">$> svn checkout --username votre_login "$$RENDU$$"</code>
+					</pre>
+					<p>Vous devez utiliser votre login et votre mot de passe d'intra pour vous connecter au SVN.</p>
+					<br>
+					<p>Pour ajouter un fichier au Subversion vous devez utiliser la commande svn add.</p>
+					<p>Exemple:</p>
+					<pre>
+						<code class="hljs sh">$> svn add test.c</code>
+					</pre>
+					<p>Pour envoyer vos fichiers sur le serveur vous devez utiliser la commande svn commit.</p>
+					<pre>
+						<code class="hljs sh">$> svn commit -m "message_de_commit"</code>
+					</pre>
+					<br>
+					<p>Une fois votre rendu prêt, vous pouvez demander la validation via l'interface web.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="panel panel-project">
+		<div class="panel-heading">
+			<i class="fa fa-book"></i>
+			<h2>Jour01</h2>
+		</div>
+		<div class="panel-body">
+			<p>C'est une moulinette qui ramassera et qui évaluera votre rendu. Pensez donc à vérifier que vous avez respecté *scrupuleusement* le sujet.</p>
+			<p>Seule cette page servira de référence, donc pas de "Mais tel asset a dit que..."</p>
+			<p>La moulinette arrête de donner des points au premier exercice faux ;)</p>
+			<p>Les exercices devront être rendus dans des dossiers et fichiers distincts dont les noms sont donnés dans les énoncés. Exemple pour l'exercice 1 : $$RENDU$$/closed/closed.sh</p>
+			<p>Vous ne devez pas rendre votre fichier passwd, il sera fourni par la moulinette lors de la correction</p>
+			<p>Pour les scripts il faut appeler le fichier passwd comme s'il était dans le répertoire courant (exemple : "cat passwd")</p>
+			<p>Bon travail...</p>
+		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.5/ace.js" type="text/javascript"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
+	<script>
+		$(function() {
+			// Highlight js
+			$( "code" ).each( function( i, block ) {
+				hljs.highlightBlock( block );
+			});
+			// Ace editor
+			const ids = $( ".coding" );
+				var jqPre = $( ".ace" );
+
+			for ( var idi = 0; idi < ids.length; idi++ ) {
+				var id = ids[ idi ],
+					editor = ace.edit( id ),
+					jqEditor = $( id ),
+					mode = jqEditor.attr( "data-mode" ),
+					fontSize = 12,
+					lineHeight = 16,
+					lines = editor.session.getLength();
+				;
+
+				// Settings for the editor
+				editor.getSession().setMode( "ace/mode/" + mode );
+				editor.setTheme( "ace/theme/monokai" );
+				editor.setReadOnly( true );
+				editor.setHighlightActiveLine( true );
+				editor.setShowPrintMargin( false );
+
+				// Set the div size
+				jqEditor.css({
+					"font-size": fontSize + "px",
+					"line-height": lineHeight + "px",
+					"height": ( lineHeight * lines ) + "px"
+				});
+			}
+			jqPre.css( "background-color", "#272822" ) // Monokai theme background
+		});
+	</script>
+</body>
+</html>
