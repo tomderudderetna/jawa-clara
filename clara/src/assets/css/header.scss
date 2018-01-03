@@ -1,0 +1,23 @@
+header {
+  position: fixed;
+  top: 0;
+  height: 48px;
+  width: 100%;
+  background: linear-gradient(#553982, #553982, #4f3578);
+  border-bottom: 1px solid $purple;
+  display: flex;
+  align-items: center;
+
+  a {
+    line-height: 40px;
+    cursor: default;
+    margin-bottom: 0;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    padding: 3px 15px;
+  }
+
+  a:hover {
+    background-color: $purple;
+  }
+}

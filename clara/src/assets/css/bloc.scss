@@ -1,0 +1,33 @@
+.panel-heading {
+
+  h1 {
+    color: white;
+    margin: 10px auto;
+
+    i {
+      width: 50px;
+      margin-left: 25px;
+    }
+  }
+}
+
+.panel-heading > input::placeholder,
+.blc-heading > h1 > input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.panel-heading input,
+.blc-heading input {
+  font-weight: bold;
+  font-size: 30px;
+  color: white;
+  background-color: transparent;
+  border: none;
+  display: inline;
+  outline: none;
+}
+
+.panel-heading input:focus,
+.blc-heading input:focus {
+  outline: none;
+}

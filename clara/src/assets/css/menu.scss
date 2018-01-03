@@ -1,0 +1,60 @@
+.tool-menu,
+.table-menu {
+  position: fixed;
+  top: 48px;
+  min-height: 40px;
+  width: 100%;
+  background-color: #424249;
+  box-shadow: 0 2px 3px #aaa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  .cmd-css {
+    padding: 2px 5px;
+    margin: 0 5px;
+    font-size: 0.8em;
+    font-weight: bold;
+    display: inline-block;
+    text-align: center;
+  }
+}
+
+.tool-menu {
+
+  .cmd-css {
+    border: 1px transparent solid;
+    border-radius: 4px;
+  }
+
+  .cmd-css:hover {
+    padding: 5px;
+    margin: 2px 5px;
+    color: #fff;
+    border: 1px #ccc outset;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cmd-css:active {
+    position: relative;
+    top: 2px;
+  }
+}
+
+.table-menu {
+  display: none;
+  top: 80px;
+}
+
+.sep {
+  height: 1em;
+  margin: 0 10px;
+  border-left: 1px #decfe4 inset;
+}
+
+.bloc-lg {
+  display: inline-block;
+  width: 30px;
+}
