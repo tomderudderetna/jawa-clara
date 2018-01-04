@@ -1,4 +1,3 @@
-
 /*
  ***********************************************************************************************************************
  Plugin Jawa-Clara
@@ -183,9 +182,9 @@ $(function () {
         $().make();
     });
     $('#btn-download').click(function () {
-        download("tom", "sujeta.html", "text/plain");
-        // $().make(function () {
-        // });
+        // download("tom", "sujeta.html", "text/plain");
+        $().make(function () {
+        });
     })
 });
 
@@ -254,7 +253,8 @@ function blind() {
     $("table")
         .off('click')
         .on('click', function (ev) {
-            $(".table-menu").show();
+            // $(".table-menu").show();
+            $(".table-menu").css('display', 'flex')
         });
     $("td, th")
         .off('click')
