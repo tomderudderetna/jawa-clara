@@ -1,0 +1,149 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css">
+<link rel="stylesheet" href="https://dl.etna-alternance.net/sujets/sujet-etna-new.css">
+<link rel="stylesheet" href="css/style.css">
+<header>
+    <h1 id="reload">CLARA</h1>
+</header>
+
+<!-- PANEL MENU -->
+<nav id="nav_panel">
+    <a draggable="true" type="1"><i class="fa fa-warning"></i></a>
+    <a draggable="true" type="2"><i class="fa fa-ban"></i></a>
+    <a draggable="true" type="3"><i class="fa fa-info"></i></a>
+    <a draggable="true" type="4"><i class="fa fa-file"></i></a>
+</nav>
+
+<!-- PROCESS LINE -->
+<div id="process-line">
+    <div class="step active"><i class="fas fa-cogs"></i></div>
+    <div class="step"><i class="fas fa-info"></i></div>
+    <div class="step"><i class="fas fa-file"></i></div>
+    <div id="download" class="step"><i class="fas fa-chevron-circle-right"></i></div>
+</div>
+
+<!-- MODULE INFO -->
+<div id="tab-info" class="tab">
+    <div class="tab-body">
+        <form>
+            <div class="group">
+                <label>Nom du module :</label>
+                <input type="text" name="module" value="TIC-DVC1" placeholder="TIC-DVC1">
+            </div>
+            <div class="group">
+                <label>Nom du projet :</label>
+                <input type="text" name="project" value="snake" placeholder="snake">
+            </div>
+            <div class="group">
+                <label>Rendu :</label>
+                <input type="text" name="svn" value="$$RENDU$$" placeholder="$$RENDU$$">
+            </div>
+            <div class="group">
+                <label>VM :</label>
+                <input type="text" name="vm" value="$$VM$$" placeholder="$$VM$$">
+            </div>
+            <div class="group">
+                <label>Rendu :</label>
+                <input type="text" name="order" value="test.sh, [...]" placeholder="test.sh, [...]">
+            </div>
+            <div class="group">
+                <label>Correction :</label>
+                <input type="text" name="correction" value="Moulinette / soutenances"
+                       placeholder="Moulinette / soutenances">
+            </div>
+            <div class="group">
+                <label>Temps :</label>
+                <input type="text" name="time" value="2 jours" placeholder="2 jours">
+            </div>
+            <div class="group">
+                <label>Effectif :</label>
+                <input type="text" name="team" value="Seul / groupe de 2 / [...]"
+                       placeholder="Seul / groupe de 2 / [...]">
+            </div>
+            <input type="submit" value="Suivant">
+        </form>
+    </div>
+</div>
+
+<!-- GOAL INFO -->
+<div id="tab-goal" class="tab">
+    <div class="tab-body">
+        <form>
+            <div class="group">
+                <label>Votre texte :</label>
+                <textarea name="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Cras vehicula maximus elit, a mattis eros mattis vitae.
+Quisque dictum leo et porttitor cursus.
+Quisque eleifend mattis nisl, in mattis enim posuere
+In cursus, nibh nec volutpat vulputate, tortor nulla egestas orci, a pellentesque sapien odio id justo.</textarea>
+            </div>
+            <input type="submit" value="Suivant">
+        </form>
+    </div>
+</div>
+
+<!-- WORKSPACE -->
+<div id="tab-workspace" class="tab">
+    <div class="tab-body">
+        <div id="edit_module_info"><i class="fas fa-trash-alt"></i></div>
+        <div class="panel panel-module">
+            <div class="panel-heading">Module</div>
+            <div class="panel-body">
+                <table>
+                    <tbody>
+                    <tr>
+                        <th>Rendu</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>VM</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>Rendu</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>Correction</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>Temps</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>Effectif</th>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="panel_remove"><i class="fas fa-trash-alt"></i></div>
+        <div class="panel panel-objective">
+            <div class="panel-heading">Objectifs</div>
+            <div class="panel-body">
+            </div>
+        </div>
+        <div></div>
+        <div class="panel panel-project">
+            <div class="panel-heading">Nom du projet</div>
+            <div class="panel-body">
+            </div>
+        </div>
+        <div class="drop_zone">drop here</div>
+    </div>
+</div>
+
+<!-- MODAL EDIT -->
+<div class="modal">
+    <div class="modal-body" id="modal_body_edit">
+        <form>
+            <div>
+                <label>Votre texte :</label>
+                <textarea></textarea>
+            </div>
+            <input type="submit" value="Valider">
+        </form>
+    </div>
+</div>

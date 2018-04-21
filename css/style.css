@@ -1,0 +1,307 @@
+/* <======================= reset css =======================> */
+#clara h1 {
+    margin: 0;
+    padding: 0;
+}
+
+#clara {
+    background-color: #ddd;
+    font-family: Calibri, Arial, sans-serif;
+    position: relative;
+    user-select: none;
+}
+
+/* <======================== header ========================> */
+#clara > header {
+    min-width: 100%;
+    height: 50px;
+    background-color: #2c3e50;
+    display: inline-flex;
+    justify-content: space-between;
+    color: #fff;
+}
+
+#clara > header > * {
+    margin: auto 20px;
+}
+
+#clara > header > h1 {
+    font-size: 1.5em;
+    letter-spacing: 5px;
+}
+
+#clara > header > nav > a {
+    margin: auto 15px;
+}
+
+/* <====================== process line =====================> */
+#process-line {
+    margin: -20px 20% 20px;
+    display: flex;
+    justify-content: center;
+}
+
+#process-line > .step {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    z-index: 0;
+}
+
+#process-line > .step > i {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 100%;
+    background-color: #bbb;
+    color: #fff;
+}
+
+#process-line > .step.active > i {
+    animation: to-blue 1s forwards;
+}
+#process-line > .step.valid > i {
+    animation: to-green 1s forwards;
+}
+#process-line > .step.valid:hover > i {
+    background-color: #2ecc71;
+    animation: to-blue 1s forwards;
+}
+
+/* <========================= menu =========================> */
+#clara > nav {
+    background-color: #424249;
+    /*padding: 5px 20px;*/
+    padding: 5px 0;
+    /*height: 25px;*/
+    /*line-height: 25px;*/
+    color: #fff;
+    justify-content: center;
+
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+#clara > nav > a {
+    border: 1px solid #aaa;
+    /*background-color: rgba(255, 255, 255, 0.1);*/
+    padding: 6px 20px;
+    margin: 3px 0;
+}
+
+#clara > nav > a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+#clara > nav > a:first-child {
+    border-radius: 1em 0 0 1em;
+}
+
+#clara > nav > a:last-child {
+    border-radius: 0 1em 1em 0;
+}
+
+#nav_panel {
+    display: none;
+}
+
+/* <======================== tabs ========================> */
+/*#clara #workspace,*/
+#clara .tab {
+    width: 100%;
+    max-height: calc(100% - 250px);
+    overflow-y: auto;
+    position: absolute;
+    margin-top: 50px;
+    display: none;
+    opacity: 0;
+}
+
+#clara .tab > .tab-body {
+    width: 80%;
+    /*max-height: calc(100% - 250px);*/
+    /*max-height: 100%;*/
+    margin: auto;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    background-color: #f7f8f9;
+    padding: 15px;
+}
+
+#clara .tab > .tab-body > form {
+    background-color: #f7f8f9;
+}
+
+/* <======================== form ========================> */
+#clara form .group {
+    display: flex;
+    align-items: center;
+    margin: 25px;
+}
+
+.modal-body label,
+#clara form label {
+    flex: 1;
+    font-weight: bold;
+    text-align: right;
+    margin-right: 10px;
+}
+
+#clara form textarea,
+#clara form input {
+    flex: 5;
+    padding: 10px;
+    background-color: transparent;
+    border: none;
+    resize: none;
+}
+
+#clara form input:not([type="submit"]) {
+    border-bottom: 1px solid #ddd;
+}
+
+#clara form input[type="submit"] {
+    width: 100%;
+    background-color: #2c3e50;
+    color: #fff;
+}
+
+/* <====================== workspace ======================> */
+#clara #tab-workspace {
+    width: 100%;
+}
+
+/*
+#clara #tab-workspace > .tab-body{
+    width: 85%;
+    max-width: 900px;
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 5px #aaa;
+    overflow-y: auto;
+    height: calc(80% - 110px);
+}*/
+
+/* <======================== modals ========================> */
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.modal-body {
+    margin: 100px auto 0;
+    border: 1px solid #aaa;
+    background-color: #f7f8f9;
+    border-radius: 4px;
+    padding: 15px;
+    display: none;
+}
+
+/*#modal_module_info {*/
+    /*width: 500px;*/
+/*}*/
+
+#modal_body_edit {
+    width: 750px;
+}
+
+.modal-body > form > div {
+    margin: 15px 0;
+    display: flex;
+}
+
+.modal-body > form > div > * {
+    margin: 0 10px;
+}
+
+
+.modal-body textarea,
+.modal-body input {
+    background-color: transparent;
+    border: none;
+    flex: 2;
+}
+
+#clara #tab-goal textarea,
+#modal_body_edit textarea {
+    min-height: 200px;
+    background-color: #fff;
+    flex: 4;
+}
+
+/*
+.modal-body input:not([type="submit"]) {
+    border-bottom: 1px solid #ddd;
+}
+
+.modal-body input[type="submit"] {
+    width: 100%;
+    padding: 5px 0;
+    background-color: #2c3e50;
+    color: #fff;
+}*/
+
+/* <======================== drop zone ========================> */
+.drop_zone {
+    text-align: center;
+    color: #fff;
+    background-color: #2c3e50;
+    padding: 5px 0;
+    margin-bottom: 15px;
+}
+
+/* <==================== bnt remove pannel ====================> */
+.panel_remove {
+    text-align: right;
+    font-size: 20px;
+    padding: 5px;
+    color: #2c3e50;
+}
+
+/* <======================== animations ========================> */
+.show {
+    animation: show 1s forwards;
+}
+
+.hide {
+    animation: hide 1s forwards;
+}
+
+@keyframes show {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes hide {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes to-blue {
+    0% {
+    }
+    100% {
+        background-color: #3498db;
+    }
+}
+@keyframes to-green {
+    0% {
+    }
+    100% {
+        background-color: #2ecc71;
+    }
+}
+
