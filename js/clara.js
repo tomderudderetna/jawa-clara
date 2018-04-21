@@ -4,36 +4,37 @@ class Mold {
 		this.url = url
 		this.raw = null
 		this.node = null
-		this.panels = []
-		this.rawToDOM()//.then(() => {
-		// this.panels['objective'] = this.node.querySelector('.panel-objective')
-		// console.log(this.panels['objective'])
-		// })
+		this.panels = {}
+		this.rawToDOM().then(() => {
+			for (const type of pannelTypes)
+				this.panels[type] = this.node.querySelector('.panel-' + type)
+			// console.log(this.panels)
+		})
 	}
 
-	get panelModule() {
-		return this.node.querySelector('.panel-module')
-	}
-
-	get panelObjective() {
-		return this.node.querySelector('.panel-objective')
-	}
-
-	get panelOProject() {
-		return this.node.querySelector('.panel-project')
-	}
-
-	get panelWarning() {
-		return this.node.querySelector('.panel-warning')
-	}
-
-	get panelForbidden() {
-		return this.node.querySelector('.panel-forbidden')
-	}
-
-	get panelInfo() {
-		return this.node.querySelector('.panel-info')
-	}
+	// get panelModule() {
+	// 	return this.node.querySelector('.panel-module')
+	// }
+	//
+	// get panelObjective() {
+	// 	return this.node.querySelector('.panel-objective')
+	// }
+	//
+	// get panelOProject() {
+	// 	return this.node.querySelector('.panel-project')
+	// }
+	//
+	// get panelWarning() {
+	// 	return this.node.querySelector('.panel-warning')
+	// }
+	//
+	// get panelForbidden() {
+	// 	return this.node.querySelector('.panel-forbidden')
+	// }
+	//
+	// get panelInfo() {
+	// 	return this.node.querySelector('.panel-info')
+	// }
 
 	getRaw() {
 		return new Promise((next) => {
@@ -63,6 +64,17 @@ const
 	selectorAllPanels = '#clara #tab-workspace .panel',
 	/* nodes */
 	nodeClara = document.getElementById('clara'),
+	pannelTypes = [
+		'module',
+		'objective',
+		'project',
+		'warning',
+		'forbidden',
+		'info',
+		'exercice',
+		'question',
+		'example',
+	],
 	template = new Mold()
 let
 	moldPanels = null,
@@ -84,7 +96,11 @@ function init() {
 	nodeTabWorkspace = document.getElementById('tab-workspace')
 	NodeBodyEdit = document.querySelector('#modal_body_edit> form .content')
 	nodeClara.style.visibility = 'visible'
+	insertPannel('module')
+	insertPannel('project')
+	insertPannel('objective')
 	step_info_start()
+	// step_goal_start()
 }
 
 function step_info_start() {
@@ -96,12 +112,14 @@ function step_info_start() {
 
 function step_info_end() {
 	// hide(nodeTabInfo)
+	set_module_info()
+	use_module_info()
 	step_goal_start()
 }
 
 function step_goal_start() {
 	if (!panelExist('objective'))
-		document.querySelector('#tab-workspace > .tab-body').appendChild(template.panelObjective)
+		insertPannel('objective')
 	document.querySelector('#clara #process-line > .step:nth-child(2)').classList.add('active')
 	showTab(nodeTabGoal)
 }
@@ -113,19 +131,25 @@ function step_goal_end() {
 
 function step_workspace_start() {
 	document.querySelector('#clara #process-line > .step:nth-child(1)').onclick = function () {
-		console.log('Back to Step Info')
 		step_info_start()
 	}
 	document.querySelector('#clara #process-line > .step:nth-child(2)').onclick = function () {
-		alert('Back to Step Goal')
+		step_goal_start()
+	}
+	document.querySelector('#clara #process-line > .step:nth-child(3)').onclick = function () {
+		step_workspace_start()
+	}
+	document.getElementById('download').onclick = function () {
+		step_workspace_end()
 	}
 	document.querySelector('#clara #process-line > .step:nth-child(3)').classList.add('active')
 	document.querySelector('#clara #process-line > .step:nth-child(4)').classList.add('valid')
 	showTab(nodeTabWorkspace)
-	show(document.getElementById('nav_panel'), 1, 'flex')
 }
 
 function step_workspace_end() {
+	document.querySelector('#clara #process-line > .step:nth-child(4)').classList.remove('valid')
+	document.querySelector('#clara #process-line > .step:nth-child(4)').classList.add('active')
 	downloader()
 }
 
@@ -141,9 +165,10 @@ function hide(node) {
 }
 
 function showTab(nodeTab) {
-	nodeTab != nodeTabInfo ? hide(nodeTabInfo) : show(nodeTab)
-	nodeTab != nodeTabGoal ? hide(nodeTabGoal) : show(nodeTab)
-	nodeTab != nodeTabWorkspace ? hide(nodeTabWorkspace) : show(nodeTab)
+	nodeTab !== nodeTabInfo ? hide(nodeTabInfo) : show(nodeTab)
+	nodeTab !== nodeTabGoal ? hide(nodeTabGoal) : show(nodeTab)
+	nodeTab !== nodeTabWorkspace ? hide(nodeTabWorkspace) : show(nodeTab)
+	nodeTab !== nodeTabWorkspace ? hide(document.getElementById('nav_panel')) : show(document.getElementById('nav_panel'), 1, 'flex')
 }
 
 function bind_initial() {
@@ -157,11 +182,6 @@ function bind_header() {
 	document.getElementById('reload').onclick = function () {
 		loader()
 	}
-	document.getElementById('download').onclick = function () {
-		document.querySelector('#clara #process-line > .step:nth-child(4)').classList.remove('valid')
-		document.querySelector('#clara #process-line > .step:nth-child(4)').classList.add('active')
-		downloader()
-	}
 }
 
 function bind_menu() {
@@ -174,6 +194,13 @@ function bind_menu() {
 			alert(this.getAttribute('type'))
 		}
 	}
+	const btn_text = document.querySelectorAll('#clara #nav_text > a')
+	for (let i = 0; i < btn_text.length; i++) {
+		btn_text[i].onclick = function (e) {
+			e.preventDefault()
+			document.execCommand(this.getAttribute('action'), false, null);
+		}
+	}
 }
 
 function bind_modal() {
@@ -184,8 +211,6 @@ function bind_modal() {
 	}
 	document.querySelector('#clara #tab-info form input[type="submit"]').onclick = function (event) {
 		event.preventDefault()
-		set_module_info()
-		use_module_info()
 		step_info_end()
 	}
 	document.querySelector('#clara #tab-goal form input[type="submit"]').onclick = function (event) {
@@ -209,16 +234,6 @@ function bind() {
 			NodeBodyEdit.innerHTML = this.innerHTML
 			show(document.getElementById('modal_body_edit'), 0)
 		}
-	const zones_drop = document.querySelectorAll('#clara .drop_zone')
-	for (let i = 0; i < zones_drop.length; i++) {
-		zones_drop[i].ondragover = function (event) {
-			event.preventDefault()
-		}
-		zones_drop[i].ondrop = function () {
-			event.preventDefault()
-			insertPannelAfter(this.nextSibling, selected_type)
-		}
-	}
 	const btn_remove = document.querySelectorAll('#clara .panel_remove > i.fa-trash-alt')
 	for (let i = 0; i < btn_remove.length; i++) {
 		btn_remove[i].onclick = function () {
@@ -315,8 +330,28 @@ function use_goal_info(data) {
 	document.querySelector('#tab-workspace .panel-objective > .panel-body').innerHTML = data.content
 }
 
-function insertGoalPannel() {
-	;
+function insertDropZone() {
+	console.log('insert drop zone')
+	const paentNode = document.querySelector('#tab-workspace > .tab-body')
+	const newNode = document.createElement('div')
+	newNode.classList.add('drop_zone')
+	newNode.textContent = 'drop here'
+	newNode.ondragover = function (event) {
+		event.preventDefault()
+	}
+	newNode.ondrop = function () {
+		event.preventDefault()
+		insertPannelAfter(this.nextSibling, selected_type)
+	}
+	paentNode.appendChild(newNode)
+}
+
+function insertPannel(type) {
+	console.log('insert pannel ', type)
+	const paentNode = document.querySelector('#tab-workspace > .tab-body')
+	const newNode = template.panels[type]
+	paentNode.appendChild(newNode)
+	insertDropZone()
 }
 
 function panelExist(type) {
@@ -343,13 +378,6 @@ function get(url, opt, success, error) {
 	xhttp.withCredentials = true;
 	xhttp.send(opt.body)
 }
-
-// function rawMoldToArray(raw) {
-// 	newNode = document.createElement('div')
-// 	// newNode.style.display = 'none'
-// 	newNode.innerHTML = raw
-// 	console.log(newNode)
-// }
 
 const
 	strZoneDrop = '<div class="drop_zone">drop here</div>',

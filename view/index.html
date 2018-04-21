@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css">
 <link rel="stylesheet" href="https://dl.etna-alternance.net/sujets/sujet-etna-new.css">
 <link rel="stylesheet" href="css/style.css">
+
 <header>
     <h1 id="reload">CLARA</h1>
 </header>
@@ -23,63 +24,80 @@
 </div>
 
 <!-- MODULE INFO -->
-<div id="tab-info" class="tab">
+<section id="tab-info" class="tab">
     <div class="tab-body">
+        <h2>1) Saisissez les information relatives à l'UV</h2>
         <form>
             <div class="group">
-                <label>Nom du module :</label>
-                <input type="text" name="module" value="TIC-DVC1" placeholder="TIC-DVC1">
+                <label>Nom du module * :</label>
+                <input type="text" name="module" placeholder="TIC-DVC1" required>
             </div>
             <div class="group">
-                <label>Nom du projet :</label>
-                <input type="text" name="project" value="snake" placeholder="snake">
+                <label>Nom du projet * :</label>
+                <input type="text" name="project" placeholder="snake" required>
             </div>
             <br>
             <div class="group">
                 <label>Rendu :</label>
-                <input type="text" name=":svn" value="$$RENDU$$" placeholder="$$RENDU$$">
+                <input type="text" name=":svn" placeholder="$$RENDU$$">
             </div>
             <div class="group">
                 <label>VM :</label>
-                <input type="text" name=":vm" value="$$VM$$" placeholder="$$VM$$">
+                <input type="text" name=":vm" placeholder="$$VM$$">
             </div>
             <div class="group">
                 <label>Rendu :</label>
-                <input type="text" name=":order" value="test.sh, [...]" placeholder="test.sh, [...]">
+                <input type="text" name=":order" placeholder="test.sh, [...]">
             </div>
             <div class="group">
                 <label>Correction :</label>
-                <input type="text" name=":correction" value="Moulinette / soutenances"
-                       placeholder="Moulinette / soutenances">
+                <input type="text" name=":correction" placeholder="Moulinette / soutenances">
             </div>
             <div class="group">
                 <label>Temps :</label>
-                <input type="text" name=":time" value="2 jours" placeholder="2 jours">
+                <input type="text" name=":time" placeholder="2 jours">
             </div>
             <div class="group">
                 <label>Effectif :</label>
-                <input type="text" name=":team" value="Seul / groupe de 2 / [...]"
-                       placeholder="Seul / groupe de 2 / [...]">
+                <input type="text" name=":team" placeholder="Seul / groupe de 2 / [...]">
             </div>
+            <p>* champs obligatoire</p>
             <div class="group">
                 <input type="submit" value="Valider">
-                <!--<button class="next">Suivant</button>-->
             </div>
         </form>
     </div>
-</div>
+</section>
 
 <!-- GOAL INFO -->
 <div id="tab-goal" class="tab">
+
     <div class="tab-body">
+        <!-- TEXT MENU -->
+        <nav id="nav_text">
+            <a action="undo"><i class="fa fa-undo"></i></a>
+            <a action="redo"><i class="fa fa-repeat"></i></a>
+            <a action="bold"><i class="fa fa-bold"></i></a>
+            <a action="italic"><i class="fa fa-italic"></i></a>
+            <a action="justifyLeft"><i class="fa fa-align-left"></i></a>
+            <a action="justifyCenter"><i class="fa fa-align-center"></i></a>
+            <a action="justifyRight"><i class="fa fa-align-right"></i></a>
+            <a action="justifyFull"><i class="fa fa-align-justify"></i></a>
+            <a action="insertUnorderedList"><i class="fa fa-list-ul"></i></a>
+            <a action="cut"><i class="fa fa-cut"></i></a>
+            <a action="copy"><i class="fa fa-copy"></i></a>
+            <!--<a action="paste"><i class="fa fa-clipboard"></i></a>-->
+        </nav>
+
+        <h2>2) Saisissez le(s) objectif(s) du projet / quest</h2>
         <form>
             <div class="group">
-                <label>Votre texte :</label>
-                <div class="content" contenteditable='true'>BONJOUR</div>
+                <div class="content" contenteditable='true'>
+                    <p>Connaitre les bases d'excel</p>
+                </div>
             </div>
             <div class="group">
                 <input type="submit" value="Valider">
-                <div class="next">Suivant</div>
             </div>
         </form>
     </div>
@@ -88,53 +106,6 @@
 <!-- WORKSPACE -->
 <div id="tab-workspace" class="tab">
     <div class="tab-body">
-        <div class="panel panel-module">
-            <div class="panel-heading"></div>
-            <div class="panel-body">
-                <table>
-                    <tbody>
-                    <tr>
-                        <th>Rendu</th>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th>VM</th>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th>Rendu</th>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th>Correction</th>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th>Temps</th>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th>Effectif</th>
-                        <td></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="panel_remove"><i class="fas fa-trash-alt"></i></div>
-        <!--<div class="panel panel-objective">-->
-            <!--<div class="panel-heading">Objectifs</div>-->
-            <!--<div class="panel-body">-->
-            <!--</div>-->
-        <!--</div>-->
-        <div></div>
-        <div class="panel_remove"><i class="fas fa-edit"></i></div>
-        <div class="panel panel-project">
-            <div class="panel-heading">Nom du projet</div>
-            <div class="panel-body">
-            </div>
-        </div>
-        <div class="drop_zone">drop here</div>
     </div>
 </div>
 
