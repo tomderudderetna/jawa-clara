@@ -1,3 +1,60 @@
+/* <================================== classes =======================================> */
+class Mold {
+	constructor(url = baseUri + '/view/template.html') {
+		this.url = url
+		this.raw = null
+		this.node = null
+		this.panels = []
+		this.rawToDOM()//.then(() => {
+		// this.panels['objective'] = this.node.querySelector('.panel-objective')
+		// console.log(this.panels['objective'])
+		// })
+	}
+
+	get panelModule() {
+		return this.node.querySelector('.panel-module')
+	}
+
+	get panelObjective() {
+		return this.node.querySelector('.panel-objective')
+	}
+
+	get panelOProject() {
+		return this.node.querySelector('.panel-project')
+	}
+
+	get panelWarning() {
+		return this.node.querySelector('.panel-warning')
+	}
+
+	get panelForbidden() {
+		return this.node.querySelector('.panel-forbidden')
+	}
+
+	get panelInfo() {
+		return this.node.querySelector('.panel-info')
+	}
+
+	getRaw() {
+		return new Promise((next) => {
+			get(this.url, {}, (res) => {
+				this.raw = res
+				next()
+			})
+		})
+	}
+
+	rawToDOM() {
+		return new Promise((next) => {
+			this.getRaw().then(() => {
+				this.node = document.createElement('div')
+				this.node.innerHTML = this.raw
+				next()
+			})
+		})
+	}
+}
+
 const
 	baseUri = "http://localhost/jawa-clara/v2",
 	module_info = [],
@@ -5,47 +62,66 @@ const
 	/* selector css */
 	selectorAllPanels = '#clara #tab-workspace .panel',
 	/* nodes */
-	nodeClara = document.getElementById('clara')
-
+	nodeClara = document.getElementById('clara'),
+	template = new Mold()
 let
+	moldPanels = null,
+	module_name = '',
+	project_name = '',
 	selected_body = null,
-	selected_type = null
+	selected_type = null,
+	nodeTabInfo = null,
+	nodeTabGoal = null,
+	nodeTabWorkspace = null,
+	NodeBodyEdit = null
 
 window.onload = loader()
 
 function init() {
 	bind_initial()
+	nodeTabInfo = document.getElementById('tab-info')
+	nodeTabGoal = document.getElementById('tab-goal')
+	nodeTabWorkspace = document.getElementById('tab-workspace')
+	NodeBodyEdit = document.querySelector('#modal_body_edit> form .content')
 	nodeClara.style.visibility = 'visible'
 	step_info_start()
 }
 
 function step_info_start() {
-	!module_info.length ?
-		show(document.getElementById('tab-info')) :
-		step_info_end()
+	showTab(nodeTabInfo)
+	// !module_info.length ?
+	// 	show(document.getElementById('tab-info')) :
+	// 	step_info_end()
 }
 
 function step_info_end() {
-	hide(document.getElementById('tab-info'))
+	// hide(nodeTabInfo)
 	step_goal_start()
 }
 
 function step_goal_start() {
+	if (!panelExist('objective'))
+		document.querySelector('#tab-workspace > .tab-body').appendChild(template.panelObjective)
 	document.querySelector('#clara #process-line > .step:nth-child(2)').classList.add('active')
-	!goal_info.length ?
-		show(document.getElementById('tab-goal')) :
-		step_goal_end()
+	showTab(nodeTabGoal)
 }
 
 function step_goal_end() {
-	hide(document.getElementById('tab-goal'))
+	// hide(nodeTabGoal)
 	step_workspace_start()
 }
 
 function step_workspace_start() {
+	document.querySelector('#clara #process-line > .step:nth-child(1)').onclick = function () {
+		console.log('Back to Step Info')
+		step_info_start()
+	}
+	document.querySelector('#clara #process-line > .step:nth-child(2)').onclick = function () {
+		alert('Back to Step Goal')
+	}
 	document.querySelector('#clara #process-line > .step:nth-child(3)').classList.add('active')
 	document.querySelector('#clara #process-line > .step:nth-child(4)').classList.add('valid')
-	show(document.getElementById('tab-workspace'))
+	showTab(nodeTabWorkspace)
 	show(document.getElementById('nav_panel'), 1, 'flex')
 }
 
@@ -60,6 +136,14 @@ function show(node, fade, display) {
 
 function hide(node) {
 	node.style.display = 'none'
+	node.style.opacity = '0	'
+	node.classList.remove('show')
+}
+
+function showTab(nodeTab) {
+	nodeTab != nodeTabInfo ? hide(nodeTabInfo) : show(nodeTab)
+	nodeTab != nodeTabGoal ? hide(nodeTabGoal) : show(nodeTab)
+	nodeTab != nodeTabWorkspace ? hide(nodeTabWorkspace) : show(nodeTab)
 }
 
 function bind_initial() {
@@ -93,38 +177,38 @@ function bind_menu() {
 }
 
 function bind_modal() {
-	document.querySelector('#modal_body_edit> form > input[type="submit"]').onclick = function () {
-		event.preventDefault();
-		selected_body.innerHTML = document.querySelector('#modal_body_edit> form  textarea').value
+	document.querySelector('#modal_body_edit> form input[type="submit"]').onclick = function () {
+		event.preventDefault()
+		selected_body.innerHTML = NodeBodyEdit.innerHTML
 		hide(document.getElementById('modal_body_edit'))
 	}
-	document.querySelector('#clara #tab-info form > input[type="submit"]').onclick = function (event) {
-		event.preventDefault();
-		const infos = document.querySelectorAll('#clara #tab-info form input:not([type="submit"])')
-		for (let i = 0; i < infos.length; i++)
-			module_info[infos[i].name] = infos[i].value
-		use_module_info(module_info)
+	document.querySelector('#clara #tab-info form input[type="submit"]').onclick = function (event) {
+		event.preventDefault()
+		set_module_info()
+		use_module_info()
 		step_info_end()
 	}
-	document.querySelector('#clara #tab-goal form > input[type="submit"]').onclick = function (event) {
-		event.preventDefault();
-		const infos = document.querySelectorAll('#clara #tab-goal form textarea')
-		for (let i = 0; i < infos.length; i++)
-			goal_info[infos[i].name] = infos[i].innerHTML
+	document.querySelector('#clara #tab-goal form input[type="submit"]').onclick = function (event) {
+		event.preventDefault()
+		goal_info.content = document.querySelector('#clara #tab-goal form .content').innerHTML
 		use_goal_info(goal_info)
 		step_goal_end()
 	}
 }
 
 function bind() {
+	const edit_body = document.querySelectorAll('#tab-workspace .panel_remove > i.fa-edit')
+	for (let i = 0; i < edit_body.length; i++)
+		edit_body[i].onclick = function () {
+			this.parentNode.nextSibling.nextSibling.querySelector('.panel-body').click()
+		}
 	const body = document.querySelectorAll('#tab-workspace .panel:not(.panel-module):not(.panel-objective) > .panel-body')
-	for (let i = 0; i < body.length; i++) {
+	for (let i = 0; i < body.length; i++)
 		body[i].onclick = function () {
 			selected_body = this
-			document.querySelector('#modal_body_edit> form  textarea').value = this.innerHTML
+			NodeBodyEdit.innerHTML = this.innerHTML
 			show(document.getElementById('modal_body_edit'), 0)
 		}
-	}
 	const zones_drop = document.querySelectorAll('#clara .drop_zone')
 	for (let i = 0; i < zones_drop.length; i++) {
 		zones_drop[i].ondragover = function (event) {
@@ -135,24 +219,30 @@ function bind() {
 			insertPannelAfter(this.nextSibling, selected_type)
 		}
 	}
-	const btn_remove = document.querySelectorAll('#clara .panel_remove')
+	const btn_remove = document.querySelectorAll('#clara .panel_remove > i.fa-trash-alt')
 	for (let i = 0; i < btn_remove.length; i++) {
 		btn_remove[i].onclick = function () {
-			this.nextSibling.nextSibling.nextSibling.nextSibling.remove()
-			this.nextSibling.nextSibling.remove()
-			this.remove()
+			const parentNode = this.parentNode
+			parentNode.nextSibling.nextSibling.nextSibling.nextSibling.remove()
+			parentNode.nextSibling.nextSibling.remove()
+			parentNode.remove()
 		}
 	}
 }
 
 function loader() {
-	get(baseUri + "/view", {}, function (res) {
+	// template.getRaw(baseUri + '/view/template.html').then(function () {
+	// 	moldPanels = template.rawToDOM()
+	// 	console.log(template.node.querySelector('.panel-objective'))
+	// })
+	get(baseUri + "/view/index.html", {}, function (res) {
 		nodeClara.style.visibility = 'hidden'
 		nodeClara.innerHTML = res
 		window.setTimeout(function () {
 			init()
-		}, 1);
+		}, 1)
 	})
+	// })
 }
 
 function downloader() {
@@ -168,21 +258,69 @@ function generate() {
 	return content
 }
 
-function use_module_info(data) {
-	const selector1 = '#tab-workspace .panel-module > .panel-'
-	const selector2 = selector1 + 'body > table tr:nth-child('
-	document.querySelector(selector1 + 'heading').innerHTML = data.module
-	document.querySelector('#tab-workspace .panel-project > .panel-heading').innerHTML = data.project
-	document.querySelector(selector2 + '1) > td:last-child').innerHTML = data.svn
-	document.querySelector(selector2 + '2) > td:last-child').innerHTML = data.vm
-	document.querySelector(selector2 + '3) > td:last-child').innerHTML = data.order
-	document.querySelector(selector2 + '4) > td:last-child').innerHTML = data.correction
-	document.querySelector(selector2 + '5) > td:last-child').innerHTML = data.time
-	document.querySelector(selector2 + '6) > td:last-child').innerHTML = data.team
+function set_module_name() {
+	const node = document.querySelector('#clara #tab-info input[name="module"]')
+	module_name = node.value ? node.value : null
+}
+
+function set_project_name() {
+	const node = document.querySelector('#clara #tab-info input[name="project"]')
+	project_name = node.value ? node.value : null
+}
+
+function set_module_info(data) {
+	set_module_name()
+	set_project_name()
+	const infos = document.querySelectorAll('#clara #tab-info form input[name^=":"]')
+	for (let i = 0; i < infos.length; i++)
+		module_info[infos[i].name] = infos[i].value != '' ? infos[i].value : null
+}
+
+function get_module_name() {
+	document.querySelector(selectorAllPanels + '-module > .panel-heading').innerHTML = module_name ? module_name : '???'
+}
+
+function get_project_name() {
+	document.querySelector(selectorAllPanels + '-project > .panel-heading').innerHTML = project_name ? project_name : '???'
+}
+
+function get_module_info(key, value) {
+	const parentNode = document.querySelector(selectorAllPanels + '-module tbody ')
+	const newNode = document.createElement('tr')
+	parentNode.appendChild(newNode)
+	newNode.innerHTML = '<td>' + key + '</td>' + '<td>' + value + '</td>'
+}
+
+function use_module_info() {
+	const infos = [
+		['Rendu', ':svn'],
+		['VM', ':vm'],
+		['Rendu', ':order'],
+		['Correction', ':correction'],
+		['Temps', ':time'],
+		['Effectif', ':team']
+	]
+	get_module_name()
+	get_project_name()
+	const parentNode = document.querySelector(selectorAllPanels + '-module tbody ')
+	while (parentNode.firstChild)
+		parentNode.removeChild(parentNode.firstChild)
+	for (let key = 0; key < infos.length; key++) {
+		if (module_info[infos[key][1]])
+			get_module_info(infos[key][0], module_info[infos[key][1]])
+	}
 }
 
 function use_goal_info(data) {
 	document.querySelector('#tab-workspace .panel-objective > .panel-body').innerHTML = data.content
+}
+
+function insertGoalPannel() {
+	;
+}
+
+function panelExist(type) {
+	return document.querySelectorAll('#tab-workspace .panel-' + type).length > 0
 }
 
 function insertPannelAfter(referenceNode, panelType) {
@@ -206,9 +344,16 @@ function get(url, opt, success, error) {
 	xhttp.send(opt.body)
 }
 
+// function rawMoldToArray(raw) {
+// 	newNode = document.createElement('div')
+// 	// newNode.style.display = 'none'
+// 	newNode.innerHTML = raw
+// 	console.log(newNode)
+// }
+
 const
 	strZoneDrop = '<div class="drop_zone">drop here</div>',
-	strPanelRemove = '<div class="panel_remove"><i class="fas fa-trash-alt"></i></div>',
+	strPanelRemove = '<div class="panel_remove"><i class="fas fa-edit"></i><i class="fas fa-trash-alt"></i></div>',
 	strPanelsType = [
 		'<!DOCTYPE html>\n' +
 		'<html>\n' +
@@ -271,8 +416,16 @@ const
 		'</html>\n'
 	]
 
+
 // Liens utiles
 
+// https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Promise
+// https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Classes
+// https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Fonctions/Fonctions_fléchées
+// https://www.w3schools.com/css/css_attribute_selectors.asp
+// https://stackoverflow.com/questions/3955229/remove-all-child-elements-of-a-dom-node-in-javascript
+// http://jakiestfu.github.io/Medium.js/docs/
+// https://i.pinimg.com/564x/1e/75/ea/1e75eaae980b514d42a9bf3a24c7de6b.jpg
 // https://css-tricks.com/snippets/css/keyframe-animation-syntax/
 // https://stackoverflow.com/questions/26736587/how-to-add-and-remove-classes-in-js-without-jquery/26736704#26736704
 // https://css-tricks.com/snippets/css/a-guide-to-flexbox/

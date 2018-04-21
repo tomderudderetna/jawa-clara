@@ -34,33 +34,37 @@
                 <label>Nom du projet :</label>
                 <input type="text" name="project" value="snake" placeholder="snake">
             </div>
+            <br>
             <div class="group">
                 <label>Rendu :</label>
-                <input type="text" name="svn" value="$$RENDU$$" placeholder="$$RENDU$$">
+                <input type="text" name=":svn" value="$$RENDU$$" placeholder="$$RENDU$$">
             </div>
             <div class="group">
                 <label>VM :</label>
-                <input type="text" name="vm" value="$$VM$$" placeholder="$$VM$$">
+                <input type="text" name=":vm" value="$$VM$$" placeholder="$$VM$$">
             </div>
             <div class="group">
                 <label>Rendu :</label>
-                <input type="text" name="order" value="test.sh, [...]" placeholder="test.sh, [...]">
+                <input type="text" name=":order" value="test.sh, [...]" placeholder="test.sh, [...]">
             </div>
             <div class="group">
                 <label>Correction :</label>
-                <input type="text" name="correction" value="Moulinette / soutenances"
+                <input type="text" name=":correction" value="Moulinette / soutenances"
                        placeholder="Moulinette / soutenances">
             </div>
             <div class="group">
                 <label>Temps :</label>
-                <input type="text" name="time" value="2 jours" placeholder="2 jours">
+                <input type="text" name=":time" value="2 jours" placeholder="2 jours">
             </div>
             <div class="group">
                 <label>Effectif :</label>
-                <input type="text" name="team" value="Seul / groupe de 2 / [...]"
+                <input type="text" name=":team" value="Seul / groupe de 2 / [...]"
                        placeholder="Seul / groupe de 2 / [...]">
             </div>
-            <input type="submit" value="Suivant">
+            <div class="group">
+                <input type="submit" value="Valider">
+                <!--<button class="next">Suivant</button>-->
+            </div>
         </form>
     </div>
 </div>
@@ -71,13 +75,12 @@
         <form>
             <div class="group">
                 <label>Votre texte :</label>
-                <textarea name="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-Cras vehicula maximus elit, a mattis eros mattis vitae.
-Quisque dictum leo et porttitor cursus.
-Quisque eleifend mattis nisl, in mattis enim posuere
-In cursus, nibh nec volutpat vulputate, tortor nulla egestas orci, a pellentesque sapien odio id justo.</textarea>
+                <div class="content" contenteditable='true'>BONJOUR</div>
             </div>
-            <input type="submit" value="Suivant">
+            <div class="group">
+                <input type="submit" value="Valider">
+                <div class="next">Suivant</div>
+            </div>
         </form>
     </div>
 </div>
@@ -85,9 +88,8 @@ In cursus, nibh nec volutpat vulputate, tortor nulla egestas orci, a pellentesqu
 <!-- WORKSPACE -->
 <div id="tab-workspace" class="tab">
     <div class="tab-body">
-        <div id="edit_module_info"><i class="fas fa-trash-alt"></i></div>
         <div class="panel panel-module">
-            <div class="panel-heading">Module</div>
+            <div class="panel-heading"></div>
             <div class="panel-body">
                 <table>
                     <tbody>
@@ -120,12 +122,13 @@ In cursus, nibh nec volutpat vulputate, tortor nulla egestas orci, a pellentesqu
             </div>
         </div>
         <div class="panel_remove"><i class="fas fa-trash-alt"></i></div>
-        <div class="panel panel-objective">
-            <div class="panel-heading">Objectifs</div>
-            <div class="panel-body">
-            </div>
-        </div>
+        <!--<div class="panel panel-objective">-->
+            <!--<div class="panel-heading">Objectifs</div>-->
+            <!--<div class="panel-body">-->
+            <!--</div>-->
+        <!--</div>-->
         <div></div>
+        <div class="panel_remove"><i class="fas fa-edit"></i></div>
         <div class="panel panel-project">
             <div class="panel-heading">Nom du projet</div>
             <div class="panel-body">
@@ -139,9 +142,9 @@ In cursus, nibh nec volutpat vulputate, tortor nulla egestas orci, a pellentesqu
 <div class="modal">
     <div class="modal-body" id="modal_body_edit">
         <form>
-            <div>
+            <div class="group">
                 <label>Votre texte :</label>
-                <textarea></textarea>
+                <div class="content" contenteditable='true'>BONJOUR</div>
             </div>
             <input type="submit" value="Valider">
         </form>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Module - Projet</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://dl.etna-alternance.net/sujets/prism.css">
+		<link rel="stylesheet" href="https://dl.etna-alternance.net/sujets/sujet-etna-new.css">
+		<script type="text/javascript" src="https://dl.etna-alternance.net/sujets/prism.js"></script>
+	</head>
+	<body>
+		<!-- Paramètres du projet -->
+		<div class="panel panel-module">
+			<div class="panel-heading">Module</div>
+			<div class="panel-body">
+				<table>
+					<tr>
+						<th>Rendu</th>
+						<td>$$RENDU$$</td>
+					</tr>
+					<tr>
+						<th>VM</th>
+						<td>$$VM$$</td>
+					</tr>
+					<tr>
+						<th>Rendu</th>
+						<td>test.sh, [...]</td>
+					</tr>
+					<tr>
+						<th>Correction</th>
+						<td>Moulinette / soutenances</td>
+					</tr>
+					<tr>
+						<th>Temps</th>
+						<td>2 jours</td>
+					</tr>
+					<tr>
+						<th>Effectif</th>
+						<td>Seul / groupe de 2 / [...]</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<!-- Objectifs -->
+		<div class="panel panel-objective">
+			<div class="panel-heading">Objectifs</div>
+			<div class="panel-body">
+				<table>
+					<tr>
+						<th>Notion</th>
+						<th>Description</th>
+					</tr>
+					<tr>
+						<td>Liste chainées</td>
+						<td>Le Lorem ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression.</td>
+					</tr>
+					<tr>
+						<td>Pointeurs</td>
+						<td>Le Lorem ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression.</td>
+					</tr>
+					<tr>
+						<td>Structure</td>
+						<td>Le Lorem ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression.</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<!-- Descriptions du projet -->
+		<div class="panel panel-project">
+			<div class="panel-heading">Nom du projet</div>
+			<div class="panel-body">
+				<p>Le Jeu de Dames est un jeu de pions sur un damier de 10x10 cases. Chaque camp possède vingt pions disposés en 4 lignes sur les cases noires du damier. Chaque joueur joue à tour de rôle. Les pions ne peuvent se déplacer qu'en diagonale et ne peuvent pas reculer, sauf en capturant un pion adverse.</p>
+				<p>Afin de pouvoir capturer un pion adverse, il faut que celui-ci soit adjacent en diagonale et que la case suivante soit libre. Le pion capturant "saute" alors par dessus le pion adverse et le retire du jeu.</p>
+				<p>Il est possible de capturer plusieurs pions de cette façon à condition qu'il y ai toujours une case libre derrière le pion à capturer.</p>
+				<p>Si un pion parvient à l'extrémité du camp opposé, il devient une Dame. La Dame à la particuliarité de pouvoir se déplacer dans la direction (toujours en diagonale) et du nombre de cases qu'elle souhaite. Quelle que soit la distance, si une Dame capture un pion (ou une autre Dame), elle doit s'arreter sur la case suivante au pion capturé (ou capturer un autre pion). Lorsqu'un pion peut être capturé, il doit être capturé.</p>
+			</div>
+		</div>
+
+		<!-- Attention -->
+		<div class="panel panel-warning">
+			<div class="panel-heading">Attention</div>
+			<div class="panel-body">
+				<ul>
+					<li>Attention, on parle du login qu'on vous a fourni dans les informations de connexion, pas votre login intra.</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- Interdits -->
+		<div class="panel panel-forbidden">
+			<div class="panel-heading">Interdits</div>
+			<div class="panel-body">
+				<ul>
+					<li>Vous n'avez pas le droit à internet ni de tester le code en local.</li>
+					<li>Toute triche équivaut à un <code>-42</code>.</li>
+					<li>Toute communication (<i>téléphone, orale...</i>) est considérée comme de la triche.</li>
+					<li>Sous-liste :
+						<ul>
+							<li>Sous sous-liste
+								<ul>
+									<li>element 1</li>
+									<li>element 2</li>
+								</ul>
+							</li>
+							<li>test1</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- Informations -->
+		<div class="panel panel-info">
+			<div class="panel-heading">Informations</div>
+			<div class="panel-body">
+				<ul>
+					<li>Si vous avez besoin de plus d'informations, n'hésitez pas à contacter le prof</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- Etapes du projet -->
+		<div class="panel panel-exercice">
+			<div class="panel-heading">Etape 1 : nom de l'etape</div>
+			<div class="panel-body">
+				<pre><code class="language-javascript">code inline() + "tellement styled".length;</code></pre>
+				<p>Pour cette étape, vous devez implémenter une intelligence artificielle de jeu de dames.</p>
+				<p>Un affichage doit être effectué à chaque action.</p>
+				<p>En cas de fin de jeu, affichez le nom du vainqueur.</p>
+			</div>
+		</div>
+
+		<!-- Questions / Autres  -->
+		<div class="panel panel-question">
+			<div class="panel-heading"> Question 3 : Combien valent i et j dans le code ci-dessous ?</div>
+			<div class="panel-body">
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+int main()
+{
+	int i = 0;
+	int j = 0;
+
+	j = i++ + ++i;
+	printf("%d", i);
+	printf("%d", j);
+	return (0);
+}</code></pre>
+				<table>
+					<tr>
+						<th>Réponses</th>
+					</tr>
+					<tr>
+						<th>a</th>
+						<td>0 et 0</td>
+					</tr>
+					<tr>
+						<th>b</th>
+						<td>1 et 1</td>
+					</tr>
+					<tr>
+						<th>c</th>
+						<td>1 et 2</td>
+					</tr>
+					<tr>
+						<th>d</th>
+						<td>2 et 2</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<!-- Exemple -->
+		<div class="panel panel-example">
+			<div class="panel-heading">Exemple :</div>
+			<div class="panel-body">
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func addition(a int, b int) {
+	// écrivez votre code à partir d'ici
+}
+
+func main() {
+	addition(6, 5);
+}</code></pre>
+			</div>
+		</div>
+	</body>
+</html>
