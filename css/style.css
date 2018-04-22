@@ -318,12 +318,20 @@
 }
 
 /* <======================== animations ========================> */
-.show {
-    animation: show 1s forwards;
-}
+/*.show {*/
+    /*animation: show 1s forwards;*/
+/*}*/
 
 .hide {
     animation: hide 1s forwards;
+}
+
+.fadeOn {
+    animation: show 1s forwards;
+}
+
+.fadeOff {
+    opacity: 1 !important;
 }
 
 @keyframes show {
