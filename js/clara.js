@@ -1,6 +1,11 @@
 /* <================================== classes =======================================> */
 class Clara {
 	constructor() {
+		this.node = document.getElementById('clara')
+		this.selectedBody = null
+		this.stepMax = 0
+		this.next = null
+		this.useObjective = true
 		this.moduleName = ''
 		this.projectName = ''
 		this.selectedType = ''
@@ -19,24 +24,27 @@ class Clara {
 		this.steps = {
 			info: {
 				start: () => {
-					showTab(nodeTabInfo)
+					clara.next = (clara.stepMax) ? clara.steps.workspace.start : clara.steps.goal.start
+					showTab(clara.steps.info.node)
 				},
 				end: () => {
 					set_module_info()
 					use_module_info()
-					clara.steps.goal.start()
-				}
+					clara.next()
+				},
+				node: null
 			},
 			goal: {
 				start: () => {
-					if (!panelExist('objective'))
-						insertPannel('objective')
+					clara.stepMax = 1
+					clara.next = clara.steps.workspace.start
 					document.querySelector('#clara #process-line > .step:nth-child(2)').classList.add('active')
-					showTab(nodeTabGoal)
+					showTab(clara.steps.goal.node)
 				},
 				end: () => {
-					clara.steps.workspace.start()
-				}
+					clara.next()
+				},
+				node: null
 			},
 			workspace: {
 				start: () => {
@@ -54,15 +62,35 @@ class Clara {
 					}
 					document.querySelector('#clara #process-line > .step:nth-child(3)').classList.add('active')
 					document.querySelector('#clara #process-line > .step:nth-child(4)').classList.add('valid')
-					showTab(nodeTabWorkspace)
+					showTab(clara.steps.workspace.node)
 				},
 				end: () => {
 					document.querySelector('#clara #process-line > .step:nth-child(4)').classList.remove('valid')
 					document.querySelector('#clara #process-line > .step:nth-child(4)').classList.add('active')
 					downloader()
-				}
+				},
+				node: null
 			}
 		}
+	}
+
+	enableObjectifPanel() {
+		this.useObjective = true
+		if (!panelExist('objective'))
+			insertPannel('objective')
+		use_goal_info(document.querySelector('#clara #tab-goal form .content').innerHTML)
+	}
+
+	disableObjectifPanel() {
+		this.useObjective = false
+		panelExist('objective') ? this.removePanelToWspace(document.querySelector(S_TAB_WSPACE + '.panel-objective')) : null
+	}
+
+	removePanelToWspace(node) {
+		const parentNode = document.querySelector(S_TAB_WSPACE + '> .tab-body')
+		parentNode.removeChild(node.previousSibling)
+		parentNode.removeChild(node.nextSibling)
+		parentNode.removeChild(node)
 	}
 }
 
@@ -111,26 +139,18 @@ class Ajax {
 	}
 }
 
-/* <================================== globales =======================================> */
-const
-	nodeClara = document.getElementById('clara')
-
-let
-	selected_body = null,
-	nodeTabInfo = null,
-	nodeTabGoal = null,
-	nodeTabWorkspace = null,
-	NodeBodyEdit = null
-
-// selector
+/* <============================== globales slector and objects ===================================> */
 const
 	S_CLARA = '#clara ',
+	S_SUBMIT = 'input[type="submit"]',
 	S_TAB_INFO = S_CLARA + '#tab-info ',
+	S_TAB_GOAL = S_CLARA + '#tab-goal ',
+	S_TAB_WSPACE = S_CLARA + '#tab-workspace ',
+	S_MODAL_BODY = S_CLARA + '#modal_body_edit ',
 	S_PANNELS = S_CLARA + '#tab-workspace .panel',
-	S_SUBMIT_OBJECTIF = S_CLARA + '#modal_body_edit input[type="submit"]'
-
-// object
-const
+	S_SUBMIT_MODAL = S_MODAL_BODY + S_SUBMIT,
+	S_SUBMIT_INFO = S_TAB_INFO + S_SUBMIT,
+	S_SUBMIT_GOAL = S_TAB_GOAL + S_SUBMIT,
 	clara = new Clara(),
 	template = new Mold()
 
@@ -151,13 +171,13 @@ function hide(node) {
 }
 
 function showTab(nodeTab) {
-	nodeTab !== nodeTabInfo ? hide(nodeTabInfo) : show(nodeTab)
-	nodeTab !== nodeTabGoal ? hide(nodeTabGoal) : show(nodeTab)
-	nodeTab !== nodeTabWorkspace ? hide(nodeTabWorkspace) : show(nodeTab)
-	nodeTab !== nodeTabWorkspace ? hide(document.getElementById('nav_panel')) : show(document.getElementById('nav_panel'), 1, 'flex')
+	nodeTab !== clara.steps.info.node ? hide(clara.steps.info.node) : show(nodeTab)
+	nodeTab !== clara.steps.goal.node ? hide(clara.steps.goal.node) : show(nodeTab)
+	nodeTab !== clara.steps.workspace.node ? hide(clara.steps.workspace.node) : show(nodeTab)
+	nodeTab !== clara.steps.workspace.node ? hide(document.getElementById('nav_panel')) : show(document.getElementById('nav_panel'), 1, 'flex')
 }
 
-function bind_menu() {
+function bindInitial() {
 	const btn_blocks = document.querySelectorAll('#clara #nav_panel > a')
 	for (let i = 0; i < btn_blocks.length; i++) {
 		btn_blocks[i].ondragstart = function () {
@@ -177,67 +197,56 @@ function bind_menu() {
 			document.execCommand(this.getAttribute('action'), false, null);
 		}
 	}
-}
-
-function bind_modal() {
-	document.querySelector(S_SUBMIT_OBJECTIF).onclick = () => {
-		event.preventDefault()
-		selected_body.innerHTML = NodeBodyEdit.innerHTML
-		hide(document.getElementById('modal_body_edit'))
-	}
-	document.querySelector('#clara #tab-info form input[type="submit"]').onclick = function (event) {
-		event.preventDefault()
+	document.querySelector(S_SUBMIT_INFO).onclick = () => {
 		clara.steps.info.end()
 	}
-	document.querySelector('#clara #tab-goal form input[type="submit"]').onclick = function (event) {
-		event.preventDefault()
-		use_goal_info(document.querySelector('#clara #tab-goal form .content').innerHTML)
+	document.querySelector(S_SUBMIT_GOAL).onclick = () => {
+		document.querySelector(S_TAB_GOAL + ' input[type="checkbox"]').checked ?
+			clara.disableObjectifPanel() :
+			clara.enableObjectifPanel()
 		clara.steps.goal.end()
 	}
+	document.querySelector(S_SUBMIT_MODAL).onclick = () => {
+		clara.selectedBody.innerHTML = document.querySelector(S_MODAL_BODY + '.content').innerHTML
+		hide(document.querySelector(S_MODAL_BODY))
+	}
+	bind()
 }
 
 function bind() {
-	const edit_body = document.querySelectorAll('#tab-workspace .panel_remove > i.fa-edit')
-	for (let i = 0; i < edit_body.length; i++)
-		edit_body[i].onclick = function () {
-			this.parentNode.nextSibling.nextSibling.querySelector('.panel-body').click()
-		}
 	const body = document.querySelectorAll('#tab-workspace .panel:not(.panel-module):not(.panel-objective) > .panel-body')
 	for (let i = 0; i < body.length; i++)
 		body[i].onclick = function () {
-			selected_body = this
-			NodeBodyEdit.innerHTML = this.innerHTML
-			show(document.getElementById('modal_body_edit'), 0)
+			clara.selectedBody = this
+			document.querySelector(S_MODAL_BODY + '.content').innerHTML = this.innerHTML
+			show(document.querySelector(S_MODAL_BODY), 1)
 		}
-	const btn_remove = document.querySelectorAll('#clara .panel_remove > i.fa-trash-alt')
-	for (let i = 0; i < btn_remove.length; i++) {
+	const edit_body = document.querySelectorAll('#tab-workspace .panel_remove > i.fa-edit')
+	for (let i = 0; i < edit_body.length; i++)
+		edit_body[i].onclick = function () {
+			this.parentNode.nextSibling.querySelector('.panel-body').click()
+		}
+	const btn_remove = document.querySelectorAll(S_CLARA + '.panel_remove > i.fa-trash-alt')
+	for (let i = 0; i < btn_remove.length; i++)
 		btn_remove[i].onclick = function () {
-			const parentNode = this.parentNode
-			parentNode.nextSibling.nextSibling.nextSibling.nextSibling.remove()
-			parentNode.nextSibling.nextSibling.remove()
-			parentNode.remove()
+			clara.removePanelToWspace(this.parentNode.nextSibling)
 		}
-	}
 }
 
 function loader() {
-	nodeClara.style.visibility = 'hidden'
+	clara.node.style.visibility = 'hidden'
 	Ajax.get(window.location + "/view/index.html", {}, function (res) {
-		nodeClara.innerHTML = res
+		clara.node.innerHTML = res
 		window.setTimeout(function () {
 			document.getElementById('reload').onclick = () => {
 				loader()
 			}
-			bind_menu()
-			bind_modal()
-			bind()
-			nodeTabInfo = document.getElementById('tab-info')
-			nodeTabGoal = document.getElementById('tab-goal')
-			nodeTabWorkspace = document.getElementById('tab-workspace')
-			NodeBodyEdit = document.querySelector('#modal_body_edit> form .content')
-			nodeClara.style.visibility = 'visible'
+			bindInitial()
+			clara.steps.info.node = document.getElementById('tab-info')
+			clara.steps.goal.node = document.getElementById('tab-goal')
+			clara.steps.workspace.node = document.getElementById('tab-workspace')
+			clara.node.style.visibility = 'visible'
 			insertPannel('module')
-			insertPannel('objective')
 			insertPannel('project')
 			clara.steps.info.start()
 		}, 1)
@@ -308,7 +317,6 @@ function use_goal_info(data) {
 }
 
 function newNodeEditPannel() {
-	'<div class="panel_remove"><i class="fas fa-edit"></i><i class="fas fa-trash-alt"></i></div>'
 	const newNode = document.createElement('div')
 	newNode.classList.add('panel_remove')
 	newNode.innerHTML = '<i class="fas fa-edit"></i><i class="fas fa-trash-alt"></i>'
@@ -343,9 +351,10 @@ function insertDropZone() {
 function insertPannel(type) {
 	insertEditPannelButton()
 	const paentNode = document.querySelector('#tab-workspace > .tab-body')
-	const newNode = template.panels[type]
+	const newNode = template.panels[type].cloneNode(true)
 	paentNode.appendChild(newNode)
 	insertDropZone()
+	bind()
 }
 
 function panelExist(type) {
@@ -357,28 +366,5 @@ function insertPannelAfter(referenceNode, type) {
 	document.querySelector('#clara #tab-workspace > .tab-body').insertBefore(newNodeEditPannel(), referenceNode)
 	document.querySelector('#clara #tab-workspace > .tab-body').insertBefore(newNode, referenceNode)
 	document.querySelector('#clara #tab-workspace > .tab-body').insertBefore(newNodeDropZone(), referenceNode)
+	bind()
 }
-
-// Liens utiles
-
-// https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent
-// https://developer.mozilla.org/fr/docs/Web/API/Node/cloneNode
-// https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Promise
-// https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Classes
-// https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Fonctions/Fonctions_fléchées
-// https://www.w3schools.com/css/css_attribute_selectors.asp
-// https://stackoverflow.com/questions/3955229/remove-all-child-elements-of-a-dom-node-in-javascript
-// http://jakiestfu.github.io/Medium.js/docs/
-// https://i.pinimg.com/564x/1e/75/ea/1e75eaae980b514d42a9bf3a24c7de6b.jpg
-// https://css-tricks.com/snippets/css/keyframe-animation-syntax/
-// https://stackoverflow.com/questions/26736587/how-to-add-and-remove-classes-in-js-without-jquery/26736704#26736704
-// https://css-tricks.com/snippets/css/a-guide-to-flexbox/
-// https://www.materialui.co/flatuicolors
-// https://fontawesome.com/icons?d=gallery
-// https://developer.mozilla.org/fr/docs/Web/API/WindowTimers/setTimeout
-// https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_ondragstart
-// https://developer.mozilla.org/en-US/docs/Web/API/Node/insertBefore
-// https://www.w3schools.com/cssref/sel_nth-child.asp
-// https://developer.mozilla.org/fr/docs/Web/API/Node/insertBefore
-// http://danml.com/download.html
-// https://developer.mozilla.org/fr/docs/Web/API/GlobalEventHandlers/onload

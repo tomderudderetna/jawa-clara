@@ -27,14 +27,14 @@
 <section id="tab-info" class="tab">
     <div class="tab-body">
         <h2>1) Saisissez les information relatives à l'UV</h2>
-        <form>
+        <form action="javascript:void(0);">
             <div class="group">
                 <label>Nom du module * :</label>
-                <input type="text" name="module" placeholder="TIC-DVC1" required>
+                <input type="text" name="module" placeholder="TIC-DVC1">
             </div>
             <div class="group">
                 <label>Nom du projet * :</label>
-                <input type="text" name="project" placeholder="snake" required>
+                <input type="text" name="project" placeholder="snake">
             </div>
             <br>
             <div class="group">
@@ -90,11 +90,16 @@
         </nav>
 
         <h2>2) Saisissez le(s) objectif(s) du projet / quest</h2>
-        <form>
+        <form action="javascript:void(0);">
             <div class="group">
                 <div class="content" contenteditable='true'>
                     <p>Connaitre les bases d'excel</p>
                 </div>
+            </div>
+            <div class="group">
+                <label>
+                    <input type="checkbox">ne pas utiliser la section objectif(s)
+                </label>
             </div>
             <div class="group">
                 <input type="submit" value="Valider">
@@ -112,7 +117,7 @@
 <!-- MODAL EDIT -->
 <div class="modal">
     <div class="modal-body" id="modal_body_edit">
-        <form>
+        <form action="javascript:void(0);">
             <div class="group">
                 <label>Votre texte :</label>
                 <div class="content" contenteditable='true'>BONJOUR</div>

@@ -1,0 +1,24 @@
+// Liens utiles
+
+// https://solidfoundationwebdev.com/blog/posts/how-to-create-a-form-with-no-action-that-does-not-reload-the-page-upon-submit
+// https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent
+// https://developer.mozilla.org/fr/docs/Web/API/Node/cloneNode
+// https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Promise
+// https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Classes
+// https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Fonctions/Fonctions_fléchées
+// https://www.w3schools.com/css/css_attribute_selectors.asp
+// https://stackoverflow.com/questions/3955229/remove-all-child-elements-of-a-dom-node-in-javascript
+// http://jakiestfu.github.io/Medium.js/docs/
+// https://i.pinimg.com/564x/1e/75/ea/1e75eaae980b514d42a9bf3a24c7de6b.jpg
+// https://css-tricks.com/snippets/css/keyframe-animation-syntax/
+// https://stackoverflow.com/questions/26736587/how-to-add-and-remove-classes-in-js-without-jquery/26736704#26736704
+// https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+// https://www.materialui.co/flatuicolors
+// https://fontawesome.com/icons?d=gallery
+// https://developer.mozilla.org/fr/docs/Web/API/WindowTimers/setTimeout
+// https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_ondragstart
+// https://developer.mozilla.org/en-US/docs/Web/API/Node/insertBefore
+// https://www.w3schools.com/cssref/sel_nth-child.asp
+// https://developer.mozilla.org/fr/docs/Web/API/Node/insertBefore
+// http://danml.com/download.html
+// https://developer.mozilla.org/fr/docs/Web/API/GlobalEventHandlers/onload
