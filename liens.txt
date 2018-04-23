@@ -1,5 +1,7 @@
 // Liens utiles
 
+// http://jsbeautifier.org
+// https://github.com/beautify-web/js-beautify
 // https://solidfoundationwebdev.com/blog/posts/how-to-create-a-form-with-no-action-that-does-not-reload-the-page-upon-submit
 // https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent
 // https://developer.mozilla.org/fr/docs/Web/API/Node/cloneNode

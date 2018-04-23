@@ -3,6 +3,7 @@ class Clara {
 	constructor() {
 		this.node = document.getElementById('clara')
 		this.selectedBody = null
+		this.selectedHeading = null
 		this.stepMax = 0
 		this.next = null
 		this.useObjective = true
@@ -24,54 +25,78 @@ class Clara {
 		this.steps = {
 			info: {
 				start: () => {
-					clara.next = (clara.stepMax) ? clara.steps.workspace.start : clara.steps.goal.start
-					showTab(clara.steps.info.node)
+					this.startStepInfo()
 				},
 				end: () => {
-					set_module_info()
-					use_module_info()
-					clara.next()
+					this.endStepInfo()
 				},
 				node: null
 			},
 			goal: {
 				start: () => {
-					clara.stepMax = 1
-					clara.next = clara.steps.workspace.start
-					document.querySelector('#clara #process-line > .step:nth-child(2)').classList.add('active')
-					showTab(clara.steps.goal.node)
+					this.startStepGoal()
 				},
 				end: () => {
-					clara.next()
+					this.endStepGoal()
 				},
 				node: null
 			},
 			workspace: {
 				start: () => {
-					document.querySelector('#clara #process-line > .step:nth-child(1)').onclick = function () {
-						clara.steps.info.start()
-					}
-					document.querySelector('#clara #process-line > .step:nth-child(2)').onclick = function () {
-						clara.steps.goal.start()
-					}
-					document.querySelector('#clara #process-line > .step:nth-child(3)').onclick = function () {
-						clara.steps.workspace.start()
-					}
-					document.getElementById('download').onclick = function () {
-						clara.steps.workspace.end()
-					}
-					document.querySelector('#clara #process-line > .step:nth-child(3)').classList.add('active')
-					document.querySelector('#clara #process-line > .step:nth-child(4)').classList.add('valid')
-					showTab(clara.steps.workspace.node)
+					this.startStepWspace()
 				},
 				end: () => {
-					document.querySelector('#clara #process-line > .step:nth-child(4)').classList.remove('valid')
-					document.querySelector('#clara #process-line > .step:nth-child(4)').classList.add('active')
-					downloader()
+					this.endStepWspace()
 				},
 				node: null
 			}
 		}
+	}
+
+	startStepInfo() {
+		this.next = (this.stepMax) ? this.steps.workspace.start : this.steps.goal.start
+		showTab(this.steps.info.node)
+	}
+
+	endStepInfo() {
+		set_module_info()
+		use_module_info()
+		this.next()
+	}
+
+	startStepGoal() {
+		this.stepMax = 1
+		this.next = this.steps.workspace.start
+		document.querySelector('#clara #process-line > .step:nth-child(2)').classList.add('active')
+		showTab(this.steps.goal.node)
+	}
+
+	endStepGoal() {
+		this.next()
+	}
+
+	startStepWspace() {
+		document.querySelector('#clara #process-line > .step:nth-child(1)').onclick = () => {
+			this.steps.info.start()
+		}
+		document.querySelector('#clara #process-line > .step:nth-child(2)').onclick = () => {
+			this.steps.goal.start()
+		}
+		document.querySelector('#clara #process-line > .step:nth-child(3)').onclick = () => {
+			this.steps.workspace.start()
+		}
+		document.getElementById('download').onclick = () => {
+			this.steps.workspace.end()
+		}
+		document.querySelector('#clara #process-line > .step:nth-child(3)').classList.add('active')
+		document.querySelector('#clara #process-line > .step:nth-child(4)').classList.add('valid')
+		showTab(this.steps.workspace.node)
+	}
+
+	endStepWspace() {
+		document.querySelector('#clara #process-line > .step:nth-child(4)').classList.remove('valid')
+		document.querySelector('#clara #process-line > .step:nth-child(4)').classList.add('active')
+		downloader()
 	}
 
 	enableObjectifPanel() {
@@ -126,6 +151,36 @@ class Mold {
 	}
 }
 
+class Subject {
+	static generate() {
+		const opt = {
+			brace_style: "collapse",
+			break_chained_methods: false,
+			comma_first: false,
+			e4x: false,
+			end_with_newline: false,
+			indent_char: " ",
+			indent_inner_html: false,
+			indent_scripts: "normal",
+			indent_size: "4",
+			jslint_happy: false,
+			keep_array_indentation: false,
+			max_preserve_newlines: "5",
+			preserve_newlines: true,
+			space_before_conditional: true,
+			unescape_strings: false,
+			wrap_line_length: "0"
+		}
+		let content = template.raw.substring(0, 527)
+		const pannels = document.querySelectorAll(S_PANNELS)
+		for (let i = 0; i < pannels.length; i++)
+			content += pannels[i].outerHTML
+		content += template.raw.substring(template.raw.length - 17, template.raw.length)
+		return html_beautify(content, opt)
+		// return content
+	}
+}
+
 class Ajax {
 	static get(url, opt, success, error) {
 		const xhttp = new XMLHttpRequest()
@@ -147,8 +202,10 @@ const
 	S_TAB_GOAL = S_CLARA + '#tab-goal ',
 	S_TAB_WSPACE = S_CLARA + '#tab-workspace ',
 	S_MODAL_BODY = S_CLARA + '#modal_body_edit ',
+	S_MODAL_HEADING = S_CLARA + '#modal_heading_edit ',
 	S_PANNELS = S_CLARA + '#tab-workspace .panel',
 	S_SUBMIT_MODAL = S_MODAL_BODY + S_SUBMIT,
+	S_SUBMIT_MODAL2 = S_MODAL_HEADING + S_SUBMIT,
 	S_SUBMIT_INFO = S_TAB_INFO + S_SUBMIT,
 	S_SUBMIT_GOAL = S_TAB_GOAL + S_SUBMIT,
 	clara = new Clara(),
@@ -187,7 +244,7 @@ function bindInitial() {
 			alert(this.getAttribute('type'))
 		}
 	}
-	const btn_text = document.querySelectorAll('#clara #nav_text > a')
+	const btn_text = document.querySelectorAll('#clara .nav_text > a')
 	for (let i = 0; i < btn_text.length; i++) {
 		btn_text[i].onfocus = function (e) {
 			e.preventDefault()
@@ -210,6 +267,10 @@ function bindInitial() {
 		clara.selectedBody.innerHTML = document.querySelector(S_MODAL_BODY + '.content').innerHTML
 		hide(document.querySelector(S_MODAL_BODY))
 	}
+	document.querySelector(S_SUBMIT_MODAL2).onclick = () => {
+		clara.selectedHeading.textContent = document.querySelector(S_MODAL_HEADING + 'input[name="content"]').value
+		hide(document.querySelector(S_MODAL_HEADING))
+	}
 	bind()
 }
 
@@ -220,6 +281,13 @@ function bind() {
 			clara.selectedBody = this
 			document.querySelector(S_MODAL_BODY + '.content').innerHTML = this.innerHTML
 			show(document.querySelector(S_MODAL_BODY), 1)
+		}
+	const title = document.querySelectorAll('#tab-workspace .panel:not(.panel-module):not(.panel-objective) > .panel-heading')
+	for (let i = 0; i < title.length; i++)
+		title[i].onclick = function () {
+			clara.selectedHeading = this
+			document.querySelector(S_MODAL_HEADING + 'input[name="content"]').value = this.textContent
+			show(document.querySelector(S_MODAL_HEADING), 1)
 		}
 	const edit_body = document.querySelectorAll('#tab-workspace .panel_remove > i.fa-edit')
 	for (let i = 0; i < edit_body.length; i++)
@@ -254,35 +322,15 @@ function loader() {
 }
 
 function downloader() {
-	download(generate(), "sujet.html", "text/html");
-}
-
-function generate() {
-	let content = template.raw.substring(0, 527)
-	const pannels = document.querySelectorAll(S_PANNELS)
-	for (let i = 0; i < pannels.length; i++)
-		content += pannels[i].outerHTML
-	content += template.raw.substring(template.raw.length - 17, template.raw.length)
-	return content
+	download(Subject.generate(), "sujet.html", "text/html");
 }
 
 function set_module_info() {
-	let node = null
-	node = document.querySelector(S_TAB_INFO + 'input[name="module"]')
-	clara.moduleName = node.value ? node.value : null
-	node = document.querySelector(S_TAB_INFO + 'input[name="project"]')
-	clara.projectName = node.value ? node.value : null
+	clara.moduleName = document.querySelector(S_TAB_INFO + 'input[name="module"]').value
+	clara.projectName = document.querySelector(S_TAB_INFO + 'input[name="project"]').value
 	const infos = document.querySelectorAll('#clara #tab-info form input[name^=":"]')
 	for (let i = 0; i < infos.length; i++)
 		clara.moduleInfo[infos[i].name] = infos[i].value != '' ? infos[i].value : null
-}
-
-function get_module_name() {
-	document.querySelector(S_PANNELS + '-module > .panel-heading').innerHTML = clara.moduleName ? clara.moduleName : '???'
-}
-
-function get_project_name() {
-	document.querySelector(S_PANNELS + '-project > .panel-heading').innerHTML = clara.projectName ? clara.projectName : '???'
 }
 
 function get_module_info(key, value) {
@@ -301,8 +349,8 @@ function use_module_info() {
 		['Temps', ':time'],
 		['Effectif', ':team']
 	]
-	get_module_name()
-	get_project_name()
+	document.querySelector(S_PANNELS + '-module > .panel-heading').innerHTML = clara.moduleName
+	document.querySelector(S_PANNELS + '-project > .panel-heading').innerHTML = clara.projectName
 	const parentNode = document.querySelector(S_PANNELS + '-module table ')
 	while (parentNode.firstChild)
 		parentNode.removeChild(parentNode.firstChild)

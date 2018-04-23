@@ -64,7 +64,8 @@
 
 /* <========================= menu =========================> */
 #clara > nav,
-#clara .tab-body > nav {
+#clara .tab-body > nav,
+#clara .modal-body > nav {
     display: flex;
     padding: 5px 0;
     width: 100%;
@@ -73,7 +74,8 @@
     border-radius: 4px 4px 0 0;
 }
 
-#clara .tab-body > nav {
+#clara .tab-body > nav,
+#clara .modal-body > nav {
     background-color: #2c3e50;
 }
 
@@ -84,24 +86,28 @@
 }
 
 #clara > nav > a,
-#clara .tab-body > nav > a {
+#clara .tab-body > nav > a,
+#clara .modal-body > nav > a {
     border: 1px solid #aaa;
     padding: 6px 20px;
     margin: 3px 0;
 }
 
 #clara > nav > a:hover,
-#clara .tab-body > nav > a:hover {
+#clara .tab-body > nav > a:hover,
+#clara .modal-body > nav > a:hover {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
 #clara > nav > a:first-child,
-#clara .tab-body > nav > a:first-child {
+#clara .tab-body > nav > a:first-child,
+#clara .modal-body > nav > a:first-child {
     border-radius: 1em 0 0 1em;
 }
 
 #clara > nav > a:last-child,
-#clara .tab-body > nav > a:last-child {
+#clara .tab-body > nav > a:last-child,
+#clara .modal-body > nav > a:last-child {
     border-radius: 0 1em 1em 0;
 }
 
@@ -224,6 +230,7 @@
     display: none;
 }
 
+#modal_heading_edit,
 #modal_body_edit {
     width: 750px;
 }
@@ -245,8 +252,7 @@
 }
 
 #clara #tab-goal .content,
-#clara #tab-goal textarea,
-#modal_body_edit textarea {
+#modal_body_edit .content {
     min-height: 200px;
     background-color: #fff;
     flex: 4;
