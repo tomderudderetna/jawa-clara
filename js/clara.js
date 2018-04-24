@@ -102,7 +102,7 @@ class Clara {
 	enableObjectifPanel() {
 		this.useObjective = true
 		if (!panelExist('objective'))
-			insertPannel('objective')
+			insertPannelAfter(document.querySelector(S_PANNELS + '-project'), 'objective')
 		use_goal_info(document.querySelector('#clara #tab-goal form .content').innerHTML)
 	}
 
@@ -397,7 +397,8 @@ function insertDropZone() {
 }
 
 function insertPannel(type) {
-	insertEditPannelButton()
+	const specialPanel = type === 'module' || type === 'objective' || type === 'project'
+	specialPanel ? null : insertEditPannelButton()
 	const paentNode = document.querySelector('#tab-workspace > .tab-body')
 	const newNode = template.panels[type].cloneNode(true)
 	paentNode.appendChild(newNode)
@@ -410,8 +411,9 @@ function panelExist(type) {
 }
 
 function insertPannelAfter(referenceNode, type) {
+	const specialPanel = type === 'module' || type === 'objective' || type === 'project'
 	const newNode = template.panels[type].cloneNode(true)
-	document.querySelector('#clara #tab-workspace > .tab-body').insertBefore(newNodeEditPannel(), referenceNode)
+	specialPanel ? null : document.querySelector('#clara #tab-workspace > .tab-body').insertBefore(newNodeEditPannel(), referenceNode)
 	document.querySelector('#clara #tab-workspace > .tab-body').insertBefore(newNode, referenceNode)
 	document.querySelector('#clara #tab-workspace > .tab-body').insertBefore(newNodeDropZone(), referenceNode)
 	bind()
